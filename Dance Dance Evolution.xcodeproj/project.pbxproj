@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1521011DA4002DA08D /* AppDelegate.swift */; };
+		E5F85F1821011DA4002DA08D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1721011DA4002DA08D /* GameScene.sks */; };
+		E5F85F1A21011DA4002DA08D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1921011DA4002DA08D /* Actions.sks */; };
+		E5F85F1C21011DA4002DA08D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1B21011DA4002DA08D /* GameScene.swift */; };
+		E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1D21011DA4002DA08D /* GameViewController.swift */; };
+		E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1F21011DA4002DA08D /* Main.storyboard */; };
+		E5F85F2321011DAC002DA08D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F2221011DAC002DA08D /* Assets.xcassets */; };
+		E5F85F2621011DAC002DA08D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */; };
+		E5F85F3121011DAD002DA08D /* Dance_Dance_EvolutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F3021011DAD002DA08D /* Dance_Dance_EvolutionTests.swift */; };
+		E5F85F3C21011DAD002DA08D /* Dance_Dance_EvolutionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F3B21011DAD002DA08D /* Dance_Dance_EvolutionUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E5F85F2D21011DAD002DA08D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F85F0A21011DA3002DA08D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5F85F1121011DA3002DA08D;
+			remoteInfo = "Dance Dance Evolution";
+		};
+		E5F85F3821011DAD002DA08D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F85F0A21011DA3002DA08D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5F85F1121011DA3002DA08D;
+			remoteInfo = "Dance Dance Evolution";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dance Dance Evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F85F1521011DA4002DA08D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E5F85F1721011DA4002DA08D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		E5F85F1921011DA4002DA08D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		E5F85F1B21011DA4002DA08D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E5F85F1D21011DA4002DA08D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E5F85F2021011DA4002DA08D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E5F85F2221011DAC002DA08D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5F85F2521011DAC002DA08D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E5F85F2721011DAC002DA08D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5F85F2C21011DAD002DA08D /* Dance Dance EvolutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dance Dance EvolutionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F85F3021011DAD002DA08D /* Dance_Dance_EvolutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dance_Dance_EvolutionTests.swift; sourceTree = "<group>"; };
+		E5F85F3221011DAD002DA08D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5F85F3721011DAD002DA08D /* Dance Dance EvolutionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dance Dance EvolutionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F85F3B21011DAD002DA08D /* Dance_Dance_EvolutionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dance_Dance_EvolutionUITests.swift; sourceTree = "<group>"; };
+		E5F85F3D21011DAD002DA08D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E5F85F0F21011DA3002DA08D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F2921011DAD002DA08D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F3421011DAD002DA08D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E5F85F0921011DA3002DA08D = {
+			isa = PBXGroup;
+			children = (
+				E5F85F1421011DA4002DA08D /* Dance Dance Evolution */,
+				E5F85F2F21011DAD002DA08D /* Dance Dance EvolutionTests */,
+				E5F85F3A21011DAD002DA08D /* Dance Dance EvolutionUITests */,
+				E5F85F1321011DA4002DA08D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E5F85F1321011DA4002DA08D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */,
+				E5F85F2C21011DAD002DA08D /* Dance Dance EvolutionTests.xctest */,
+				E5F85F3721011DAD002DA08D /* Dance Dance EvolutionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5F85F1421011DA4002DA08D /* Dance Dance Evolution */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F1521011DA4002DA08D /* AppDelegate.swift */,
+				E5F85F1721011DA4002DA08D /* GameScene.sks */,
+				E5F85F1921011DA4002DA08D /* Actions.sks */,
+				E5F85F1B21011DA4002DA08D /* GameScene.swift */,
+				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
+				E5F85F1F21011DA4002DA08D /* Main.storyboard */,
+				E5F85F2221011DAC002DA08D /* Assets.xcassets */,
+				E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */,
+				E5F85F2721011DAC002DA08D /* Info.plist */,
+			);
+			path = "Dance Dance Evolution";
+			sourceTree = "<group>";
+		};
+		E5F85F2F21011DAD002DA08D /* Dance Dance EvolutionTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F3021011DAD002DA08D /* Dance_Dance_EvolutionTests.swift */,
+				E5F85F3221011DAD002DA08D /* Info.plist */,
+			);
+			path = "Dance Dance EvolutionTests";
+			sourceTree = "<group>";
+		};
+		E5F85F3A21011DAD002DA08D /* Dance Dance EvolutionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F3B21011DAD002DA08D /* Dance_Dance_EvolutionUITests.swift */,
+				E5F85F3D21011DAD002DA08D /* Info.plist */,
+			);
+			path = "Dance Dance EvolutionUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E5F85F1121011DA3002DA08D /* Dance Dance Evolution */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5F85F4021011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance Evolution" */;
+			buildPhases = (
+				E5F85F0E21011DA3002DA08D /* Sources */,
+				E5F85F0F21011DA3002DA08D /* Frameworks */,
+				E5F85F1021011DA3002DA08D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dance Dance Evolution";
+			productName = "Dance Dance Evolution";
+			productReference = E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5F85F2B21011DAD002DA08D /* Dance Dance EvolutionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5F85F4321011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance EvolutionTests" */;
+			buildPhases = (
+				E5F85F2821011DAD002DA08D /* Sources */,
+				E5F85F2921011DAD002DA08D /* Frameworks */,
+				E5F85F2A21011DAD002DA08D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5F85F2E21011DAD002DA08D /* PBXTargetDependency */,
+			);
+			name = "Dance Dance EvolutionTests";
+			productName = "Dance Dance EvolutionTests";
+			productReference = E5F85F2C21011DAD002DA08D /* Dance Dance EvolutionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E5F85F3621011DAD002DA08D /* Dance Dance EvolutionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5F85F4621011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance EvolutionUITests" */;
+			buildPhases = (
+				E5F85F3321011DAD002DA08D /* Sources */,
+				E5F85F3421011DAD002DA08D /* Frameworks */,
+				E5F85F3521011DAD002DA08D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5F85F3921011DAD002DA08D /* PBXTargetDependency */,
+			);
+			name = "Dance Dance EvolutionUITests";
+			productName = "Dance Dance EvolutionUITests";
+			productReference = E5F85F3721011DAD002DA08D /* Dance Dance EvolutionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5F85F0A21011DA3002DA08D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Hans Guntersson";
+				TargetAttributes = {
+					E5F85F1121011DA3002DA08D = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					E5F85F2B21011DAD002DA08D = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = E5F85F1121011DA3002DA08D;
+					};
+					E5F85F3621011DAD002DA08D = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = E5F85F1121011DA3002DA08D;
+					};
+				};
+			};
+			buildConfigurationList = E5F85F0D21011DA3002DA08D /* Build configuration list for PBXProject "Dance Dance Evolution" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E5F85F0921011DA3002DA08D;
+			productRefGroup = E5F85F1321011DA4002DA08D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E5F85F1121011DA3002DA08D /* Dance Dance Evolution */,
+				E5F85F2B21011DAD002DA08D /* Dance Dance EvolutionTests */,
+				E5F85F3621011DAD002DA08D /* Dance Dance EvolutionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E5F85F1021011DA3002DA08D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */,
+				E5F85F1821011DA4002DA08D /* GameScene.sks in Resources */,
+				E5F85F2321011DAC002DA08D /* Assets.xcassets in Resources */,
+				E5F85F2621011DAC002DA08D /* LaunchScreen.storyboard in Resources */,
+				E5F85F1A21011DA4002DA08D /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F2A21011DAD002DA08D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F3521011DAD002DA08D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E5F85F0E21011DA3002DA08D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F85F1C21011DA4002DA08D /* GameScene.swift in Sources */,
+				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
+				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F2821011DAD002DA08D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F85F3121011DAD002DA08D /* Dance_Dance_EvolutionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F85F3321011DAD002DA08D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F85F3C21011DAD002DA08D /* Dance_Dance_EvolutionUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5F85F2E21011DAD002DA08D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5F85F1121011DA3002DA08D /* Dance Dance Evolution */;
+			targetProxy = E5F85F2D21011DAD002DA08D /* PBXContainerItemProxy */;
+		};
+		E5F85F3921011DAD002DA08D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5F85F1121011DA3002DA08D /* Dance Dance Evolution */;
+			targetProxy = E5F85F3821011DAD002DA08D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E5F85F1F21011DA4002DA08D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5F85F2021011DA4002DA08D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5F85F2521011DAC002DA08D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E5F85F3E21011DAD002DA08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E5F85F3F21011DAD002DA08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E5F85F4121011DAD002DA08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance Evolution/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5F85F4221011DAD002DA08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance Evolution/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E5F85F4421011DAD002DA08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance EvolutionTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
+			};
+			name = Debug;
+		};
+		E5F85F4521011DAD002DA08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance EvolutionTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
+			};
+			name = Release;
+		};
+		E5F85F4721011DAD002DA08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance EvolutionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dance Dance Evolution";
+			};
+			name = Debug;
+		};
+		E5F85F4821011DAD002DA08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCTH68755D;
+				INFOPLIST_FILE = "Dance Dance EvolutionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dance Dance Evolution";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E5F85F0D21011DA3002DA08D /* Build configuration list for PBXProject "Dance Dance Evolution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F85F3E21011DAD002DA08D /* Debug */,
+				E5F85F3F21011DAD002DA08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5F85F4021011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance Evolution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F85F4121011DAD002DA08D /* Debug */,
+				E5F85F4221011DAD002DA08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5F85F4321011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance EvolutionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F85F4421011DAD002DA08D /* Debug */,
+				E5F85F4521011DAD002DA08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5F85F4621011DAD002DA08D /* Build configuration list for PBXNativeTarget "Dance Dance EvolutionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F85F4721011DAD002DA08D /* Debug */,
+				E5F85F4821011DAD002DA08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5F85F0A21011DA3002DA08D /* Project object */;
+}
