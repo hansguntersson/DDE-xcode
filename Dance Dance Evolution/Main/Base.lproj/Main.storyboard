@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2kU-Zb-fll">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController storyboardIdentifier="GameScreen" id="BV1-FR-VrT" customClass="GameViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                    </view>
+                    <connections>
+                        <segue destination="OQS-0G-eDZ" kind="presentation" identifier="goToResultScreen" modalTransitionStyle="crossDissolve" id="XTo-7C-by1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1348" y="61"/>
+        </scene>
+        <!--Result View Controller-->
+        <scene sceneID="QEq-bd-Ogr">
+            <objects>
+                <viewController storyboardIdentifier="ResultScreen" id="OQS-0G-eDZ" customClass="ResultViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TEr-Sn-7vk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VDm-o7-gyF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pSA-Qm-TIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="61"/>
+        </scene>
+        <!--Entry View Controller-->
+        <scene sceneID="lWW-9Z-x00">
+            <objects>
+                <viewController storyboardIdentifier="EntryScreen" id="2kU-Zb-fll" customClass="EntryViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JaN-cE-iOu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_OxfordUniversityMMM" translatesAutoresizingMaskIntoConstraints="NO" id="iJ7-y2-5yD">
+                                <rect key="frame" x="20" y="283.5" width="335" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="VuE-ht-RVU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Onh-We-HQA" firstAttribute="trailing" secondItem="iJ7-y2-5yD" secondAttribute="trailing" constant="20" id="2ir-O0-Ypc"/>
+                            <constraint firstItem="iJ7-y2-5yD" firstAttribute="leading" secondItem="Onh-We-HQA" secondAttribute="leading" constant="20" id="Jpr-4E-pC4"/>
+                            <constraint firstItem="iJ7-y2-5yD" firstAttribute="centerY" secondItem="JaN-cE-iOu" secondAttribute="centerY" id="Pwc-X7-yXF"/>
+                            <constraint firstItem="iJ7-y2-5yD" firstAttribute="centerY" secondItem="JaN-cE-iOu" secondAttribute="centerY" id="p90-bD-Nki"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Onh-We-HQA"/>
+                    </view>
+                    <connections>
+                        <outlet property="EntryLogo" destination="iJ7-y2-5yD" id="l5f-tY-EI0"/>
+                        <segue destination="KhT-5y-ff0" kind="presentation" identifier="goToMainScreen" modalTransitionStyle="crossDissolve" id="qdY-9S-9uJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vky-M0-999" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-190" y="61"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="DAU-9k-lN8">
+            <objects>
+                <viewController storyboardIdentifier="MainScreen" id="KhT-5y-ff0" customClass="MainViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vt5-vU-BjZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="vhL-AW-boo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8">
+                                <rect key="frame" x="20" y="20" width="335" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="ea0-ST-T1L"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un">
+                                <rect key="frame" x="80.5" y="547" width="214" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="rF1-5L-3lv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vhL-AW-boo" secondAttribute="trailing" id="3BT-sS-mUt"/>
+                            <constraint firstItem="pBE-R4-GR8" firstAttribute="top" secondItem="Vt5-vU-BjZ" secondAttribute="top" constant="20" id="4GO-ud-Mxe"/>
+                            <constraint firstItem="lr6-8O-6un" firstAttribute="centerX" secondItem="Vt5-vU-BjZ" secondAttribute="centerX" id="8Hh-Mm-Pd0"/>
+                            <constraint firstItem="pBE-R4-GR8" firstAttribute="centerX" secondItem="Vt5-vU-BjZ" secondAttribute="centerX" id="BjI-tO-Tn1"/>
+                            <constraint firstItem="vhL-AW-boo" firstAttribute="top" secondItem="Vt5-vU-BjZ" secondAttribute="top" id="Gyd-a5-VvW"/>
+                            <constraint firstItem="pBE-R4-GR8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vt5-vU-BjZ" secondAttribute="leading" constant="20" id="OJg-Si-edf"/>
+                            <constraint firstAttribute="bottom" secondItem="lr6-8O-6un" secondAttribute="bottom" constant="20" id="a2J-ya-Ktc"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pBE-R4-GR8" secondAttribute="trailing" constant="20" id="bBl-hX-XE0"/>
+                            <constraint firstItem="vhL-AW-boo" firstAttribute="leading" secondItem="Vt5-vU-BjZ" secondAttribute="leading" id="kt4-O7-AYf"/>
+                            <constraint firstAttribute="bottom" secondItem="vhL-AW-boo" secondAttribute="bottom" id="lWl-fV-yPq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gfY-LA-kSN"/>
+                    </view>
+                    <connections>
+                        <outlet property="ResistanceLogo" destination="lr6-8O-6un" id="ORH-qv-k4k"/>
+                        <segue destination="BV1-FR-VrT" kind="presentation" identifier="goToGameScreen" modalTransitionStyle="crossDissolve" id="dl0-Mg-RJj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Afu-Nr-2Le" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="576.79999999999995" y="60.719640179910051"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="DDE_logo" width="614" height="249"/>
+        <image name="Logo_OxfordUniversityMMM" width="288" height="100"/>
+        <image name="Logo_ResistanceisFutile" width="214" height="100"/>
+        <image name="background" width="1920" height="960"/>
+    </resources>
+</document>

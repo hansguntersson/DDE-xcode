@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
+		892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B69CB211B72F800292AEC /* ResultViewController.swift */; };
+		89FD33092117540500407B15 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD33082117540500407B15 /* MainViewController.swift */; };
+		89FD330C211766D600407B15 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD330B211766D600407B15 /* Settings.swift */; };
+		89FD3311211778D200407B15 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD3310211778D200407B15 /* CustomViewController.swift */; };
 		E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1521011DA4002DA08D /* AppDelegate.swift */; };
-		E5F85F1821011DA4002DA08D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1721011DA4002DA08D /* GameScene.sks */; };
-		E5F85F1A21011DA4002DA08D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1921011DA4002DA08D /* Actions.sks */; };
-		E5F85F1C21011DA4002DA08D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1B21011DA4002DA08D /* GameScene.swift */; };
 		E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1D21011DA4002DA08D /* GameViewController.swift */; };
 		E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1F21011DA4002DA08D /* Main.storyboard */; };
 		E5F85F2321011DAC002DA08D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F2221011DAC002DA08D /* Assets.xcassets */; };
@@ -37,11 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		892B69CB211B72F800292AEC /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		89FD33082117540500407B15 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		89FD330B211766D600407B15 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		89FD3310211778D200407B15 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dance Dance Evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F85F1521011DA4002DA08D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E5F85F1721011DA4002DA08D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		E5F85F1921011DA4002DA08D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		E5F85F1B21011DA4002DA08D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		E5F85F1D21011DA4002DA08D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E5F85F2021011DA4002DA08D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E5F85F2221011DAC002DA08D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +84,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		891B10942116F3A800CC5C4D /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		898FA87E210FAB8800054D0B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				89FD3310211778D200407B15 /* CustomViewController.swift */,
+				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
+				89FD33082117540500407B15 /* MainViewController.swift */,
+				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
+				892B69CB211B72F800292AEC /* ResultViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		898FA87F210FABB300054D0B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E5F85F1521011DA4002DA08D /* AppDelegate.swift */,
+				E5F85F1F21011DA4002DA08D /* Main.storyboard */,
+				E5F85F2221011DAC002DA08D /* Assets.xcassets */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		89FD330A211766BF00407B15 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				89FD330B211766D600407B15 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		E5F85F0921011DA3002DA08D = {
 			isa = PBXGroup;
 			children = (
@@ -103,15 +145,11 @@
 		E5F85F1421011DA4002DA08D /* Dance Dance Evolution */ = {
 			isa = PBXGroup;
 			children = (
-				E5F85F1521011DA4002DA08D /* AppDelegate.swift */,
-				E5F85F1721011DA4002DA08D /* GameScene.sks */,
-				E5F85F1921011DA4002DA08D /* Actions.sks */,
-				E5F85F1B21011DA4002DA08D /* GameScene.swift */,
-				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
-				E5F85F1F21011DA4002DA08D /* Main.storyboard */,
-				E5F85F2221011DAC002DA08D /* Assets.xcassets */,
-				E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */,
 				E5F85F2721011DAC002DA08D /* Info.plist */,
+				891B10942116F3A800CC5C4D /* LaunchScreen */,
+				898FA87F210FABB300054D0B /* Main */,
+				898FA87E210FAB8800054D0B /* ViewControllers */,
+				89FD330A211766BF00407B15 /* Settings */,
 			);
 			path = "Dance Dance Evolution";
 			sourceTree = "<group>";
@@ -202,13 +240,16 @@
 				TargetAttributes = {
 					E5F85F1121011DA3002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					E5F85F2B21011DAD002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = E5F85F1121011DA3002DA08D;
 					};
 					E5F85F3621011DAD002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = E5F85F1121011DA3002DA08D;
 					};
 				};
@@ -239,10 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */,
-				E5F85F1821011DA4002DA08D /* GameScene.sks in Resources */,
 				E5F85F2321011DAC002DA08D /* Assets.xcassets in Resources */,
 				E5F85F2621011DAC002DA08D /* LaunchScreen.storyboard in Resources */,
-				E5F85F1A21011DA4002DA08D /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F85F1C21011DA4002DA08D /* GameScene.swift in Sources */,
+				89FD330C211766D600407B15 /* Settings.swift in Sources */,
+				89FD3311211778D200407B15 /* CustomViewController.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
+				892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */,
 				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
+				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,
+				89FD33092117540500407B15 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -469,7 +512,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -489,7 +532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
 			};
@@ -510,7 +553,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
 			};
@@ -530,7 +573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Dance Dance Evolution";
 			};
@@ -550,7 +593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Dance Dance Evolution";
 			};
