@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B69CB211B72F800292AEC /* ResultViewController.swift */; };
+		89B469952120732D0097E859 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* Extensions.swift */; };
 		89FD33092117540500407B15 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD33082117540500407B15 /* MainViewController.swift */; };
 		89FD330C211766D600407B15 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD330B211766D600407B15 /* Settings.swift */; };
 		89FD3311211778D200407B15 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD3310211778D200407B15 /* CustomViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892B69CB211B72F800292AEC /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		89B469942120732D0097E859 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		89FD33082117540500407B15 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		89FD330B211766D600407B15 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		89FD3310211778D200407B15 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,21 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		89B469932120730A0097E859 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				89B469942120732D0097E859 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		89E60ED8211CA6B200CE9C1C /* CustomViewControls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViewControls;
+			sourceTree = "<group>";
+		};
 		89FD330A211766BF00407B15 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +166,8 @@
 				891B10942116F3A800CC5C4D /* LaunchScreen */,
 				898FA87F210FABB300054D0B /* Main */,
 				898FA87E210FAB8800054D0B /* ViewControllers */,
+				89E60ED8211CA6B200CE9C1C /* CustomViewControls */,
+				89B469932120730A0097E859 /* Extensions */,
 				89FD330A211766BF00407B15 /* Settings */,
 			);
 			path = "Dance Dance Evolution";
@@ -307,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89FD330C211766D600407B15 /* Settings.swift in Sources */,
+				89B469952120732D0097E859 /* Extensions.swift in Sources */,
 				89FD3311211778D200407B15 /* CustomViewController.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
 				892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */,

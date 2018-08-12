@@ -18,12 +18,15 @@ class MainViewController: CustomViewController {
         // Make sure evertything is positioned as per constraints
         self.view.layoutIfNeeded()
         
-        // Replace the image with itself but with insets
-        let insetSize = CGFloat(-10)
-        let insets = UIEdgeInsets(top: insetSize, left: insetSize, bottom: insetSize, right: insetSize)
-        ResistanceLogo.image = ResistanceLogo.image!.withAlignmentRectInsets(insets)
-        ResistanceLogo.layer.cornerRadius = 5
- 
+        addPaddingToLogo()
     }
-
+    
+    func addPaddingToLogo() {
+        let padding = CGFloat(10)
+        if let paddingView = ResistanceLogo.addPaddingView(top: padding, left: padding, bottom: padding, right: padding) {
+            paddingView.backgroundColor = ResistanceLogo.backgroundColor
+            paddingView.layer.cornerRadius = 7
+        }
+        
+    }
 }

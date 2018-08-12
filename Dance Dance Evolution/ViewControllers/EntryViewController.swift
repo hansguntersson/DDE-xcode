@@ -9,6 +9,7 @@
 import UIKit
 
 class EntryViewController: CustomViewController {
+    private var isMainScreenAlreadyPresented: Bool = false
 
     @IBOutlet weak var EntryLogo: UIImageView!
     
@@ -35,12 +36,15 @@ class EntryViewController: CustomViewController {
                 self.EntryLogo.alpha = 0.0
             }
             , completion: { (finished: Bool) in
-                self.goToMainScreen()
+                if !self.isMainScreenAlreadyPresented {
+                    self.goToMainScreen()
+                }
             }
         )
     }
     
     @objc func handleTap() {
+        isMainScreenAlreadyPresented = true
         goToMainScreen()
     }
     
