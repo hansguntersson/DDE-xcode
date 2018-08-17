@@ -7,38 +7,21 @@
 //
 
 import UIKit
-import SpriteKit
 
 class GameViewController: CustomViewController {
+    private var gameSound150bpm: DDESound?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+        
+        gameSound150bpm = DDESound(sound: .vShort150bpm)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        gameSound150bpm?.playSound(stopIfAlreadyPlaying: false)
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        gameSound150bpm = nil
+    }
 }

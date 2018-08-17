@@ -16,6 +16,12 @@ class ResultViewController: CustomViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
+    
 
     /*
     // MARK: - Navigation

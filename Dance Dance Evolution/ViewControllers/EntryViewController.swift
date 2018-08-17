@@ -11,29 +11,28 @@ import UIKit
 class EntryViewController: CustomViewController {
     private var isMainScreenAlreadyPresented: Bool = false
 
-    @IBOutlet weak var EntryLogo: UIImageView!
+    @IBOutlet weak var entryLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Make sure evertything is positioned as per constraints
-        self.view.layoutIfNeeded()
-        
         // Add tap gesture to allow user to skip the animation
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         animateLogo()
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     func animateLogo() {
+        self.view.layoutIfNeeded()
         UIView.animate(withDuration: Settings.getEntryViewDuration()
             , animations: {
-                self.EntryLogo.alpha = 0.0
+                self.entryLogo.alpha = 0.0
+                self.view.layoutIfNeeded()
             }
             , completion: { (finished: Bool) in
                 if !self.isMainScreenAlreadyPresented {
@@ -49,6 +48,7 @@ class EntryViewController: CustomViewController {
     }
     
     func goToMainScreen() {
+        //dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
         performSegue(withIdentifier: "goToMainScreen", sender: self)
     }
 }

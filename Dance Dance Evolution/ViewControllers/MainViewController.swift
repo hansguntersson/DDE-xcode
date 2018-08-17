@@ -10,23 +10,35 @@ import UIKit
 
 class MainViewController: CustomViewController {
 
-    @IBOutlet weak var ResistanceLogo: UIImageView!
+    @IBOutlet weak var resistanceLogo: UIImageView!
+    @IBOutlet weak var btnSetup: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Make sure evertything is positioned as per constraints
-        self.view.layoutIfNeeded()
-        
         addPaddingToLogo()
+        let logoTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLogoTap))
+        resistanceLogo.addGestureRecognizer(logoTapGesture)
     }
     
     func addPaddingToLogo() {
-        let padding = CGFloat(10)
-        if let paddingView = ResistanceLogo.addPaddingView(top: padding, left: padding, bottom: padding, right: padding) {
-            paddingView.backgroundColor = ResistanceLogo.backgroundColor
-            paddingView.layer.cornerRadius = 7
+        let padding = CGFloat(7)
+        if let paddingView = resistanceLogo.addPaddingView(top: padding, left: padding, bottom: padding, right: padding) {
+            paddingView.backgroundColor = resistanceLogo.backgroundColor
+            paddingView.layer.cornerRadius = 5
         }
         
+    }
+    
+    @IBAction func setupWasPressed(_ sender: UIButton) {
+        goToSetupScreen()
+    }
+    
+    @objc func handleLogoTap() {
+        
+    }
+    
+    func goToSetupScreen() {
+        performSegue(withIdentifier: "goToSetupScreen", sender: self)
     }
 }

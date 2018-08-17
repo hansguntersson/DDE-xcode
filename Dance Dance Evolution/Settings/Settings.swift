@@ -10,8 +10,10 @@ class Settings{
     static func getEntryViewDuration() -> Double {
         return 2.5
     }
-    
-    
-    
-    
+    static func getCountdownDurationInSeconds() -> Int {
+        return 5
+    }
+    static func isSoundOn() -> Bool {
+        return true
+    }
 }
