@@ -1,17 +1,10 @@
-//
-//  EntryViewController.swift
-//  Dance Dance Evolution
-//
 //  Created by Cristian Buse on 05/08/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 
 class EntryViewController: CustomViewController {
-    private var isMainScreenAlreadyPresented: Bool = false
-
-    @IBOutlet weak var entryLogo: UIImageView!
+    @IBOutlet var entryLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +28,7 @@ class EntryViewController: CustomViewController {
                 self.view.layoutIfNeeded()
             }
             , completion: { (finished: Bool) in
-                if !self.isMainScreenAlreadyPresented {
+                if self.isViewActive() {
                     self.goToMainScreen()
                 }
             }
@@ -43,12 +36,16 @@ class EntryViewController: CustomViewController {
     }
     
     @objc func handleTap() {
-        isMainScreenAlreadyPresented = true
         goToMainScreen()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.entryLogo.alpha = 1.0
+    }
+    
     func goToMainScreen() {
-        //dismiss(animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
         performSegue(withIdentifier: "goToMainScreen", sender: self)
     }
 }

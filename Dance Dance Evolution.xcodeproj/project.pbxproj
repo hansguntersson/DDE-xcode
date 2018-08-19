@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B69CB211B72F800292AEC /* ResultViewController.swift */; };
+		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
+		89465ABA212A11770061F4E1 /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* CustomSwitch.swift */; };
 		89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AE41F72123720A00B5BF30 /* SetupViewController.swift */; };
-		89B469952120732D0097E859 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* Extensions.swift */; };
+		89B469952120732D0097E859 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* CustomImageView.swift */; };
 		89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C37A3E21249D3E00867B39 /* ReadyViewController.swift */; };
 		89F8D7972127611900571010 /* DDESound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8D7962127611900571010 /* DDESound.swift */; };
 		89F8D79B21277DA900571010 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 89F8D79A21277DA900571010 /* audio */; };
@@ -46,8 +48,10 @@
 /* Begin PBXFileReference section */
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892B69CB211B72F800292AEC /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
+		89465AB9212A11770061F4E1 /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
 		89AE41F72123720A00B5BF30 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
-		89B469942120732D0097E859 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		89B469942120732D0097E859 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		89C37A3E21249D3E00867B39 /* ReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyViewController.swift; sourceTree = "<group>"; };
 		89F8D7962127611900571010 /* DDESound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDESound.swift; sourceTree = "<group>"; };
 		89F8D79A21277DA900571010 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
@@ -105,7 +109,6 @@
 		898FA87E210FAB8800054D0B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				89FD3310211778D200407B15 /* CustomViewController.swift */,
 				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
 				89FD33082117540500407B15 /* MainViewController.swift */,
 				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
@@ -122,16 +125,19 @@
 				E5F85F1521011DA4002DA08D /* AppDelegate.swift */,
 				E5F85F1F21011DA4002DA08D /* Main.storyboard */,
 				E5F85F2221011DAC002DA08D /* Assets.xcassets */,
+				89465AB72129FE020061F4E1 /* AppLaunch.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		89B469932120730A0097E859 /* Extensions */ = {
+		89B469932120730A0097E859 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				89B469942120732D0097E859 /* Extensions.swift */,
+				89FD3310211778D200407B15 /* CustomViewController.swift */,
+				89B469942120732D0097E859 /* CustomImageView.swift */,
+				89465AB9212A11770061F4E1 /* CustomSwitch.swift */,
 			);
-			path = Extensions;
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		89F8D7952127610700571010 /* Sounds */ = {
@@ -178,7 +184,7 @@
 				891B10942116F3A800CC5C4D /* LaunchScreen */,
 				898FA87F210FABB300054D0B /* Main */,
 				898FA87E210FAB8800054D0B /* ViewControllers */,
-				89B469932120730A0097E859 /* Extensions */,
+				89B469932120730A0097E859 /* Custom */,
 				89FD330A211766BF00407B15 /* Settings */,
 				89F8D7952127610700571010 /* Sounds */,
 			);
@@ -339,8 +345,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */,
+				89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */,
 				89FD330C211766D600407B15 /* Settings.swift in Sources */,
-				89B469952120732D0097E859 /* Extensions.swift in Sources */,
+				89B469952120732D0097E859 /* CustomImageView.swift in Sources */,
 				89FD3311211778D200407B15 /* CustomViewController.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
 				892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */,
@@ -349,6 +356,7 @@
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,
 				89F8D7972127611900571010 /* DDESound.swift in Sources */,
 				89FD33092117540500407B15 /* MainViewController.swift in Sources */,
+				89465ABA212A11770061F4E1 /* CustomSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

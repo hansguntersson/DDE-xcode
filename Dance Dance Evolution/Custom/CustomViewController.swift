@@ -1,14 +1,10 @@
-//
-//  CustomViewController.swift
-//  Dance Dance Evolution
-//
 //  Created by Cristian Buse on 05/08/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 
 class CustomViewController: UIViewController {
+    private var isViewCurrentlyActive: Bool = false
     private var isStatusBarHidden: Bool = true
     private var statusBarAnimation: UIStatusBarAnimation = UIStatusBarAnimation.slide
     
@@ -18,6 +14,22 @@ class CustomViewController: UIViewController {
         let topEdgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePan))
         topEdgePan.edges = UIRectEdge.top
         view.addGestureRecognizer(topEdgePan)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        isViewCurrentlyActive = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        isViewCurrentlyActive = false
+    }
+    
+    func isViewActive() -> Bool {
+        return self.isViewCurrentlyActive
     }
     
     override var prefersStatusBarHidden: Bool {

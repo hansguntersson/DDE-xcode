@@ -1,10 +1,5 @@
-//
-//  ResultViewController.swift
-//  Dance Dance Evolution
-//
 //  Created by Cristian Buse on 08/08/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 

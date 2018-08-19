@@ -1,10 +1,5 @@
-//
-//  ReadyViewController.swift
-//  Dance Dance Evolution
-//
 //  Created by Cristian Buse on 15/08/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 
@@ -12,7 +7,7 @@ class ReadyViewController: CustomViewController {
     private var isGameScreenAlreadyPresented: Bool = false
     private var areYouReadySound: DDESound?
     
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet var countLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +27,9 @@ class ReadyViewController: CustomViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        areYouReadySound?.playSound(stopIfAlreadyPlaying: false)
+        if Settings.isSoundOn() {
+            areYouReadySound?.playSound(stopIfAlreadyPlaying: false)
+        }
         animateCountdown(downFrom: Settings.getCountdownDurationInSeconds())
     }
     
@@ -45,7 +42,7 @@ class ReadyViewController: CustomViewController {
                 self.view.layoutIfNeeded()
             }
             , completion: { (finished: Bool) in
-                self.countLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.countLabel.transform = .identity
                 if start > 1 {
                     self.countLabel.layer.removeAllAnimations()
                     self.animateCountdown(downFrom: start - 1)

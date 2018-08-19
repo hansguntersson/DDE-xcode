@@ -1,10 +1,5 @@
-//
-//  GameViewController.swift
-//  Dance Dance Evolution
-//
 //  Created by Daniel Harlos on 19/07/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 
@@ -18,7 +13,11 @@ class GameViewController: CustomViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        gameSound150bpm?.playSound(stopIfAlreadyPlaying: false)
+        super.viewDidAppear(animated)
+        
+        if Settings.isSoundOn() {
+            gameSound150bpm?.playSound(stopIfAlreadyPlaying: false)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
