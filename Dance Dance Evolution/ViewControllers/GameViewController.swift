@@ -4,23 +4,36 @@
 import UIKit
 
 class GameViewController: CustomViewController {
-    private var gameSound150bpm: DDESound?
+    private var gameMusic150bpm = DDESound(sound: .vShort150bpm)
+    private var gameMusic200bpm = DDESound(sound: .vShort200bpm)
+    private var mutationSound = DDESound(sound: .mutation)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gameSound150bpm = DDESound(sound: .vShort150bpm)
+        
+        
+        print("GameScreen was loaded")
     }
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Settings.isSoundOn() {
-            gameSound150bpm?.playSound(stopIfAlreadyPlaying: false)
-        }
+        gameMusic150bpm.play(stopIfAlreadyPlaying: false)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        gameSound150bpm = nil
+    
+    
+    
+
+    @IBAction func goToMainMenu(_ sender: UIButton) {
+        dismiss(animated: false, completion: nil)
+    }
+    
+    deinit {
+        print("GameScreen was de-initialized")
     }
 }

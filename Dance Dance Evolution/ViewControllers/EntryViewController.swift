@@ -9,9 +9,18 @@ class EntryViewController: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add tap gesture to allow user to skip the animation
+        addTapGestures()
+        
+        print("EntryScreen was loaded")
+    }
+    
+    private func addTapGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap() {
+        goToMainScreen()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,10 +44,6 @@ class EntryViewController: CustomViewController {
         )
     }
     
-    @objc func handleTap() {
-        goToMainScreen()
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -47,5 +52,9 @@ class EntryViewController: CustomViewController {
     
     func goToMainScreen() {
         performSegue(withIdentifier: "goToMainScreen", sender: self)
+    }
+    
+    deinit {
+        print("EntryScreen was de-initialized")
     }
 }

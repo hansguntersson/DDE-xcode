@@ -4,14 +4,23 @@
 import UIKit
 
 class CustomViewController: UIViewController {
+    class StatusBarOptions {
+        var isHidden: Bool = true
+        var animation: UIStatusBarAnimation = .none
+        var style: UIStatusBarStyle = .lightContent
+    }
+    
     private var isViewCurrentlyActive: Bool = false
-    private var isStatusBarHidden: Bool = true
-    private var statusBarAnimation: UIStatusBarAnimation = UIStatusBarAnimation.slide
+    private let statusBarOptions = StatusBarOptions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let topEdgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePan))
+        addPanGestures()
+    }
+    
+    private func addPanGestures() {
+        let topEdgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenTopEdgePan))
         topEdgePan.edges = UIRectEdge.top
         view.addGestureRecognizer(topEdgePan)
     }
@@ -29,41 +38,43 @@ class CustomViewController: UIViewController {
     }
     
     func isViewActive() -> Bool {
-        return self.isViewCurrentlyActive
+        return isViewCurrentlyActive
     }
     
     override var prefersStatusBarHidden: Bool {
-        return self.isStatusBarHidden
+        return statusBarOptions.isHidden
     }
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return self.statusBarAnimation
+        return statusBarOptions.animation
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarOptions.style
     }
     override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
         return UIRectEdge.top
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-    
-    @objc func screenEdgePan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
-        if self.isStatusBarHidden {
-            self.isStatusBarHidden = false
-            self.statusBarAnimation = UIStatusBarAnimation.slide
+
+    @objc func screenTopEdgePan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if statusBarOptions.isHidden {
+            statusBarOptions.isHidden = false
+            statusBarOptions.animation = .slide
+            
             UIView.animate(withDuration: 0.4
                , animations: {
                     self.setNeedsStatusBarAppearanceUpdate()
                     self.view.layoutIfNeeded()
                 }
                 , completion: { (finished: Bool) in
-                    self.setStatusBarOff()
+                    self.hideStatusBar()
                 }
             )
         }
     }
     
-    private func setStatusBarOff() {
-        self.isStatusBarHidden = true
-        self.statusBarAnimation = UIStatusBarAnimation.fade
+    private func hideStatusBar() {
+        statusBarOptions.isHidden = true
+        statusBarOptions.animation = .fade
+        
         UIView.animate(withDuration: 7
             , animations: {
                 self.setNeedsStatusBarAppearanceUpdate()

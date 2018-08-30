@@ -12,14 +12,15 @@ class MainViewController: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addGestures()
+        addTapGestures()
         addPaddingToLogo()
         addBorderToButtons()
         
         //btnResume.isHidden = true
+        print("MainScreen was loaded")
     }
     
-    private func addGestures() {
+    private func addTapGestures() {
         let logoTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLogoTap))
         resistanceLogo.addGestureRecognizer(logoTapGesture)
     }
@@ -42,7 +43,6 @@ class MainViewController: CustomViewController {
         button.layer.borderWidth = borderWidth
         button.layer.borderColor = borderColor.cgColor
         button.layer.cornerRadius = cornerRadius
-        //button.titleLabel?.font = UIFont(name: "System", size: 25.0)
     }
     
     @objc private func handleLogoTap() {
@@ -50,14 +50,21 @@ class MainViewController: CustomViewController {
     }
     
     private func goToEntryScreen() {
-        
+        dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func setupWasPressed(_ sender: UIButton) {
-        goToSetupScreen()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToReadyScreen" {
+            let ready = segue.destination as! ReadyViewController
+            ready.onClose = goToGameScreen
+        }
     }
     
-    private func goToSetupScreen() {
-        performSegue(withIdentifier: "goToSetupScreen", sender: self)
+    private func goToGameScreen() {
+        performSegue(withIdentifier: "goToGameScreen", sender: self)
+    }
+    
+    deinit {
+        print("MainScreen was de-initialized")
     }
 }

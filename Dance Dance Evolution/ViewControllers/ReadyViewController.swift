@@ -4,36 +4,44 @@
 import UIKit
 
 class ReadyViewController: CustomViewController {
-    private var isGameScreenAlreadyPresented: Bool = false
-    private var areYouReadySound: DDESound?
+    private var areYouReadySound = DDESound(sound: .areYouReady)
     
     @IBOutlet var countLabel: UILabel!
+    
+    // Callback that will run on Controller's completion of dismissal
+    var onClose: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add tap gesture to allow user to skip the animation
+        addTapGestures()
+        prepareCountLabel()
+        
+        print("ReadyScreen was loaded")
+    }
+    
+    private func addTapGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tapGesture)
-        
-        // Prepare countLabel
-        countLabel.text = String(Settings.getCountdownDurationInSeconds())
+    }
+    
+    @objc private func handleTap() {
+        close()
+    }
+    
+    private func prepareCountLabel() {
+        countLabel.text = String(Settings.countdownDuration)
         countLabel.layer.cornerRadius = countLabel.frame.width / 2
-        
-        // Prepare Sound
-        areYouReadySound = DDESound(sound: .areYouReady)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Settings.isSoundOn() {
-            areYouReadySound?.playSound(stopIfAlreadyPlaying: false)
-        }
-        animateCountdown(downFrom: Settings.getCountdownDurationInSeconds())
+        areYouReadySound.play(stopIfAlreadyPlaying: false)
+        animateCountdown(downFrom: Settings.countdownDuration)
     }
     
-    func animateCountdown(downFrom start: Int) {
+    private func animateCountdown(downFrom start: Int) {
         self.countLabel.text = "\(start)"
         
         UIView.animate(withDuration: 1.0, delay: 0.0, options: []
@@ -44,24 +52,19 @@ class ReadyViewController: CustomViewController {
             , completion: { (finished: Bool) in
                 self.countLabel.transform = .identity
                 if start > 1 {
-                    self.countLabel.layer.removeAllAnimations()
                     self.animateCountdown(downFrom: start - 1)
                 } else {
-                    if !self.isGameScreenAlreadyPresented {
-                        self.goToGameScreen()
-                    }
+                    self.close()
                 }
             }
         )
     }
     
-    @objc func handleTap() {
-        isGameScreenAlreadyPresented = true
-        goToGameScreen()
+    private func close() {
+        dismiss(animated: false, completion: onClose)
     }
     
-    func goToGameScreen() {
-        areYouReadySound = nil
-        performSegue(withIdentifier: "goToGameScreen", sender: self)
+    deinit {
+        print("ReadyScreen was de-initialized")
     }
 }

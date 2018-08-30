@@ -11,6 +11,7 @@
 		892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B69CB211B72F800292AEC /* ResultViewController.swift */; };
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* CustomSwitch.swift */; };
+		8969908D212F697400B69CB1 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969908C212F697400B69CB1 /* CustomLabel.swift */; };
 		89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AE41F72123720A00B5BF30 /* SetupViewController.swift */; };
 		89B469952120732D0097E859 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* CustomImageView.swift */; };
 		89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C37A3E21249D3E00867B39 /* ReadyViewController.swift */; };
@@ -50,6 +51,7 @@
 		892B69CB211B72F800292AEC /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
+		8969908C212F697400B69CB1 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		89AE41F72123720A00B5BF30 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		89B469942120732D0097E859 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		89C37A3E21249D3E00867B39 /* ReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyViewController.swift; sourceTree = "<group>"; };
@@ -111,10 +113,10 @@
 			children = (
 				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
 				89FD33082117540500407B15 /* MainViewController.swift */,
+				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
 				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
 				892B69CB211B72F800292AEC /* ResultViewController.swift */,
 				89AE41F72123720A00B5BF30 /* SetupViewController.swift */,
-				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -136,6 +138,7 @@
 				89FD3310211778D200407B15 /* CustomViewController.swift */,
 				89B469942120732D0097E859 /* CustomImageView.swift */,
 				89465AB9212A11770061F4E1 /* CustomSwitch.swift */,
+				8969908C212F697400B69CB1 /* CustomLabel.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */,
 				89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */,
 				89FD330C211766D600407B15 /* Settings.swift in Sources */,
+				8969908D212F697400B69CB1 /* CustomLabel.swift in Sources */,
 				89B469952120732D0097E859 /* CustomImageView.swift in Sources */,
 				89FD3311211778D200407B15 /* CustomViewController.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,

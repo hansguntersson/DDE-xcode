@@ -29,8 +29,8 @@ class DDESound {
         }
     }
     
-    func playSound(stopIfAlreadyPlaying: Bool) {
-        if isPlayerSet {
+    func play(stopIfAlreadyPlaying: Bool) {
+        if isPlayerSet && Settings.isSoundOn {
             if stopIfAlreadyPlaying {
                 
                 // not sure yet if this is relevant
@@ -70,5 +70,9 @@ class DDESound {
         } else {
             return nil
         }
+    }
+    
+    deinit {
+        print("Sound was unloaded")
     }
 }
