@@ -1,6 +1,5 @@
 //  Created by Cristian Buse on 23/08/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
-//
 
 import UIKit
 
@@ -38,9 +37,5 @@ class CustomLabel: UILabel {
     
     private func setBorderColor() {
         self.layer.borderColor = borderColor.cgColor
-    }
-    
-    
-    
-    
+    } 
 }

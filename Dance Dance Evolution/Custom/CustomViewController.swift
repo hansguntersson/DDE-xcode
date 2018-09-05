@@ -58,28 +58,30 @@ class CustomViewController: UIViewController {
         if statusBarOptions.isHidden {
             statusBarOptions.isHidden = false
             statusBarOptions.animation = .slide
+            self.setNeedsStatusBarAppearanceUpdate()
+            hideStatusBar()
             
-            UIView.animate(withDuration: 0.4
-               , animations: {
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    self.view.layoutIfNeeded()
-                }
-                , completion: { (finished: Bool) in
-                    self.hideStatusBar()
-                }
-            )
+//            UIView.animate(withDuration: 0.4
+//               , animations: {
+//                    self.setNeedsStatusBarAppearanceUpdate()
+//                }
+//                , completion: { (finished: Bool) in
+//                    self.hideStatusBar()
+//                }
+//            )
         }
     }
     
     private func hideStatusBar() {
-        statusBarOptions.isHidden = true
-        statusBarOptions.animation = .fade
-        
-        UIView.animate(withDuration: 7
-            , animations: {
-                self.setNeedsStatusBarAppearanceUpdate()
-                self.view.layoutIfNeeded()
-            }
-        )
+        if !statusBarOptions.isHidden {
+            statusBarOptions.isHidden = true
+            statusBarOptions.animation = .fade
+            
+            UIView.animate(withDuration: 7
+                , animations: {
+                    self.setNeedsStatusBarAppearanceUpdate()
+                }
+            )
+        }
     }
 }

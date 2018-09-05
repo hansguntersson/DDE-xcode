@@ -12,6 +12,11 @@ class SetupViewController: CustomViewController {
     @IBOutlet var difficulty: UISegmentedControl!
     @IBOutlet var toleranceStepper: UIStepper!
     @IBOutlet var toleranceLabel: UILabel!
+    @IBOutlet var fidelityStepper: UIStepper!
+    @IBOutlet var fidelityLabel: UILabel!
+    @IBOutlet var carryOverStepper: UIStepper!
+    @IBOutlet var carryOverLabel: UILabel!
+    @IBOutlet var toleranceVisibilityOn: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,11 @@ class SetupViewController: CustomViewController {
         difficulty.selectedSegmentIndex = Settings.difficulty.rawValue
         toleranceStepper.value = Double(Settings.tolerance)
         toleranceLabel.text = String(Settings.tolerance)
+        fidelityStepper.value = Settings.fidelityThreshold
+        fidelityLabel.text = fidelityStepper.value.toPercentString(decimalPlaces: 0)
+        carryOverStepper.value = Settings.carryOverThreshold
+        carryOverLabel.text = carryOverStepper.value.toPercentString(decimalPlaces: 0)
+        toleranceVisibilityOn.isOn = Settings.isToleranceVisibilityOn
     }
     
     @IBAction func soundToggled(_ sender: UISwitch) {
@@ -57,10 +67,21 @@ class SetupViewController: CustomViewController {
         toleranceLabel.text = String(newValue)
     }
     
+    @IBAction func fidelityChanged(_ sender: UIStepper) {
+        let newValue = sender.value
+        Settings.fidelityThreshold = newValue
+        fidelityLabel.text = newValue.toPercentString(decimalPlaces: 0)
+    }
     
+    @IBAction func carryOverChanged(_ sender: UIStepper) {
+        let newValue = sender.value
+        Settings.carryOverThreshold = newValue
+        carryOverLabel.text = newValue.toPercentString(decimalPlaces: 0)
+    }
     
-    
-    
+    @IBAction func toleranceVisibilityToggled(_ sender: UISwitch) {
+        Settings.isToleranceVisibilityOn = sender.isOn
+    }
     
     @IBAction func resetToDefault(_ sender: UIButton) {
         Settings.resetToDefaults()

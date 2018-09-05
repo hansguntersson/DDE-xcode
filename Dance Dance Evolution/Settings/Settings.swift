@@ -18,6 +18,9 @@ class Settings{
         static let sequenceLength: Int = 30
         static let difficulty: GameDifficulty = .normal
         static let tolerance: Int = 5
+        static let fidelityThreshold: Double = 0.75
+        static let carryOverThreshold: Double = 0.5
+        static let isToleranceVisibilityOn: Bool = false
     }
     
     // Used for read/write to System Defaults
@@ -27,6 +30,9 @@ class Settings{
         case sequenceLength = "DDE_SequenceLength"
         case difficulty = "DDE_Difficulty"
         case tolerance = "DDE_Tolerance"
+        case fidelityThreshold = "DDE_FidelityThreshold"
+        case carryOverThreshold = "DDE_CarryOverThreshold"
+        case isToleranceVisibilityOn = "DDE_ToleranceVisibility"
     }
 
     // Write to the system defaults
@@ -51,6 +57,9 @@ class Settings{
         removeDefaultByKey(.sequenceLength)
         removeDefaultByKey(.difficulty)
         removeDefaultByKey(.tolerance)
+        removeDefaultByKey(.fidelityThreshold)
+        removeDefaultByKey(.carryOverThreshold)
+        removeDefaultByKey(.isToleranceVisibilityOn)
     }
     
     static func getEntryViewDuration() -> Double {
@@ -122,5 +131,43 @@ class Settings{
         }
     }
     
+    static var fidelityThreshold: Double {
+        get {
+            if let result = getSavedSetting(settingKey: .fidelityThreshold) {
+                return result as! Double
+            } else {
+                return Defaults.fidelityThreshold
+            }
+        }
+        set {
+            saveSetting(settingKey: .fidelityThreshold, settingValue: newValue)
+        }
+    }
+    
+    static var carryOverThreshold: Double {
+        get {
+            if let result = getSavedSetting(settingKey: .carryOverThreshold) {
+                return result as! Double
+            } else {
+                return Defaults.carryOverThreshold
+            }
+        }
+        set {
+            saveSetting(settingKey: .carryOverThreshold, settingValue: newValue)
+        }
+    }
+    
+    static var isToleranceVisibilityOn: Bool {
+        get {
+            if let result = getSavedSetting(settingKey: .isToleranceVisibilityOn) {
+                return result as! Bool
+            } else {
+                return Defaults.isToleranceVisibilityOn
+            }
+        }
+        set {
+            saveSetting(settingKey: .isToleranceVisibilityOn, settingValue: newValue)
+        }
+    }
     
 }

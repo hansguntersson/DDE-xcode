@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B69CB211B72F800292AEC /* ResultViewController.swift */; };
+		8941519B213F111300AE240A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941519A213F111300AE240A /* Extensions.swift */; };
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* CustomSwitch.swift */; };
 		8969908D212F697400B69CB1 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969908C212F697400B69CB1 /* CustomLabel.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892B69CB211B72F800292AEC /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		8941519A213F111300AE240A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
 		8969908C212F697400B69CB1 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 				E5F85F2421011DAC002DA08D /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		89415199213F10F900AE240A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8941519A213F111300AE240A /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		898FA87E210FAB8800054D0B /* ViewControllers */ = {
@@ -189,6 +199,7 @@
 				898FA87E210FAB8800054D0B /* ViewControllers */,
 				89B469932120730A0097E859 /* Custom */,
 				89FD330A211766BF00407B15 /* Settings */,
+				89415199213F10F900AE240A /* Extensions */,
 				89F8D7952127610700571010 /* Sounds */,
 			);
 			path = "Dance Dance Evolution";
@@ -357,6 +368,7 @@
 				892B69CC211B72F800292AEC /* ResultViewController.swift in Sources */,
 				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
 				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,
+				8941519B213F111300AE240A /* Extensions.swift in Sources */,
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,
 				89F8D7972127611900571010 /* DDESound.swift in Sources */,
 				89FD33092117540500407B15 /* MainViewController.swift in Sources */,
