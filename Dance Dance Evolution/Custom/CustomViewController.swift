@@ -58,17 +58,9 @@ class CustomViewController: UIViewController {
         if statusBarOptions.isHidden {
             statusBarOptions.isHidden = false
             statusBarOptions.animation = .slide
+            
             self.setNeedsStatusBarAppearanceUpdate()
             hideStatusBar()
-            
-//            UIView.animate(withDuration: 0.4
-//               , animations: {
-//                    self.setNeedsStatusBarAppearanceUpdate()
-//                }
-//                , completion: { (finished: Bool) in
-//                    self.hideStatusBar()
-//                }
-//            )
         }
     }
     
