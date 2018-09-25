@@ -4,7 +4,7 @@
 import UIKit
 
 @IBDesignable
-class CustomLabel: UILabel {
+class EdgedLabel: UILabel {
     
     @IBInspectable
     var cornerRadius : CGFloat = 0 {

@@ -4,7 +4,7 @@
 import UIKit
 
 @IBDesignable
-class CustomSwitch: UISwitch {
+class ResizableSwitch: UISwitch {
     
     @IBInspectable
     var scale : CGFloat = 1 {

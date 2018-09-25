@@ -3,7 +3,8 @@
 
 import UIKit
 
-class CustomViewController: UIViewController {
+class HiddenStatusBarController: UIViewController {
+    
     class StatusBarOptions {
         var isHidden: Bool = true
         var animation: UIStatusBarAnimation = .none
@@ -17,6 +18,11 @@ class CustomViewController: UIViewController {
         super.viewDidLoad()
         
         addPanGestures()
+        print(name() + " was loaded")
+    }
+    
+    func name() -> String {
+        return String(describing: type(of: self))
     }
     
     private func addPanGestures() {
@@ -75,5 +81,9 @@ class CustomViewController: UIViewController {
                 }
             )
         }
+    }
+    
+    deinit {
+        print(name() + " was unloaded")
     }
 }

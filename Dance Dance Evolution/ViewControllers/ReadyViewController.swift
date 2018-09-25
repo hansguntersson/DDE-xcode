@@ -3,7 +3,7 @@
 
 import UIKit
 
-class ReadyViewController: CustomViewController {
+class ReadyViewController: HiddenStatusBarController {
     private var areYouReadySound = DDESound(sound: .areYouReady)
     
     @IBOutlet var countLabel: UILabel!
@@ -13,11 +13,8 @@ class ReadyViewController: CustomViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addTapGestures()
         prepareCountLabel()
-        
-        print("ReadyScreen was loaded")
     }
     
     private func addTapGestures() {
@@ -36,7 +33,6 @@ class ReadyViewController: CustomViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         areYouReadySound.play(stopIfAlreadyPlaying: false)
         animateCountdown(downFrom: Settings.countdownDuration)
     }
@@ -62,9 +58,5 @@ class ReadyViewController: CustomViewController {
     
     private func close() {
         dismiss(animated: false, completion: onClose)
-    }
-    
-    deinit {
-        print("ReadyScreen was de-initialized")
     }
 }

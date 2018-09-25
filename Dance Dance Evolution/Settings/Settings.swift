@@ -3,20 +3,12 @@
 
 import Foundation
 
-class Settings{
-    
-    enum GameDifficulty: Int {
-        case easy = 0
-        case normal = 1
-        case hard = 2
-        case pro = 3
-    }
-    
+class Settings{    
     private struct Defaults {
         static let isSoundOn: Bool = true
         static let countdownDuration: Int = 5
         static let sequenceLength: Int = 30
-        static let difficulty: GameDifficulty = .normal
+        static let difficulty: DDEGame.Difficulty = .normal
         static let tolerance: Int = 5
         static let fidelityThreshold: Double = 0.75
         static let carryOverThreshold: Double = 0.5
@@ -105,10 +97,10 @@ class Settings{
         }
     }
 
-    static var difficulty: GameDifficulty {
+    static var difficulty: DDEGame.Difficulty {
         get {
             if let rawValue = getSavedSetting(settingKey: .difficulty) {
-                return GameDifficulty(rawValue: rawValue as! Int)!
+                return DDEGame.Difficulty(rawValue: rawValue as! Int)!
             } else {
                 return Defaults.difficulty
             }

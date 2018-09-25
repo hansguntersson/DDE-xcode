@@ -3,8 +3,8 @@
 
 import UIKit
 
-class MainViewController: CustomViewController {
-    @IBOutlet var resistanceLogo: CustomImageView!
+class MainViewController: HiddenStatusBarController {
+    @IBOutlet var resistanceLogo: PaddedImageView!
     @IBOutlet var btnResume: UIButton!
     @IBOutlet var btnStart: UIButton!
     @IBOutlet var btnSetup: UIButton!
@@ -16,8 +16,15 @@ class MainViewController: CustomViewController {
         addPaddingToLogo()
         addBorderToButtons()
         
-        //btnResume.isHidden = true
-        print("MainScreen was loaded")
+        refreshResumeButton()
+    }
+    
+    private func refreshResumeButton() {
+        btnResume.isHidden = !DDEGame.isGameAvailableForResume()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refreshResumeButton()
     }
     
     private func addTapGestures() {
@@ -27,8 +34,9 @@ class MainViewController: CustomViewController {
     
     private func addPaddingToLogo() {
         let padding = CGFloat(7)
-        if let paddingView = resistanceLogo.addPaddingView(top: padding, left: padding, bottom: padding, right: padding) {
+        if let paddingView = resistanceLogo.setPadding(anySide: padding) {
             paddingView.backgroundColor = resistanceLogo.backgroundColor
+            paddingView.alpha = resistanceLogo.alpha
             paddingView.layer.cornerRadius = 10
         }
     }
@@ -46,25 +54,29 @@ class MainViewController: CustomViewController {
     }
     
     @objc private func handleLogoTap() {
-        goToEntryScreen()
-    }
-    
-    private func goToEntryScreen() {
         dismiss(animated: false, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToReadyScreen" {
-            let ready = segue.destination as! ReadyViewController
-            ready.onClose = goToGameScreen
+        switch segue.identifier {
+            case "goToReadyScreen":
+                let ready = segue.destination as! ReadyViewController
+                ready.onClose = {[unowned self] in self.goToGameScreen(resumeSavedGame: false)}
+            case "goToGameScreen":
+                let game = segue.destination as! GameViewController
+                game.resumeSavedGame = sender as! Bool
+        default:
+            break
         }
     }
     
-    private func goToGameScreen() {
-        performSegue(withIdentifier: "goToGameScreen", sender: self)
+    @IBAction func resumeGame(_ sender: UIButton) {
+        goToGameScreen(resumeSavedGame: true)
     }
     
-    deinit {
-        print("MainScreen was de-initialized")
+    private func goToGameScreen(resumeSavedGame: Bool) {
+        if UIApplication.shared.applicationState == .active {
+            performSegue(withIdentifier: "goToGameScreen", sender: resumeSavedGame)
+        }
     }
 }

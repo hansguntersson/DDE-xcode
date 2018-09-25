@@ -10,10 +10,4 @@ func appHasLaunched() {
     } catch {
         print("Could not set Audio Session to Playback mode!")
     }
-    
-    
-    
-    
-    
-    
 }

@@ -3,15 +3,13 @@
 
 import UIKit
 
-class EntryViewController: CustomViewController {
+class EntryViewController: HiddenStatusBarController {
     @IBOutlet var entryLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addTapGestures()
-        
-        print("EntryScreen was loaded")
     }
     
     private func addTapGestures() {
@@ -52,9 +50,5 @@ class EntryViewController: CustomViewController {
     
     func goToMainScreen() {
         performSegue(withIdentifier: "goToMainScreen", sender: self)
-    }
-    
-    deinit {
-        print("EntryScreen was de-initialized")
     }
 }

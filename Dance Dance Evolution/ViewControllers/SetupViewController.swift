@@ -3,7 +3,7 @@
 
 import UIKit
 
-class SetupViewController: CustomViewController {
+class SetupViewController: HiddenStatusBarController {
 
     @IBOutlet var soundOn: UISwitch!
     @IBOutlet var countdownStepper: UIStepper!
@@ -22,8 +22,6 @@ class SetupViewController: CustomViewController {
         super.viewDidLoad()
 
         updateDisplayedSettings()
-        
-        print("SetupScreen was loaded")
     }
     
     private func updateDisplayedSettings() {
@@ -56,7 +54,7 @@ class SetupViewController: CustomViewController {
     }
     
     @IBAction func difficultyChanged(_ sender: UISegmentedControl) {
-        if let difficultyEnum = Settings.GameDifficulty(rawValue: sender.selectedSegmentIndex) {
+        if let difficultyEnum = DDEGame.Difficulty(rawValue: sender.selectedSegmentIndex) {
             Settings.difficulty = difficultyEnum
         }
     }
@@ -90,9 +88,5 @@ class SetupViewController: CustomViewController {
     
     @IBAction func goBack(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    deinit {
-        print("SetupScreen was de-initialized")
     }
 }
