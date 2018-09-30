@@ -8,6 +8,7 @@ class MainViewController: HiddenStatusBarController {
     @IBOutlet var btnResume: UIButton!
     @IBOutlet var btnStart: UIButton!
     @IBOutlet var btnSetup: UIButton!
+    @IBOutlet var btnTest: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,8 @@ class MainViewController: HiddenStatusBarController {
         addBorderToButton(button: btnResume, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
         addBorderToButton(button: btnStart, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
         addBorderToButton(button: btnSetup, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
+        
+        addBorderToButton(button: btnTest, borderWidth: 1.0, borderColor: UIColor.carmine(), cornerRadius: 10.0)
     }
     
     private func addBorderToButton(button: UIButton, borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat) {

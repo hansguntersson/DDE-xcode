@@ -31,3 +31,27 @@ extension UIView {
         }
     }
 }
+
+extension UIColor {
+    // DNA Nucleobase Colo(u)rs
+    static func azure() -> UIColor {return UIColor(red: 76 / 255, green: 86 / 255, blue: 246 / 255, alpha: 1)}
+    static func tweetyBird() -> UIColor {return UIColor(red: 231 / 255, green: 229 / 255, blue: 75 / 255, alpha: 1)}
+    static func grassGreen() -> UIColor {return UIColor(red: 86 / 255, green: 188 / 255, blue: 55 / 255, alpha: 1)}
+    static func carmine() -> UIColor {return UIColor(red: 206 / 255, green: 43 / 255, blue: 30 / 255, alpha: 1)}
+    static func fadeGrey() -> UIColor {return UIColor(red: 170 / 255, green: 170 / 255, blue: 170 / 255, alpha: 0.75)}
+}
+
+extension UIFont {
+    private func withTraits(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        let descriptor = fontDescriptor.withSymbolicTraits(traits)
+        return UIFont(descriptor: descriptor!, size: 0)
+    }
+    
+    func bold() -> UIFont {
+        return withTraits(traits: .traitBold)
+    }
+    
+    func italic() -> UIFont {
+        return withTraits(traits: .traitItalic)
+    }
+}

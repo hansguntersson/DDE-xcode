@@ -2,7 +2,7 @@
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
 
 class DnaSequence: Codable {
-    private var sequence: [Nucleobase]
+    private(set) var nucleobaseSequence: [Nucleobase]
     
     enum NucleobaseType: Int, Codable {
         case cytosine = 0
@@ -26,27 +26,26 @@ class DnaSequence: Codable {
     
     var length: Int {
         get {
-            return sequence.count
+            return nucleobaseSequence.count
         }
+    }
+    
+    convenience init() {
+        self.init(length: 0)
     }
     
     init(length: Int) {
-        sequence = []
+        nucleobaseSequence = []
         for _ in 0..<length {
-            sequence.append(Nucleobase())
+            nucleobaseSequence.append(Nucleobase())
         }
     }
     
-    
-    
-//    init(from baseTypes: [NucleobaseType]) {
-//
-//
-//
-//
-//
-//    }
-
-    
+    init(from baseTypes: [NucleobaseType]) {
+        nucleobaseSequence = []
+        for i in 0..<baseTypes.count {
+            nucleobaseSequence.append(Nucleobase(baseType: baseTypes[i]))
+        }
+    }
 }
 

@@ -35,6 +35,9 @@ class GameViewController: HiddenStatusBarController {
         initGame()
         addAppObservers()
         test()
+        
+        
+        
     }
     
     private func initGame() {
