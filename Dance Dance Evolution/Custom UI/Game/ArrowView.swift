@@ -4,10 +4,10 @@
 import UIKit
 
 class ArrowView: PaddedImageView {
-    enum FillColor {
-        case none
-        case hit
-        case miss
+    enum FillColor: Int {
+        case none = 0
+        case hit = 1
+        case miss = 2
     }
     
     private var fillColors: Dictionary<FillColor,UIColor> = [

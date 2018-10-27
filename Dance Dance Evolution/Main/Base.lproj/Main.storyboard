@@ -43,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vky-M0-999" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="61"/>
+            <point key="canvasLocation" x="-306" y="60"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="DAU-9k-lN8">
@@ -64,68 +64,88 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="85" y="471" width="150" height="70"/>
+                                <rect key="frame" x="74.5" y="461" width="171" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="DnW-2I-fg7"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="DnW-2I-fg7"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="78" y="155" width="164" height="296"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
+                                <rect key="frame" x="67.5" y="155" width="185" height="286"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="40.5" width="164" height="215"/>
+                                        <rect key="frame" x="0.0" y="61" width="185" height="164"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME">
-                                                <rect key="frame" x="0.0" y="0.0" width="164" height="35"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
                                                 <state key="normal" title="RESUME">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="resumeGame:" destination="KhT-5y-ff0" eventType="touchUpInside" id="zXG-dP-Ppg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-rr-xRd" userLabel="START">
-                                                <rect key="frame" x="0.0" y="60" width="164" height="35"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-rr-xRd" userLabel="NEWGAME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="63" width="185" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
                                                 <state key="normal" title="NEW GAME">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" red="0.1803921568627451" green="0.41960784313725491" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="L9W-B4-s7C" kind="presentation" identifier="goToReadyScreen" animates="NO" id="4LU-ae-eSW"/>
+                                                    <segue destination="quh-g0-CaU" kind="presentation" identifier="goToNewGameScreen" id="IVC-yz-hAN"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PZ-Gb-iac" userLabel="TEST">
-                                                <rect key="frame" x="0.0" y="120" width="164" height="35"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                                <size key="titleShadowOffset" width="-1" height="-2"/>
-                                                <state key="normal" title="DNA SEQUENCE">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="qxk-hI-mtj" kind="presentation" id="doq-zC-fyl"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-QM-Rhf" userLabel="SETUP">
-                                                <rect key="frame" x="0.0" y="180" width="164" height="35"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-QM-Rhf" userLabel="SETUP" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="126" width="185" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <accessibility key="accessibilityConfiguration" label="SETUP"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
                                                 <state key="normal" title="SETUP">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <segue destination="I2K-9b-V2Y" kind="presentation" identifier="goToSetupScreen" id="7JO-Ny-Sg4"/>
                                                 </connections>
@@ -133,7 +153,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Ifg-rr-xRd" firstAttribute="width" secondItem="jat-PI-cyH" secondAttribute="width" id="7Jj-MU-li3"/>
-                                            <constraint firstItem="7PZ-Gb-iac" firstAttribute="width" secondItem="jat-PI-cyH" secondAttribute="width" id="afb-Lb-SJy"/>
                                             <constraint firstItem="5nA-QM-Rhf" firstAttribute="width" secondItem="jat-PI-cyH" secondAttribute="width" id="qcS-hq-dJM"/>
                                             <constraint firstItem="Hct-66-Lgb" firstAttribute="width" secondItem="jat-PI-cyH" secondAttribute="width" id="t5Z-QN-d0G"/>
                                         </constraints>
@@ -143,6 +162,7 @@
                                 <constraints>
                                     <constraint firstItem="jat-PI-cyH" firstAttribute="width" secondItem="vVK-CO-vjU" secondAttribute="width" id="P4Z-8t-LHb"/>
                                     <constraint firstItem="jat-PI-cyH" firstAttribute="centerY" secondItem="vVK-CO-vjU" secondAttribute="centerY" id="ZhO-ZN-btd"/>
+                                    <constraint firstItem="jat-PI-cyH" firstAttribute="height" relation="lessThanOrEqual" secondItem="vVK-CO-vjU" secondAttribute="height" id="b6U-vr-RKR"/>
                                     <constraint firstItem="jat-PI-cyH" firstAttribute="centerX" secondItem="vVK-CO-vjU" secondAttribute="centerX" id="hGP-cp-INd"/>
                                 </constraints>
                             </view>
@@ -195,10 +215,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="btnResume" destination="Hct-66-Lgb" id="fIu-CC-zcw"/>
-                        <outlet property="btnSetup" destination="5nA-QM-Rhf" id="zJX-hb-ZSB"/>
-                        <outlet property="btnStart" destination="Ifg-rr-xRd" id="GCh-gD-CM6"/>
-                        <outlet property="btnTest" destination="7PZ-Gb-iac" id="QYF-mE-Jnt"/>
+                        <outlet property="btnResume" destination="Hct-66-Lgb" id="5Di-wJ-GwG"/>
                         <outlet property="resistanceLogo" destination="lr6-8O-6un" id="UN1-5m-ZS3"/>
                         <segue destination="oBc-HA-PYg" kind="presentation" identifier="goToGameScreen" animates="NO" id="j3K-m0-PmQ"/>
                     </connections>
@@ -224,18 +241,18 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsf-gd-u1b" userLabel="MainMenu">
-                                <rect key="frame" x="10" y="527" width="300" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsf-gd-u1b" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="10" y="525" width="300" height="33"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
                                 <size key="titleShadowOffset" width="-1" height="-2"/>
                                 <state key="normal" title="〈 Main Menu">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -243,13 +260,13 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="125" width="300" height="392"/>
+                                <rect key="frame" x="10" y="125" width="300" height="390"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
-                                        <rect key="frame" x="10" y="10" width="280" height="401"/>
+                                        <rect key="frame" x="10" y="10" width="280" height="370"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R6o-JX-hbO" userLabel="AllSettings">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="360"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="313"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f1O-Zg-jaA" userLabel="Sound">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
@@ -301,31 +318,8 @@
                                                             </stepper>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0uS-bV-oNr" userLabel="Sequence">
-                                                        <rect key="frame" x="0.0" y="95.5" width="280" height="28"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Sequence Length" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="eAe-LR-ONl" userLabel="SequenceLabel">
-                                                                <rect key="frame" x="0.0" y="5" width="143" height="18.5"/>
-                                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cF1-zb-1sC" userLabel="SequenceSegment">
-                                                                <rect key="frame" x="153" y="0.0" width="127" height="29"/>
-                                                                <segments>
-                                                                    <segment title="15"/>
-                                                                    <segment title="30"/>
-                                                                    <segment title="45"/>
-                                                                    <segment title="60"/>
-                                                                </segments>
-                                                                <connections>
-                                                                    <action selector="sequenceChanged:" destination="I2K-9b-V2Y" eventType="valueChanged" id="xan-9e-Ftl"/>
-                                                                </connections>
-                                                            </segmentedControl>
-                                                        </subviews>
-                                                    </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="X4n-3c-aD8" userLabel="Difficulty">
-                                                        <rect key="frame" x="0.0" y="142.5" width="280" height="28"/>
+                                                        <rect key="frame" x="0.0" y="95.5" width="280" height="28"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="g3M-fW-C5X" userLabel="DifficultyLabel">
                                                                 <rect key="frame" x="0.0" y="5" width="87" height="18.5"/>
@@ -348,7 +342,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v7m-zV-I45" userLabel="Tolerance">
-                                                        <rect key="frame" x="0.0" y="189" width="280" height="29"/>
+                                                        <rect key="frame" x="0.0" y="142" width="280" height="29"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Tolerance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="YCX-iB-5pr" userLabel="ToleranceLabel">
                                                                 <rect key="frame" x="0.0" y="5.5" width="157" height="18.5"/>
@@ -376,7 +370,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hsc-tM-WVT" userLabel="FidelityThreshold">
-                                                        <rect key="frame" x="0.0" y="232" width="280" height="37"/>
+                                                        <rect key="frame" x="0.0" y="185" width="280" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Fidelity Threshold" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-6o-kbB" userLabel="FidelityLabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="37"/>
@@ -404,7 +398,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xzd-kj-YHD" userLabel="CarryOverThreshold">
-                                                        <rect key="frame" x="0.0" y="279" width="280" height="37"/>
+                                                        <rect key="frame" x="0.0" y="232" width="280" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Carry Over Threshold" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="RhZ-WS-Wx6" userLabel="CarryOverLabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="37"/>
@@ -432,7 +426,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="re6-Ux-KGg" userLabel="ToleranceVisibility">
-                                                        <rect key="frame" x="0.0" y="329" width="280" height="31"/>
+                                                        <rect key="frame" x="0.0" y="282" width="280" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Tolerance Visibility" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-iA-YAc" userLabel="ToleranceVisibilityLabel">
                                                                 <rect key="frame" x="0.0" y="6.5" width="221" height="18.5"/>
@@ -459,14 +453,13 @@
                                                     <constraint firstItem="v7m-zV-I45" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="8Iw-SS-FfJ"/>
                                                     <constraint firstItem="f1O-Zg-jaA" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="9Gn-y2-NSI"/>
                                                     <constraint firstItem="X4n-3c-aD8" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="AJc-lf-c57"/>
-                                                    <constraint firstItem="0uS-bV-oNr" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="LDR-or-Jq8"/>
                                                     <constraint firstItem="re6-Ux-KGg" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="Xof-XN-XNz"/>
                                                     <constraint firstItem="xzd-kj-YHD" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="jXO-IN-fve"/>
                                                     <constraint firstItem="5UO-FU-MuB" firstAttribute="width" secondItem="R6o-JX-hbO" secondAttribute="width" id="l1U-yM-vqZ"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SIa-Bc-bjO" userLabel="ResetToDefaults">
-                                                <rect key="frame" x="0.0" y="370" width="280" height="31"/>
+                                                <rect key="frame" x="0.0" y="339" width="280" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaj-UQ-e13" userLabel="Reset">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
@@ -547,7 +540,6 @@
                         <outlet property="difficulty" destination="kIo-4R-Edb" id="2Xc-bF-G3O"/>
                         <outlet property="fidelityLabel" destination="qQR-WJ-QOf" id="WtC-Xc-mOT"/>
                         <outlet property="fidelityStepper" destination="2CK-eE-Nym" id="sAO-CB-A57"/>
-                        <outlet property="sequenceLength" destination="cF1-zb-1sC" id="bsZ-dZ-VIn"/>
                         <outlet property="soundOn" destination="5K2-Hz-Fxf" id="1J5-1u-Oka"/>
                         <outlet property="toleranceLabel" destination="yQg-sM-act" id="G2K-Ia-MMl"/>
                         <outlet property="toleranceStepper" destination="zbJ-db-l8d" id="Lnh-f1-S51"/>
@@ -556,7 +548,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIK-0E-HKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="861"/>
+            <point key="canvasLocation" x="576" y="836"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="6zG-8B-YAZ">
@@ -576,7 +568,7 @@
                                     <constraint firstAttribute="width" priority="500" constant="400" id="AP1-Ad-Hsg"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxv-Kc-LWn" userLabel="MainMenu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxv-Kc-LWn" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="10" y="527" width="300" height="31"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -586,8 +578,8 @@
                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -619,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6WF-U2-uWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="861"/>
+            <point key="canvasLocation" x="1493" y="-1026"/>
         </scene>
         <!--Ready View Controller-->
         <scene sceneID="ftd-Tc-658">
@@ -629,23 +621,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLz-9G-2jX" userLabel="CountLabel">
-                                <rect key="frame" x="145.5" y="269.5" width="29" height="29"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLz-9G-2jX" userLabel="CountLabel" customClass="EdgedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="124" y="248" width="72" height="72"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="NbV-eC-5Zy"/>
                                     <constraint firstAttribute="width" secondItem="XLz-9G-2jX" secondAttribute="height" multiplier="1:1" id="ZjE-ZJ-dRx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="62.5"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusRatioToMinSize">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="12"/>
+                                        <real key="value" value="36"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="READY TO REPLICATE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bu7-aj-46a" userLabel="ReadyLabel" customClass="EdgedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="184.5" width="245" height="35"/>
+                                <rect key="frame" x="37.5" y="163" width="245" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bu7-aj-46a" secondAttribute="height" multiplier="245:35" id="AxA-RP-gEc"/>
@@ -669,7 +668,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.78321324481865284" green="0.78321324481865284" blue="0.78321324481865284" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.39875856164383561" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Bu7-aj-46a" firstAttribute="centerX" secondItem="fab-DH-smt" secondAttribute="centerX" id="29O-Tz-yLo"/>
                             <constraint firstItem="XLz-9G-2jX" firstAttribute="centerX" secondItem="fab-DH-smt" secondAttribute="centerX" id="3xJ-th-edY"/>
@@ -687,7 +686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eE-sn-uPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2299" y="60"/>
+            <point key="canvasLocation" x="3069" y="-283"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="rQW-Jr-PGk">
@@ -700,7 +699,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8Ul-ni-Q03">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-YZ-HJY" userLabel="MainMenu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-YZ-HJY" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="10" y="268.5" width="300" height="31"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -710,8 +709,8 @@
                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -724,7 +723,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMg-iF-sOq" userLabel="LeftBeat">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMg-iF-sOq" userLabel="LeftBeat" customClass="EdgedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="5" width="35" height="35"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -733,11 +732,17 @@
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusRatioToMinSize">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeftArrowOutline" translatesAutoresizingMaskIntoConstraints="NO" id="oiU-9r-p77" userLabel="LeftGoalArrow">
                                                 <rect key="frame" x="45" y="0.0" width="45" height="45"/>
                                                 <color key="tintColor" red="0.75325143897631464" green="0.75207396096257328" blue="0.77264156894352332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="75" id="dGC-dm-qUU"/>
                                                     <constraint firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="height" multiplier="1:1" id="swn-dR-PHH"/>
                                                 </constraints>
                                             </imageView>
@@ -762,7 +767,7 @@
                                                     <constraint firstAttribute="width" secondItem="95u-2Z-fCC" secondAttribute="height" multiplier="1:1" id="y4a-l9-0bJ"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC1-3a-Hv6" userLabel="RightBeat">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC1-3a-Hv6" userLabel="RightBeat" customClass="EdgedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="265" y="5" width="35" height="35"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -771,6 +776,11 @@
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusRatioToMinSize">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <constraints>
@@ -837,7 +847,193 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRu-ob-bMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434" y="417"/>
+            <point key="canvasLocation" x="2093" y="520"/>
+        </scene>
+        <!--New Game Controller-->
+        <scene sceneID="sFg-CZ-Spo">
+            <objects>
+                <viewController storyboardIdentifier="NewGameScreen" modalTransitionStyle="crossDissolve" id="quh-g0-CaU" userLabel="New Game Controller" customClass="NewGameViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ep2-s1-neX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Cj9-d1-bB6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Cow-Vl-KWw" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="37" y="35" width="246" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cow-Vl-KWw" secondAttribute="height" multiplier="123:50" id="Akt-Ts-Bzi"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="wcb-9h-cYs"/>
+                                </constraints>
+                            </imageView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pyn-ET-E9u" userLabel="ButtonsCard">
+                                <rect key="frame" x="10" y="175" width="300" height="340"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="EG6-ri-Wdv" userLabel="ButtonsStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="196"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-LO-5Pc" userLabel="LengthStackView">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Cm-Xn-U6u">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DNA Sequence Length: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gh1-hM-edm" userLabel="SequenceLengthLabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
+                                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="gbf-jk-tgh" userLabel="SequenceLengthInput" customClass="NumberTextField" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                                <rect key="frame" x="250" y="0.0" width="50" height="30"/>
+                                                                <color key="backgroundColor" white="0.80000000000000004" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="sJn-wp-yww"/>
+                                                                </constraints>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="jRM-hm-5YL" userLabel="SequenceLengthSlider">
+                                                        <rect key="frame" x="-2" y="40" width="304" height="31"/>
+                                                        <connections>
+                                                            <action selector="sequenceLengthHasChanged:" destination="quh-g0-CaU" eventType="valueChanged" id="F0h-Sb-00w"/>
+                                                        </connections>
+                                                    </slider>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-Ez-lmo" userLabel="btnRandom" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="95" width="300" height="38"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
+                                                <size key="titleShadowOffset" width="-1" height="-2"/>
+                                                <state key="normal" title="RANDOM SEQUENCE">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="randomGame:" destination="quh-g0-CaU" eventType="touchUpInside" id="f2T-eJ-rnn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Qy-g7l" userLabel="btnCustom" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="158" width="300" height="38"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
+                                                <size key="titleShadowOffset" width="-1" height="-2"/>
+                                                <state key="normal" title="CUSTOM SEQUENCE">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="customGame:" destination="quh-g0-CaU" eventType="touchUpInside" id="Pzd-fY-gn9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="t5z-Ez-lmo" firstAttribute="width" secondItem="jzp-LO-5Pc" secondAttribute="width" id="EAO-cv-jVd"/>
+                                            <constraint firstItem="TgE-Qy-g7l" firstAttribute="width" secondItem="t5z-Ez-lmo" secondAttribute="width" id="PKm-ZX-vvQ"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="EG6-ri-Wdv" firstAttribute="centerX" secondItem="Pyn-ET-E9u" secondAttribute="centerX" id="IXf-P2-Njy"/>
+                                    <constraint firstItem="EG6-ri-Wdv" firstAttribute="top" secondItem="Pyn-ET-E9u" secondAttribute="top" id="e42-BS-HME"/>
+                                    <constraint firstItem="EG6-ri-Wdv" firstAttribute="width" relation="lessThanOrEqual" secondItem="Pyn-ET-E9u" secondAttribute="width" id="nR5-fz-SaE"/>
+                                    <constraint firstItem="EG6-ri-Wdv" firstAttribute="height" relation="lessThanOrEqual" secondItem="Pyn-ET-E9u" secondAttribute="height" id="vb9-tK-c5T"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYP-g3-LEb" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="10" y="525" width="300" height="33"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                <size key="titleShadowOffset" width="-1" height="-2"/>
+                                <state key="normal" title="〈 Main Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goBack:" destination="quh-g0-CaU" eventType="touchUpInside" id="LHi-0o-RvM"/>
+                                    <action selector="goBack:" destination="I2K-9b-V2Y" eventType="touchUpInside" id="mQp-pg-xQH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pyn-ET-E9u" firstAttribute="bottom" secondItem="pYP-g3-LEb" secondAttribute="top" constant="-10" id="129-mX-4OS"/>
+                            <constraint firstItem="Pyn-ET-E9u" firstAttribute="trailing" secondItem="S46-yk-ftS" secondAttribute="trailing" constant="-10" id="4Hx-e0-Bw5"/>
+                            <constraint firstItem="Cj9-d1-bB6" firstAttribute="leading" secondItem="Ep2-s1-neX" secondAttribute="leading" id="5V4-xG-GT3"/>
+                            <constraint firstItem="Cj9-d1-bB6" firstAttribute="bottom" secondItem="Ep2-s1-neX" secondAttribute="bottom" id="BaE-ml-LG3"/>
+                            <constraint firstItem="pYP-g3-LEb" firstAttribute="centerX" secondItem="Ep2-s1-neX" secondAttribute="centerX" id="EWL-TI-rgA"/>
+                            <constraint firstItem="Cow-Vl-KWw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S46-yk-ftS" secondAttribute="leading" constant="20" id="FzW-BE-7uq"/>
+                            <constraint firstItem="Pyn-ET-E9u" firstAttribute="top" secondItem="Cow-Vl-KWw" secondAttribute="bottom" constant="40" id="KBR-Rx-pVt"/>
+                            <constraint firstItem="Pyn-ET-E9u" firstAttribute="top" secondItem="S46-yk-ftS" secondAttribute="top" constant="20" id="KHp-CU-NYC"/>
+                            <constraint firstItem="Cow-Vl-KWw" firstAttribute="top" secondItem="S46-yk-ftS" secondAttribute="top" constant="15" id="Xrz-96-6Ur"/>
+                            <constraint firstItem="Cj9-d1-bB6" firstAttribute="top" secondItem="Ep2-s1-neX" secondAttribute="top" id="XxR-cf-3B0"/>
+                            <constraint firstItem="S46-yk-ftS" firstAttribute="bottom" secondItem="pYP-g3-LEb" secondAttribute="bottom" constant="10" id="YSl-P1-c4M"/>
+                            <constraint firstItem="pYP-g3-LEb" firstAttribute="width" secondItem="t5z-Ez-lmo" secondAttribute="width" id="ctq-YM-WHz"/>
+                            <constraint firstItem="Cow-Vl-KWw" firstAttribute="centerX" secondItem="Ep2-s1-neX" secondAttribute="centerX" id="gdq-ot-aVS"/>
+                            <constraint firstItem="Pyn-ET-E9u" firstAttribute="leading" secondItem="S46-yk-ftS" secondAttribute="leading" constant="10" id="yL4-ai-oym"/>
+                            <constraint firstItem="Cj9-d1-bB6" firstAttribute="trailing" secondItem="Ep2-s1-neX" secondAttribute="trailing" id="z5U-cY-Dz6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S46-yk-ftS"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KHp-CU-NYC"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="Cow-Vl-KWw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="KBR-Rx-pVt"/>
+                                <include reference="KHp-CU-NYC"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="sequenceLengthInput" destination="gbf-jk-tgh" id="TWq-0s-aiO"/>
+                        <outlet property="sequenceLengthSlider" destination="jRM-hm-5YL" id="G5n-He-61o"/>
+                        <segue destination="L9W-B4-s7C" kind="presentation" identifier="goToReadyScreen" animates="NO" id="vWc-XW-9Tq"/>
+                        <segue destination="oBc-HA-PYg" kind="presentation" identifier="goToGameScreen" animates="NO" id="zmX-gm-fxp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WZO-mn-IFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1492.5" y="-283.0985915492958"/>
         </scene>
     </scenes>
     <resources>
@@ -851,6 +1047,7 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4LU-ae-eSW"/>
+        <segue reference="zmX-gm-fxp"/>
+        <segue reference="Y0K-xI-tRc"/>
     </inferredMetricsTieBreakers>
 </document>

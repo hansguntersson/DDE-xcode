@@ -4,60 +4,147 @@
 import UIKit
 
 class GameViewController: HiddenStatusBarController {
-    var resumeSavedGame: Bool = false
-    var appActive: Bool = true
+    // -------------------------------------------------------------------------
+    // Mark: - Variables and Outlets
+    // -------------------------------------------------------------------------
+    private enum Segues: String {
+        case goToReadyScreen = "goToReadyScreen"
+    }
+    
+    /*
+        In order to start a game, the gameState object (for resumed games) or
+        the DNASequence object (for new games) must be set. One way this could
+        be done is in the PrepareForSegue function of the caller controller.
+    */
+    var gameState: GameState? = nil
+    var dnaSequence: DnaSequence? = nil
+    private var isNewGame: Bool = false
+    private var isFirstTimeViewAppears: Bool = true
+    
+    /*
+        The readyViewController will be displayed whenever a game is resumed
+        to help the player remember where the game was left.
+    */
     var readyViewController: ReadyViewController? = nil
     
+    // The 2 sounds that can be played during the game
     private var gameMusic: DDESound!
     private lazy var mutationSound = DDESound(sound: .mutation)
     
+    // Object informing how much time is available until next frame is drawn
     private var displayUpdateInformer: DisplayUpdateInformer!
+    
+    // The game "model" responsible for creating, updating or saving game states
     private var game: DDEGame!
     
-    // Goal Arrows - Static Arrow at the Top
+    /*
+        Goal Arrows - Static Arrows at the Top
+        The goal arrows are using AutoLayout for positioning
+        Game arrows are syncing with the corresponding goal arrow's center X
+     */
     @IBOutlet var leftGoalArrow: UIImageView!
     @IBOutlet var downGoalArrow: UIImageView!
     @IBOutlet var upGoalArrow: UIImageView!
     @IBOutlet var rightGoalArrow: UIImageView!
+    // Dictionary to easily retrieve certain goal arrow
+    private lazy var goalArrows: Dictionary<ArrowView.ArrowDirection,UIView> = [
+        .left: self.leftGoalArrow
+        , .right: self.rightGoalArrow
+        , .up: self.upGoalArrow
+        , .down: self.downGoalArrow
+    ]
+    
     // The 2 beats left and right of the goal arrows
     @IBOutlet var leftBeat: UILabel!
     @IBOutlet var rightBeat: UILabel!
+    // Tracks the beat scale at any given time
+    private var beatScale: CGFloat = 1
     
-    private var beatSizePercent: CGFloat = 1
-    
+    // Tracking the last User Input (arrow direction)
     private var userInput: DDEGame.UserInput = .none
     
-    // MARK: View Controller Lifecycle
+    // Array of game Arrows
+    private var arrows: Array<ArrowView> = []
     
+    // Paused State
+    private var isPaused: Bool = false
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Lifecycle
+    // -------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initGame()
         addAppObservers()
-        test()
-        
-        
         
     }
-    
-    private func initGame() {
-        game = DDEGame(resumeSavedState: resumeSavedGame)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isFirstTimeViewAppears {
+            isFirstTimeViewAppears = false
+            if isNewGame {
+                resumePlay()
+            } else {
+                isPaused = true
+                renderScreen(0)
+                performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
+            }
+        } else {
+            resumePlay()
+        }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        pausePlay()
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if self.isPaused {
+            hideArrows()
+            // Make sure arrows still look good while rotating device when game is paused
+            coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
+                self.showArrows()
+                self.renderBeats(0)
+            })
+        }
+    }
 
+    // -------------------------------------------------------------------------
+    // Mark: - Game Init
+    // -------------------------------------------------------------------------
+    private func initGame() {
+        if gameState != nil {
+            game = DDEGame(gameState: gameState!)
+            isNewGame = false
+        } else if dnaSequence != nil {
+            game = DDEGame(dnaSequence: dnaSequence!)
+            isNewGame = true
+        } else {
+            dismiss(animated: false, completion: nil)
+            return
+        }
+        
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
         )
         initMusic()
+        createArrows()
     }
-    
     private func initMusic() {
-        if Settings.difficulty == .pro {
+        if game.gameState.difficulty == .pro {
             gameMusic = DDESound(sound: .vShort200bpm)
         } else {
             gameMusic = DDESound(sound: .vShort150bpm)
         }
-        gameMusic.play(stopIfAlreadyPlaying: false)
     }
-    
+
+    // -------------------------------------------------------------------------
+    // Mark: - Application Observers
+    // -------------------------------------------------------------------------
     private func addAppObservers() {
         NotificationCenter.default.addObserver(self
             , selector: #selector(appWillResignActive)
@@ -76,171 +163,185 @@ class GameViewController: HiddenStatusBarController {
             , name: UIApplication.didBecomeActiveNotification
             , object: nil)
     }
-    
     @objc func appWillResignActive() {
-        displayUpdateInformer?.pause()
-        gameMusic.pause()
+        pausePlay()
         hideArrows()
         readyViewController?.dismiss(animated: false, completion: nil)
     }
-
     @objc func appDidEnterBackground() {
         game.saveState()
     }
-    
     @objc func appWillEnterForeground() {
-        game.clearSavedGame()
+        DDEGame.clearSavedGame()
     }
-    
     @objc func appDidBecomeActive() {
         showArrows()
-        performSegue(withIdentifier: "goToReadyScreen", sender: self)
+        performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     
-    private func continuePlay() {
-        if UIApplication.shared.applicationState == .active {
-            displayUpdateInformer.resume()
-            gameMusic.play()
-        }
-    }
-    
-    // Prevent cheating - on the View Recently Used Apps (phones before iphoneX - double-tap on Home)
-    private func hideArrows() {
-        
-    }
-    
-    private func showArrows() {
-
-    }
-    
+    // -------------------------------------------------------------------------
+    // Mark: - Navigation
+    // -------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "goToReadyScreen":
+        case Segues.goToReadyScreen.rawValue:
             readyViewController = (segue.destination as! ReadyViewController)
-            readyViewController!.onClose = {[unowned self] in self.continuePlay()}
+            readyViewController!.onClose = {[unowned self] in self.resumePlay()}
         default:
             break
         }
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
+    // -------------------------------------------------------------------------
+    // Mark: - Resume/Pause Gameplay
+    // -------------------------------------------------------------------------
+    private func resumePlay() {
+        if UIApplication.shared.applicationState == .active {
+            displayUpdateInformer?.resume()
+            gameMusic?.play()
+            isPaused = false
+        }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        displayUpdateInformer.resume()
-    }
-    
-    private func countdownGameIfNeeded() {
-        
-        
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    private func pausePlay() {
         displayUpdateInformer?.pause()
+        gameMusic?.pause()
+        isPaused = true
     }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Prevent cheating
+    // -------------------------------------------------------------------------
+    /*
+        While on the "View Recently Used Apps" screen the user would see all
+        arrows as "freezed" and could basically memorize their order
+        (phones before iPhoneX - double-tap on Home)
+    */
+    private func hideArrows() {
+        for arrow in arrows {
+            arrow.isHidden = true
+        }
+    }
+    private func showArrows() {
+        renderArrows()
+    }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Game Loop and Rendering
+    // -------------------------------------------------------------------------
     private func gameLoop(_ deltaTime: CFTimeInterval) {
         processUserInput()
         game.updateState(deltaTime)
         renderScreen(deltaTime)
     }
-
+    
     private func processUserInput() {
         //print(userInput)
     }
     
     private func renderScreen(_ deltaTime: CFTimeInterval) {
         renderBeats(deltaTime)
-        renderArrows(deltaTime)
+        renderArrows()
     }
 
     private func renderBeats(_ deltaTime: CFTimeInterval) {
-        beatSizePercent = beatSizePercent - CGFloat(deltaTime) * game.gameState.speed
-        if beatSizePercent <= 0 {
-            beatSizePercent += 1
+        beatScale = beatScale - CGFloat(deltaTime) * game.gameState.speed
+        if beatScale <= 0 {
+            beatScale += 1
         }
-        leftBeat.transform = .identity
-        leftBeat.layer.cornerRadius = leftBeat.frame.width / 2
-        leftBeat.transform = CGAffineTransform(scaleX: beatSizePercent, y: beatSizePercent)
-        
-        rightBeat.transform = .identity
-        rightBeat.layer.cornerRadius = rightBeat.frame.width / 2
-        rightBeat.transform = CGAffineTransform(scaleX: beatSizePercent, y: beatSizePercent)
+        scaleBeat(leftBeat, beatScale)
+        scaleBeat(rightBeat, beatScale)
+    }
+    private func scaleBeat(_ beat: UILabel, _ scale: CGFloat) {
+        beat.transform = .identity
+        beat.layer.cornerRadius = beat.frame.width / 2
+        beat.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
     
-    var testLArrow = ArrowView(direction: .left)
-    var testRArrow = ArrowView(direction: .right)
-    var testUArrow = ArrowView(direction: .up)
-    var testDArrow = ArrowView(direction: .down)
     
-    private func test() {
-        view.addSubview(testLArrow)
-        view.addSubview(testRArrow)
-        view.addSubview(testUArrow)
-        view.addSubview(testDArrow)
-        
-        testLArrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
-        testRArrow.widthAnchor.constraint(equalTo: rightGoalArrow.widthAnchor, multiplier: 1).isActive = true
-        testUArrow.widthAnchor.constraint(equalTo: upGoalArrow.widthAnchor, multiplier: 1).isActive = true
-        testDArrow.widthAnchor.constraint(equalTo: downGoalArrow.widthAnchor, multiplier: 1).isActive = true
-    }
     
-    var firstPass: Bool = true
     
-    private func renderArrows(_ deltaTime: CFTimeInterval) {
-        // Ignoring deltaTime for this test
-        
-        if firstPass {
-            testLArrow.center = CGPoint(x: 0, y: view.frame.height * 0.25)
-            testRArrow.center = CGPoint(x: 0, y: view.frame.height * 0.5)
-            testUArrow.center = CGPoint(x: 0, y: view.frame.height * 0.75)
-            testDArrow.center = CGPoint(x: 0, y: view.frame.height)
-            firstPass = false
-        }
-        
-        setTempArrow(targetArrow: testLArrow, goalArrow: leftGoalArrow)
-        setTempArrow(targetArrow: testRArrow, goalArrow: rightGoalArrow)
-        setTempArrow(targetArrow: testUArrow, goalArrow: upGoalArrow)
-        setTempArrow(targetArrow: testDArrow, goalArrow: downGoalArrow)
-    }
     
-    private func setTempArrow(targetArrow: ArrowView, goalArrow: UIView) {
-        let x = goalArrow.absoluteCenter().x
-        var y = targetArrow.center.y - 5 * game.gameState.speed
-        if y < 0 {
-            y = view.frame.maxY
-        }
-        targetArrow.center = CGPoint(x: x, y: y)
-        targetArrow.alpha = 1 - y / view.frame.maxY
-        
-        if targetArrow.center.y > view.center.y {
-            targetArrow.fillColor = .none
-        } else if targetArrow.center.y > view.frame.height / 4 {
-            targetArrow.fillColor = .hit
-        } else {
-            targetArrow.fillColor = .miss
+    
+    
+    
+    
+    private func nucleobaseTypeToDirection(type: DnaSequence.NucleobaseType) -> ArrowView.ArrowDirection {
+        switch type {
+        case .adenine:
+            return .down
+        case .cytosine:
+            return .left
+        case .guanine:
+            return .right
+        case .thymine:
+            return .up
         }
     }
     
+    // TODO - Move this up to INIT!!!!!!!!!!!!!!!!!!!!!!!!
+    private func createArrows() {
+        let sequence = game.gameState.sequence.nucleobaseSequence
+        for i in 0..<sequence.count {
+            let arrow = ArrowView(direction: nucleobaseTypeToDirection(type: sequence[i].type))
+            view.addSubview(arrow)
+            arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
+            arrow.isHidden = true
+            arrows.append(arrow)
+        }
+    }
+    
+    private func renderArrows() {
+        let sequence = game.gameState.sequence.nucleobaseSequence
+        for i in 0..<sequence.count {
+            let nucleobase = sequence[i]
+            if nucleobase.isVisible {
+                let arrow = arrows[i]
+                arrow.isHidden = false
+                let goalArrow = goalArrows[arrow.direction]!
+                
+                let x = goalArrow.absoluteCenter().x
+                let y = CGFloat(nucleobase.percentY) * self.view.frame.height
+                
+                arrow.center = CGPoint(x: x, y: y)
+                arrow.fillColor = ArrowView.FillColor(rawValue: nucleobase.hitState.rawValue)!
+                arrow.alpha = 1 - CGFloat(nucleobase.percentY)
+            } else {
+                arrows[i].isHidden = true
+            }
+        }
+    }
+    
+//    private func setTempArrow(targetArrow: ArrowView, goalArrow: UIView) {
+//        let x = goalArrow.absoluteCenter().x
+//        var y = targetArrow.center.y - 5 * game.gameState.speed
+//        if y < 0 {
+//            y = view.frame.maxY
+//        }
+//        targetArrow.center = CGPoint(x: x, y: y)
+//        targetArrow.alpha = 1 - y / view.frame.maxY
+//
+//        if targetArrow.center.y > view.center.y {
+//            targetArrow.fillColor = .none
+//        } else if targetArrow.center.y > view.frame.height / 4 {
+//            targetArrow.fillColor = .hit
+//        } else {
+//            targetArrow.fillColor = .miss
+//        }
+//    }
+//
+    
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Cleaning
+    // -------------------------------------------------------------------------
     @IBAction func goToMainMenu(_ sender: UIButton) {
         clean()
         dismiss(animated: false, completion: nil)
     }
-    
     private func clean() {
         displayUpdateInformer.close()
         displayUpdateInformer = nil
     }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

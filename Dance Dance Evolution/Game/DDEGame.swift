@@ -5,7 +5,7 @@ import Foundation
 import UIKit
 
 class DDEGame {
-    enum Difficulty: Int {
+    enum Difficulty: Int, Codable {
         case easy = 0
         case normal = 1
         case hard = 2
@@ -15,15 +15,15 @@ class DDEGame {
     enum Speed: CGFloat {
         case slow = 0.75
         case normal = 1.0
-        case fast = 1.5
-        case veryFast = 2.0
+        case fast = 1.25
+        case veryFast = 1.5
     }
     
     enum Spacing: CGFloat {
-        case small = 2.0
+        case verySmall = 0.5
+        case small = 0.75
         case normal = 1.0
-        case large = 0.75
-        case veryLarge = 0.5
+        case large = 2.0
     }
     
     enum UserInput: Int {
@@ -40,10 +40,6 @@ class DDEGame {
         case savedState = "DDE_SavedState"
     }
     
-    static func isGameAvailableForResume() -> Bool {
-        return UserDefaults.standard.bool(forKey: GameKey.resumeKey.rawValue)
-    }
-    
     private(set) var gameState: GameState!
     
     private var speeds: Dictionary<Difficulty,Speed> = [
@@ -54,39 +50,62 @@ class DDEGame {
     ]
     
     private var spacings: Dictionary<Difficulty,Spacing> = [
-        Difficulty.easy: Spacing.small
+        Difficulty.easy: Spacing.large
         , Difficulty.normal: Spacing.normal
-        , Difficulty.hard: Spacing.large
-        , Difficulty.pro: Spacing.veryLarge
+        , Difficulty.hard: Spacing.small
+        , Difficulty.pro: Spacing.verySmall
     ]
     
-    required init(resumeSavedState resumeSaved: Bool) {
-        var savedGamedState: GameState? = nil
-        
-        if resumeSaved && DDEGame.isGameAvailableForResume() {
-            if let encodedState: String = UserDefaults.standard.string(forKey: GameKey.savedState.rawValue) {
-                savedGamedState = GameState.initFromString(from: encodedState)
-            }
-        }
-        self.gameState = savedGamedState ?? newGameState()
+    init(dnaSequence: DnaSequence) {
+        self.gameState = newGameState(dnaSequence: dnaSequence)
+        DDEGame.clearSavedGame()
     }
     
-    private func newGameState() -> GameState {
+    init(gameState: GameState) {
+        self.gameState = gameState
+        DDEGame.clearSavedGame()
+    }
+    
+    private func newGameState(dnaSequence: DnaSequence) -> GameState {
         let difficulty = Settings.difficulty
         let newState = GameState(
-            speed: speeds[difficulty]?.rawValue ?? Speed.normal.rawValue
-            , spacing: spacings[difficulty]?.rawValue ?? Spacing.normal.rawValue
+            difficulty: difficulty
+            , speed: speeds[difficulty]!.rawValue
+            , spacing: spacings[difficulty]!.rawValue
             , tolerance: Settings.tolerance
             , fidelity: Settings.fidelityThreshold
             , carryOver: Settings.carryOverThreshold
-            , sequenceLength: Settings.sequenceLength
+            , sequence: dnaSequence
         )
-        clearSavedGame()
         return newState
     }
     
+    private var cumulatedDelta: TimeInterval = 0.0
+    
     func updateState(_ deltaTime: CFTimeInterval) {
-        
+        let sequence = gameState.sequence.nucleobaseSequence
+        var isFirstHidden: Bool = true
+        cumulatedDelta += deltaTime
+
+        for i in 0..<sequence.count {
+            let nucleobase = sequence[i]
+            if nucleobase.isVisible {
+                nucleobase.percentY = nucleobase.percentY - Float(deltaTime) * Float(gameState.speed) / 2
+                if nucleobase.percentY < -0.2 {
+                    nucleobase.isVisible = false
+                }
+            } else {
+                if isFirstHidden {
+                    if nucleobase.percentY == 1 {
+                        isFirstHidden = false
+                        if Float(cumulatedDelta) * Float(gameState.speed) > 0.3 {
+                            nucleobase.isVisible = true
+                            cumulatedDelta -= 0.3 / TimeInterval(gameState.speed)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func saveState() {
@@ -94,12 +113,28 @@ class DDEGame {
         UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
     }
     
-    func clearSavedGame() -> Void {
-        UserDefaults.standard.set(false, forKey: GameKey.resumeKey.rawValue)
-        UserDefaults.standard.removeObject(forKey: GameKey.savedState.rawValue)
-    }
-    
     deinit {
         print("Game de-initialized")
+    }
+}
+
+extension DDEGame {
+    static func isGameAvailableForResume() -> Bool {
+        return UserDefaults.standard.bool(forKey: GameKey.resumeKey.rawValue)
+    }
+    
+    static func getSavedGameState() -> GameState? {
+        var savedGamedState: GameState? = nil
+        if DDEGame.isGameAvailableForResume() {
+            if let encodedState: String = UserDefaults.standard.string(forKey: GameKey.savedState.rawValue) {
+                savedGamedState = GameState.initFromString(from: encodedState)
+            }
+        }
+        return savedGamedState
+    }
+    
+    static func clearSavedGame() -> Void {
+        UserDefaults.standard.set(false, forKey: GameKey.resumeKey.rawValue)
+        UserDefaults.standard.removeObject(forKey: GameKey.savedState.rawValue)
     }
 }

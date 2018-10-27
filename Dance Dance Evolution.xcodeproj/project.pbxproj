@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		890F85222169D7CC00765610 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85212169D7CC00765610 /* NewGameViewController.swift */; };
+		890F85242169DA6F00765610 /* EdgedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85232169DA6F00765610 /* EdgedButton.swift */; };
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892724AA2143B89300032125 /* DisplayUpdateInformer.swift */; };
 		8941519B213F111300AE240A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941519A213F111300AE240A /* Extensions.swift */; };
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* ResizableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* ResizableSwitch.swift */; };
+		894BB17321706E06003C4173 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BB17221706E06003C4173 /* NumberTextField.swift */; };
 		89564B092160B82B005DAC2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89564B082160B82B005DAC2A /* TestViewController.swift */; };
 		8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8957D209215694C9005CAA78 /* DDEGame.swift */; };
 		8958037D214D1CE200C458C9 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958037C214D1CE200C458C9 /* GameState.swift */; };
@@ -55,11 +58,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		890F85212169D7CC00765610 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		890F85232169DA6F00765610 /* EdgedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgedButton.swift; sourceTree = "<group>"; };
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892724AA2143B89300032125 /* DisplayUpdateInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUpdateInformer.swift; sourceTree = "<group>"; };
 		8941519A213F111300AE240A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* ResizableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableSwitch.swift; sourceTree = "<group>"; };
+		894BB17221706E06003C4173 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		89564B082160B82B005DAC2A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8957D209215694C9005CAA78 /* DDEGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDEGame.swift; sourceTree = "<group>"; };
 		8958037C214D1CE200C458C9 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 			children = (
 				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
 				89FD33082117540500407B15 /* MainViewController.swift */,
+				890F85212169D7CC00765610 /* NewGameViewController.swift */,
 				89AE41F72123720A00B5BF30 /* SetupViewController.swift */,
 				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
 				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
@@ -174,6 +181,8 @@
 				89B469942120732D0097E859 /* PaddedImageView.swift */,
 				89465AB9212A11770061F4E1 /* ResizableSwitch.swift */,
 				8969908C212F697400B69CB1 /* EdgedLabel.swift */,
+				890F85232169DA6F00765610 /* EdgedButton.swift */,
+				894BB17221706E06003C4173 /* NumberTextField.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -412,13 +421,16 @@
 				8969908D212F697400B69CB1 /* EdgedLabel.swift in Sources */,
 				89B469952120732D0097E859 /* PaddedImageView.swift in Sources */,
 				89FD3311211778D200407B15 /* HiddenStatusBarController.swift in Sources */,
+				890F85242169DA6F00765610 /* EdgedButton.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
 				8958037D214D1CE200C458C9 /* GameState.swift in Sources */,
 				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
 				8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */,
 				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,
 				8994FBCD215F73B800387BF2 /* DNASegmentedControl.swift in Sources */,
+				890F85222169D7CC00765610 /* NewGameViewController.swift in Sources */,
 				8941519B213F111300AE240A /* Extensions.swift in Sources */,
+				894BB17321706E06003C4173 /* NumberTextField.swift in Sources */,
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,
 				89F8D7972127611900571010 /* DDESound.swift in Sources */,
 				89F4B407214EB5E800F8871F /* ArrowView.swift in Sources */,

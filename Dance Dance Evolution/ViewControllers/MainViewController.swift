@@ -6,26 +6,24 @@ import UIKit
 class MainViewController: HiddenStatusBarController {
     @IBOutlet var resistanceLogo: PaddedImageView!
     @IBOutlet var btnResume: UIButton!
-    @IBOutlet var btnStart: UIButton!
-    @IBOutlet var btnSetup: UIButton!
-    @IBOutlet var btnTest: UIButton!
+    
+    private enum Segues: String {
+        case goToGameScreen = "goToGameScreen"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addTapGestures()
         addPaddingToLogo()
-        addBorderToButtons()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         refreshResumeButton()
     }
     
     private func refreshResumeButton() {
         btnResume.isHidden = !DDEGame.isGameAvailableForResume()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        refreshResumeButton()
     }
     
     private func addTapGestures() {
@@ -42,44 +40,32 @@ class MainViewController: HiddenStatusBarController {
         }
     }
     
-    private func addBorderToButtons() {
-        addBorderToButton(button: btnResume, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
-        addBorderToButton(button: btnStart, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
-        addBorderToButton(button: btnSetup, borderWidth: 1.0, borderColor: UIColor.white, cornerRadius: 10.0)
-        
-        addBorderToButton(button: btnTest, borderWidth: 1.0, borderColor: UIColor.carmine(), cornerRadius: 10.0)
-    }
-    
-    private func addBorderToButton(button: UIButton, borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat) {
-        button.layer.borderWidth = borderWidth
-        button.layer.borderColor = borderColor.cgColor
-        button.layer.cornerRadius = cornerRadius
-    }
-    
     @objc private func handleLogoTap() {
         dismiss(animated: false, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case "goToReadyScreen":
-                let ready = segue.destination as! ReadyViewController
-                ready.onClose = {[unowned self] in self.goToGameScreen(resumeSavedGame: false)}
-            case "goToGameScreen":
-                let game = segue.destination as! GameViewController
-                game.resumeSavedGame = sender as! Bool
-        default:
-            break
+            case Segues.goToGameScreen.rawValue:
+                let gameController = segue.destination as! GameViewController
+                gameController.gameState = sender as? GameState
+                gameController.dnaSequence = sender as? DnaSequence
+            default:
+                break
         }
     }
     
     @IBAction func resumeGame(_ sender: UIButton) {
-        goToGameScreen(resumeSavedGame: true)
-    }
-    
-    private func goToGameScreen(resumeSavedGame: Bool) {
-        if UIApplication.shared.applicationState == .active {
-            performSegue(withIdentifier: "goToGameScreen", sender: resumeSavedGame)
+        if let savedGameState = DDEGame.getSavedGameState() {
+            performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: savedGameState)
+        } else {
+            DDEGame.clearSavedGame()
+            
+            let alert = UIAlertController(title: "Notification", message: "Saved game has been corrupted. Please start a new game!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            refreshResumeButton()
         }
     }
 }

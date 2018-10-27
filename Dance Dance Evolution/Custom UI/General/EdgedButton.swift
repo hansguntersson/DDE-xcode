@@ -1,10 +1,10 @@
-//  Created by Cristian Buse on 23/08/2018.
+//  Created by Cristian Buse on 07/10/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
 
 import UIKit
 
 @IBDesignable
-class EdgedLabel: UILabel {
+class EdgedButton: UIButton {
     
     @IBInspectable
     var cornerRadius : CGFloat = 0 {
@@ -13,22 +13,8 @@ class EdgedLabel: UILabel {
         }
     }
     
-    @IBInspectable
-    var cornerRadiusRatioToMinSize: CGFloat = 0 {
-        didSet {
-            setCornerRadiusRatio()
-        }
-    }
-    
     private func setCornerRadius() {
         self.layer.cornerRadius = cornerRadius
-    }
-    
-    private func setCornerRadiusRatio() {
-        if cornerRadiusRatioToMinSize > 0 {
-            let minSize = (frame.width > frame.height ? frame.height : frame.width)
-            cornerRadius = cornerRadiusRatioToMinSize * minSize
-        }
     }
     
     @IBInspectable
@@ -51,11 +37,5 @@ class EdgedLabel: UILabel {
     
     private func setBorderColor() {
         self.layer.borderColor = borderColor.cgColor
-    }
-    
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        
-        setCornerRadiusRatio()
     }
 }

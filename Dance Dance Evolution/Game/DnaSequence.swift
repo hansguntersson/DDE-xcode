@@ -11,9 +11,26 @@ class DnaSequence: Codable {
         case guanine = 3
     }
     
+    enum HitState: Int, Codable {
+        case none = 0
+        case hit = 1
+        case miss = 2
+    }
+    
+    private static var nucleobaseLetters: Dictionary<NucleobaseType,String> = [
+        NucleobaseType.cytosine: "C"
+        , NucleobaseType.adenine: "A"
+        , NucleobaseType.thymine: "T"
+        , NucleobaseType.guanine: "G"
+    ]
+    
     class Nucleobase: Codable {
-        private(set) var type: NucleobaseType
-        
+        let type: NucleobaseType
+        let letter: String
+        var isVisible: Bool = false
+        var percentY: Float = 1.0
+        var hitState: HitState = .none
+
         // Init with random value
         convenience init() {
             self.init(baseType: NucleobaseType(rawValue: Int.random(in: 0...3))!)
@@ -21,6 +38,7 @@ class DnaSequence: Codable {
  
         init(baseType type: NucleobaseType) {
             self.type = type
+            self.letter = nucleobaseLetters[type]!
         }
     }
     
@@ -28,10 +46,6 @@ class DnaSequence: Codable {
         get {
             return nucleobaseSequence.count
         }
-    }
-    
-    convenience init() {
-        self.init(length: 0)
     }
     
     init(length: Int) {

@@ -4,29 +4,31 @@
 import UIKit
 
 struct GameState: Codable {
+    let difficulty: DDEGame.Difficulty
     let speed: CGFloat
     let spacing: CGFloat
     let tolerance: Int
     let fidelity: Double
     let carryOver: Double
     
-    private var sequence: DnaSequence
+    private(set) var sequence: DnaSequence!
     
     init(
-        speed: CGFloat
+        difficulty: DDEGame.Difficulty
+        , speed: CGFloat
         , spacing: CGFloat
         , tolerance: Int
         , fidelity: Double
         , carryOver: Double
-        , sequenceLength: Int
+        , sequence: DnaSequence
     ) {
+        self.difficulty = difficulty
         self.speed = speed
         self.spacing = spacing
         self.tolerance = tolerance
         self.fidelity = fidelity
         self.carryOver = carryOver
-        
-        sequence = DnaSequence(length: sequenceLength)
+        self.sequence = sequence
     }
     
     func toString() -> String? {
