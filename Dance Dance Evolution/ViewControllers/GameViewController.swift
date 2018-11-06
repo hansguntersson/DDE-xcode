@@ -46,6 +46,7 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var downGoalArrow: UIImageView!
     @IBOutlet var upGoalArrow: UIImageView!
     @IBOutlet var rightGoalArrow: UIImageView!
+    @IBOutlet var goalCard: UIView!
     // Dictionary to easily retrieve certain goal arrow
     private lazy var goalArrows: Dictionary<ArrowView.ArrowDirection,UIView> = [
         .left: self.leftGoalArrow
@@ -58,16 +59,42 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var leftBeat: UILabel!
     @IBOutlet var rightBeat: UILabel!
     // Tracks the beat scale at any given time
-    private var beatScale: CGFloat = 1
+    private var beatScale: Double = 1
     
     // Tracking the last User Input (arrow direction)
-    private var userInput: DDEGame.UserInput = .none
+    private var userInput: ArrowView.ArrowDirection? = nil
     
     // Array of game Arrows
     private var arrows: Array<ArrowView> = []
     
     // Paused State
     private var isPaused: Bool = false
+    
+    // Screen Rendering Height - the space arrows will cover during movement
+    private var gameHeight: CGFloat = 0
+    
+    // How many arrows sizes would fit the game height
+    private var arrowsPerGameScreen: Double = 0
+    
+    /*
+        The goal arrows might be smaller in Portrait due to AutoLayout
+        The below outlets (constraints and stack view) are used to calculate
+            a "fixed-max" arrow size so that, even if the screen is rotated,
+            AutoLayout produces the same outcome in Landscape also
+    */
+    @IBOutlet var maxArrowWidth: NSLayoutConstraint!
+    @IBOutlet var beatHeightMultiplier: NSLayoutConstraint!
+    @IBOutlet var goalMaxLeadingWidth: NSLayoutConstraint!
+    @IBOutlet var goalMaxTrailingWidth: NSLayoutConstraint!
+    @IBOutlet var goalStackEqualSpacing: UIStackView!
+    @IBOutlet var goalCardHeightConstraint: NSLayoutConstraint!
+    
+    private var screenOrientation: UIInterfaceOrientationMask = .all
+    private var arrowSize: CGFloat = 0 {
+        didSet {
+            maxArrowWidth.constant = arrowSize
+        }
+    }
     
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
@@ -77,7 +104,7 @@ class GameViewController: HiddenStatusBarController {
         
         initGame()
         addAppObservers()
-        
+        initSwipes()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -100,6 +127,10 @@ class GameViewController: HiddenStatusBarController {
         
         pausePlay()
     }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Device Rotation
+    // -------------------------------------------------------------------------
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -111,6 +142,9 @@ class GameViewController: HiddenStatusBarController {
                 self.renderBeats(0)
             })
         }
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return self.screenOrientation
     }
 
     // -------------------------------------------------------------------------
@@ -133,15 +167,59 @@ class GameViewController: HiddenStatusBarController {
         )
         initMusic()
         createArrows()
+        
+        limitArrowSize()
+        gameHeight = max(view.frame.width, view.frame.height) + arrowSize // (1/2 at bottom and top)
+        arrowsPerGameScreen = Double(gameHeight / arrowSize)
+        
+        initTolerance()
     }
     private func initMusic() {
-        if game.gameState.difficulty == .pro {
+        if game.currentGameState.difficulty == .pro {
             gameMusic = DDESound(sound: .vShort200bpm)
         } else {
             gameMusic = DDESound(sound: .vShort150bpm)
         }
     }
-
+    private func createArrows() {
+        let sequence = game.currentGameState.sequence.nucleobaseSequence
+        for i in 0..<sequence.count {
+            let arrowDirection = nucleobaseTypeToDirection(type: sequence[i].type)
+            let arrow = ArrowView(direction: arrowDirection)
+            view.addSubview(arrow)
+            arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
+            arrow.isHidden = true
+            arrows.append(arrow)
+        }
+    }
+    private func limitArrowSize() {
+        let minSize = min(view.frame.width, view.frame.height)
+        let arrowsAndBeatsWidth = minSize - goalMaxLeadingWidth.constant - goalMaxTrailingWidth.constant - 5 * goalStackEqualSpacing.spacing
+        let maxArrowSize = arrowsAndBeatsWidth / (2 * beatHeightMultiplier.multiplier + 4)
+        arrowSize = min(maxArrowSize.rounded(.down), maxArrowWidth.constant)
+    }
+    private func nucleobaseTypeToDirection(type: DnaSequence.NucleobaseType) -> ArrowView.ArrowDirection {
+        switch type {
+        case .adenine:
+            return .down
+        case .cytosine:
+            return .left
+        case .guanine:
+            return .right
+        case .thymine:
+            return .up
+        }
+    }
+    private func initTolerance() {
+        goalCardHeightConstraint.constant = CGFloat(game.currentGameState.tolerance) * (arrowSize / 15).rounded()
+        goalCard.layoutIfNeeded()
+        if Settings.isToleranceVisibilityOn {
+            let thickness: CGFloat = 1
+            goalCard.layer.addBorder(edge: .top, color: .white, thickness: thickness)
+            goalCard.layer.addBorder(edge: .bottom, color: .white, thickness: thickness)
+        }
+    }
+    
     // -------------------------------------------------------------------------
     // Mark: - Application Observers
     // -------------------------------------------------------------------------
@@ -179,6 +257,36 @@ class GameViewController: HiddenStatusBarController {
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Swipes
+    // -------------------------------------------------------------------------
+    private func initSwipes() {
+        if Settings.areGameSwipesOn {
+            let directions: Array<UISwipeGestureRecognizer.Direction>
+            directions = [.left, .down, .up, .right]
+            for direction in directions {
+                let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
+                swipe.direction = direction
+                swipe.delaysTouchesEnded = false
+                view.addGestureRecognizer(swipe)
+            }
+        }
+    }
+    @objc func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .left:
+            userInput = .left
+        case .down:
+            userInput = .down
+        case .up:
+            userInput = .up
+        case .right:
+            userInput = .right
+        default:
+            return
+        }
+    }
+
     // -------------------------------------------------------------------------
     // Mark: - Navigation
     // -------------------------------------------------------------------------
@@ -230,26 +338,49 @@ class GameViewController: HiddenStatusBarController {
     // -------------------------------------------------------------------------
     private func gameLoop(_ deltaTime: CFTimeInterval) {
         processUserInput()
-        game.updateState(deltaTime)
+        game.updateState(deltaTime, arrowsPerGameScreen)
         renderScreen(deltaTime)
     }
     
     private func processUserInput() {
-        //print(userInput)
+        if userInput == nil {
+            return
+        }
+        let sequence = game.currentGameState.sequence.nucleobaseSequence
+        for i in 0..<sequence.count {
+            let nucleobase = sequence[i]
+            if nucleobase.isVisible && nucleobase.hitState == .none && nucleobase.percentY < 0.5 {
+                let arrow = arrows[i]
+                if arrow.direction != userInput {
+                    nucleobase.hitState = .miss
+                    arrow.fillColor = .miss
+                } else {
+                    if arrow.center.y >= goalCard.frame.minY && arrow.center.y <= goalCard.frame.maxY {
+                        nucleobase.hitState = .hit
+                        arrow.fillColor = .hit
+                    } else {
+                        nucleobase.hitState = .miss
+                        arrow.fillColor = .miss
+                    }
+                }
+                break
+            }
+        }
+        userInput = .none
     }
-    
+
     private func renderScreen(_ deltaTime: CFTimeInterval) {
         renderBeats(deltaTime)
         renderArrows()
     }
 
     private func renderBeats(_ deltaTime: CFTimeInterval) {
-        beatScale = beatScale - CGFloat(deltaTime) * game.gameState.speed
+        beatScale -= Double(deltaTime) * game.currentGameState.speed
         if beatScale <= 0 {
             beatScale += 1
         }
-        scaleBeat(leftBeat, beatScale)
-        scaleBeat(rightBeat, beatScale)
+        scaleBeat(leftBeat, CGFloat(beatScale))
+        scaleBeat(rightBeat, CGFloat(beatScale))
     }
     private func scaleBeat(_ beat: UILabel, _ scale: CGFloat) {
         beat.transform = .identity
@@ -257,41 +388,9 @@ class GameViewController: HiddenStatusBarController {
         beat.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    private func nucleobaseTypeToDirection(type: DnaSequence.NucleobaseType) -> ArrowView.ArrowDirection {
-        switch type {
-        case .adenine:
-            return .down
-        case .cytosine:
-            return .left
-        case .guanine:
-            return .right
-        case .thymine:
-            return .up
-        }
-    }
-    
-    // TODO - Move this up to INIT!!!!!!!!!!!!!!!!!!!!!!!!
-    private func createArrows() {
-        let sequence = game.gameState.sequence.nucleobaseSequence
-        for i in 0..<sequence.count {
-            let arrow = ArrowView(direction: nucleobaseTypeToDirection(type: sequence[i].type))
-            view.addSubview(arrow)
-            arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
-            arrow.isHidden = true
-            arrows.append(arrow)
-        }
-    }
-    
     private func renderArrows() {
-        let sequence = game.gameState.sequence.nucleobaseSequence
+        let sequence = game.currentGameState.sequence.nucleobaseSequence
+        let minY = goalCard.frame.minY
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
             if nucleobase.isVisible {
@@ -300,9 +399,15 @@ class GameViewController: HiddenStatusBarController {
                 let goalArrow = goalArrows[arrow.direction]!
                 
                 let x = goalArrow.absoluteCenter().x
-                let y = CGFloat(nucleobase.percentY) * self.view.frame.height
-                
+                let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2
                 arrow.center = CGPoint(x: x, y: y)
+                
+                if nucleobase.hitState == .none {
+                    if arrow.center.y < minY {
+                        nucleobase.hitState = .miss
+                    }
+                }
+                
                 arrow.fillColor = ArrowView.FillColor(rawValue: nucleobase.hitState.rawValue)!
                 arrow.alpha = 1 - CGFloat(nucleobase.percentY)
             } else {
@@ -310,26 +415,6 @@ class GameViewController: HiddenStatusBarController {
             }
         }
     }
-    
-//    private func setTempArrow(targetArrow: ArrowView, goalArrow: UIView) {
-//        let x = goalArrow.absoluteCenter().x
-//        var y = targetArrow.center.y - 5 * game.gameState.speed
-//        if y < 0 {
-//            y = view.frame.maxY
-//        }
-//        targetArrow.center = CGPoint(x: x, y: y)
-//        targetArrow.alpha = 1 - y / view.frame.maxY
-//
-//        if targetArrow.center.y > view.center.y {
-//            targetArrow.fillColor = .none
-//        } else if targetArrow.center.y > view.frame.height / 4 {
-//            targetArrow.fillColor = .hit
-//        } else {
-//            targetArrow.fillColor = .miss
-//        }
-//    }
-//
-    
     
     // -------------------------------------------------------------------------
     // Mark: - Cleaning

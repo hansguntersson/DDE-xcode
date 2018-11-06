@@ -13,6 +13,7 @@ class Settings{
         static let fidelityThreshold: Double = 0.75
         static let carryOverThreshold: Double = 0.5
         static let isToleranceVisibilityOn: Bool = false
+        static let areGameSwipesOn: Bool = true
     }
     
     // Used for read/write to System Defaults
@@ -25,6 +26,7 @@ class Settings{
         case fidelityThreshold = "DDE_FidelityThreshold"
         case carryOverThreshold = "DDE_CarryOverThreshold"
         case isToleranceVisibilityOn = "DDE_ToleranceVisibility"
+        case areGameSwipesOn = "DDE_GameSwipes"
     }
 
     // Write to the system defaults
@@ -52,6 +54,7 @@ class Settings{
         removeDefaultByKey(.fidelityThreshold)
         removeDefaultByKey(.carryOverThreshold)
         removeDefaultByKey(.isToleranceVisibilityOn)
+        removeDefaultByKey(.areGameSwipesOn)
     }
     
     static func getEntryViewDuration() -> Double {
@@ -161,5 +164,17 @@ class Settings{
             saveSetting(settingKey: .isToleranceVisibilityOn, settingValue: newValue)
         }
     }
-    
+
+    static var areGameSwipesOn: Bool {
+        get {
+            if let result = getSavedSetting(settingKey: .areGameSwipesOn) {
+                return result as! Bool
+            } else {
+                return Defaults.areGameSwipesOn
+            }
+        }
+        set {
+            saveSetting(settingKey: .areGameSwipesOn, settingValue: newValue)
+        }
+    }
 }

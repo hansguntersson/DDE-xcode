@@ -2,7 +2,6 @@
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
 
 import Foundation
-import UIKit
 
 class DDEGame {
     enum Difficulty: Int, Codable {
@@ -12,26 +11,18 @@ class DDEGame {
         case pro = 3
     }
     
-    enum Speed: CGFloat {
-        case slow = 0.75
+    enum Speed: Double {
+        case slow = 0.9
         case normal = 1.0
-        case fast = 1.25
-        case veryFast = 1.5
+        case fast = 1.1
+        case veryFast = 1.2
     }
     
-    enum Spacing: CGFloat {
+    enum Spacing: Double {
         case verySmall = 0.5
         case small = 0.75
         case normal = 1.0
-        case large = 2.0
-    }
-    
-    enum UserInput: Int {
-        case none = -1
-        case left = 0
-        case right = 1
-        case up = 2
-        case down = 3
+        case large = 1.5
     }
     
     // Used for read/write to System Defaults
@@ -40,7 +31,7 @@ class DDEGame {
         case savedState = "DDE_SavedState"
     }
     
-    private(set) var gameState: GameState!
+    private(set) var currentGameState: GameState!
     
     private var speeds: Dictionary<Difficulty,Speed> = [
         Difficulty.easy: Speed.slow
@@ -57,12 +48,12 @@ class DDEGame {
     ]
     
     init(dnaSequence: DnaSequence) {
-        self.gameState = newGameState(dnaSequence: dnaSequence)
+        self.currentGameState = newGameState(dnaSequence: dnaSequence)
         DDEGame.clearSavedGame()
     }
     
     init(gameState: GameState) {
-        self.gameState = gameState
+        self.currentGameState = gameState
         DDEGame.clearSavedGame()
     }
     
@@ -80,27 +71,33 @@ class DDEGame {
         return newState
     }
     
-    private var cumulatedDelta: TimeInterval = 0.0
-    
-    func updateState(_ deltaTime: CFTimeInterval) {
-        let sequence = gameState.sequence.nucleobaseSequence
+    func updateState(_ deltaTime: CFTimeInterval, _ arrowsPerGameScreen: Double) {
+        let sequence = currentGameState.sequence.nucleobaseSequence
         var isFirstHidden: Bool = true
-        cumulatedDelta += deltaTime
+        let secondsSpentOnScreen: TimeInterval = 3.2
 
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
             if nucleobase.isVisible {
-                nucleobase.percentY = nucleobase.percentY - Float(deltaTime) * Float(gameState.speed) / 2
-                if nucleobase.percentY < -0.2 {
+                // Speed is affected by the display time (seconds on screen) and actual speed multiplier
+                nucleobase.percentY -= Float(deltaTime / secondsSpentOnScreen) * Float(currentGameState.speed)
+                if nucleobase.percentY <= 0  {
+                    nucleobase.percentY = 0
                     nucleobase.isVisible = false
                 }
             } else {
                 if isFirstHidden {
                     if nucleobase.percentY == 1 {
                         isFirstHidden = false
-                        if Float(cumulatedDelta) * Float(gameState.speed) > 0.3 {
+                        if i > 0 {
+                            // Spacing (1 means exactly oen arrow size)
+                            let previousPercentY = sequence[i - 1].percentY
+                            if 1 - previousPercentY >= Float((currentGameState.spacing + 1) / arrowsPerGameScreen) {
+                                nucleobase.isVisible = true
+                                nucleobase.percentY = previousPercentY + Float((currentGameState.spacing + 1) / arrowsPerGameScreen)
+                            }
+                        } else {
                             nucleobase.isVisible = true
-                            cumulatedDelta -= 0.3 / TimeInterval(gameState.speed)
                         }
                     }
                 }
@@ -109,7 +106,7 @@ class DDEGame {
     }
     
     func saveState() {
-        UserDefaults.standard.set(gameState.toString(), forKey: GameKey.savedState.rawValue)
+        UserDefaults.standard.set(currentGameState.toString(), forKey: GameKey.savedState.rawValue)
         UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
     }
     

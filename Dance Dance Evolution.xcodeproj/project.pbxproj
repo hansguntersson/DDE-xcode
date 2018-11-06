@@ -11,6 +11,7 @@
 		890F85242169DA6F00765610 /* EdgedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85232169DA6F00765610 /* EdgedButton.swift */; };
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892724AA2143B89300032125 /* DisplayUpdateInformer.swift */; };
+		8937BEAE2192330A00228D8C /* OutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8937BEAD2192330A00228D8C /* OutlinedLabel.swift */; };
 		8941519B213F111300AE240A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941519A213F111300AE240A /* Extensions.swift */; };
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* ResizableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* ResizableSwitch.swift */; };
@@ -62,6 +63,7 @@
 		890F85232169DA6F00765610 /* EdgedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgedButton.swift; sourceTree = "<group>"; };
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892724AA2143B89300032125 /* DisplayUpdateInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUpdateInformer.swift; sourceTree = "<group>"; };
+		8937BEAD2192330A00228D8C /* OutlinedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedLabel.swift; sourceTree = "<group>"; };
 		8941519A213F111300AE240A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* ResizableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableSwitch.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				8969908C212F697400B69CB1 /* EdgedLabel.swift */,
 				890F85232169DA6F00765610 /* EdgedButton.swift */,
 				894BB17221706E06003C4173 /* NumberTextField.swift */,
+				8937BEAD2192330A00228D8C /* OutlinedLabel.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				8941519B213F111300AE240A /* Extensions.swift in Sources */,
 				894BB17321706E06003C4173 /* NumberTextField.swift in Sources */,
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,
+				8937BEAE2192330A00228D8C /* OutlinedLabel.swift in Sources */,
 				89F8D7972127611900571010 /* DDESound.swift in Sources */,
 				89F4B407214EB5E800F8871F /* ArrowView.swift in Sources */,
 				892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */,

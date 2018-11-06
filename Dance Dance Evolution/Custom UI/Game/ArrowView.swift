@@ -55,6 +55,12 @@ class ArrowView: PaddedImageView {
         }
     }
     
+    override var isHidden: Bool {
+        didSet {
+            paddingView?.isHidden = isHidden
+        }
+    }
+    
     var fillColor: FillColor = .none {
         didSet {
             paddingView?.backgroundColor = fillColors[fillColor]

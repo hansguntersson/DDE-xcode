@@ -1,12 +1,12 @@
 //  Created by Cristian Buse on 15/09/2018.
 //  Copyright © 2018 Hans Guntersson. All rights reserved.
 
-import UIKit
+import Foundation
 
 struct GameState: Codable {
     let difficulty: DDEGame.Difficulty
-    let speed: CGFloat
-    let spacing: CGFloat
+    let speed: Double
+    let spacing: Double
     let tolerance: Int
     let fidelity: Double
     let carryOver: Double
@@ -15,8 +15,8 @@ struct GameState: Codable {
     
     init(
         difficulty: DDEGame.Difficulty
-        , speed: CGFloat
-        , spacing: CGFloat
+        , speed: Double
+        , spacing: Double
         , tolerance: Int
         , fidelity: Double
         , carryOver: Double

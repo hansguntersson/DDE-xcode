@@ -10,7 +10,6 @@ extension Double {
 }
 
 extension UIView {
-    
     func absoluteCenter() -> CGPoint {
         let origin = absoluteOrigin(view: self)
         return CGPoint(
@@ -53,5 +52,25 @@ extension UIFont {
     
     func italic() -> UIFont {
         return withTraits(traits: .traitItalic)
+    }
+}
+
+extension CALayer {
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        let border = CALayer()
+        switch edge {
+            case .left:
+                border.frame = CGRect(x: 0, y: 0, width: thickness, height: frame.height)
+            case .right:
+                border.frame = CGRect(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
+            case .bottom:
+                border.frame = CGRect(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
+            case .top:
+                border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
+            default:
+                return
+        }
+        border.backgroundColor = color.cgColor;
+        addSublayer(border)
     }
 }
