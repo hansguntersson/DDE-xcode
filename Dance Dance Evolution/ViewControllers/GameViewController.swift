@@ -59,15 +59,12 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var leftBeat: UILabel!
     @IBOutlet var rightBeat: UILabel!
     // Tracks the beat scale at any given time
-    private var beatScale: Double = 1
+    private var beatScale: Double = 0
     
     // Tracking the last User Input (arrow direction)
     private var userInput: ArrowView.ArrowDirection? = nil
     
-    // Array of game Arrows
     private var arrows: Array<ArrowView> = []
-    
-    // Paused State
     private var isPaused: Bool = false
     
     // Screen Rendering Height - the space arrows will cover during movement
@@ -95,6 +92,8 @@ class GameViewController: HiddenStatusBarController {
             maxArrowWidth.constant = arrowSize
         }
     }
+    
+    @IBOutlet var mutationLabel: UILabel!
     
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
@@ -165,6 +164,7 @@ class GameViewController: HiddenStatusBarController {
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
         )
+        mutationLabel.alpha = 0.0
         initMusic()
         createArrows()
         
@@ -353,14 +353,13 @@ class GameViewController: HiddenStatusBarController {
                 let arrow = arrows[i]
                 if arrow.direction != userInput {
                     nucleobase.hitState = .miss
-                    arrow.fillColor = .miss
+                    mutation()
                 } else {
                     if arrow.center.y >= goalCard.frame.minY && arrow.center.y <= goalCard.frame.maxY {
                         nucleobase.hitState = .hit
-                        arrow.fillColor = .hit
                     } else {
                         nucleobase.hitState = .miss
-                        arrow.fillColor = .miss
+                        mutation()
                     }
                 }
                 break
@@ -375,9 +374,9 @@ class GameViewController: HiddenStatusBarController {
     }
 
     private func renderBeats(_ deltaTime: CFTimeInterval) {
-        beatScale -= Double(deltaTime) * game.currentGameState.speed
-        if beatScale <= 0 {
-            beatScale += 1
+        beatScale += Double(deltaTime) * game.currentGameState.speed
+        if beatScale >= 1 {
+            beatScale -= 1
         }
         scaleBeat(leftBeat, CGFloat(beatScale))
         scaleBeat(rightBeat, CGFloat(beatScale))
@@ -405,6 +404,7 @@ class GameViewController: HiddenStatusBarController {
                 if nucleobase.hitState == .none {
                     if arrow.center.y < minY {
                         nucleobase.hitState = .miss
+                        mutation()
                     }
                 }
                 
@@ -414,6 +414,16 @@ class GameViewController: HiddenStatusBarController {
                 arrows[i].isHidden = true
             }
         }
+    }
+    
+    private func mutation() {
+        mutationSound.play()
+        mutationLabel.alpha = 1.0
+        UIView.animate(withDuration: 2.0
+            , animations: {
+                self.mutationLabel.alpha = 0.0
+            }
+        )
     }
     
     // -------------------------------------------------------------------------

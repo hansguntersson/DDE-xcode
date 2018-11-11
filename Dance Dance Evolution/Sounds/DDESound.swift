@@ -36,16 +36,6 @@ class DDESound {
         }
     }
     
-    func play(stopIfAlreadyPlaying: Bool) {
-        if Settings.isSoundOn {
-            if stopIfAlreadyPlaying {
-                
-                // not sure yet if this is relevant
-            }
-            audioPlayer?.play()
-        }
-    }
-    
     func pause() {
         if Settings.isSoundOn {
             audioPlayer?.pause()

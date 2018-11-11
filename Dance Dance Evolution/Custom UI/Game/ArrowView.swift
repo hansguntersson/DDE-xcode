@@ -63,7 +63,12 @@ class ArrowView: PaddedImageView {
     
     var fillColor: FillColor = .none {
         didSet {
-            paddingView?.backgroundColor = fillColors[fillColor]
+            if paddingView != nil {
+                let newColor = fillColors[fillColor]
+                if paddingView!.backgroundColor != newColor {
+                    paddingView!.backgroundColor = newColor
+                }
+            }
         }
     }
     

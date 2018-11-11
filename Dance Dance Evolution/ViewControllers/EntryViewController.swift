@@ -28,11 +28,9 @@ class EntryViewController: HiddenStatusBarController {
     }
     
     func animateLogo() {
-        self.view.layoutIfNeeded()
         UIView.animate(withDuration: Settings.getEntryViewDuration()
             , animations: {
                 self.entryLogo.alpha = 0.0
-                self.view.layoutIfNeeded()
             }
             , completion: { (finished: Bool) in
                 if self.isViewActive() {

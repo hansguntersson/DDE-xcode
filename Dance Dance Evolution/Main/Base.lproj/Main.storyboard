@@ -64,7 +64,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="104.5" y="489" width="111" height="52"/>
+                                <rect key="frame" x="85" y="471" width="150" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
@@ -72,17 +72,17 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="97.5" y="155" width="125" height="314"/>
+                                <rect key="frame" x="78" y="155" width="164" height="296"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="75" width="125" height="164"/>
+                                        <rect key="frame" x="0.0" y="66" width="164" height="164"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="164" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
-                                                <state key="normal" title="RESUME">
+                                                <state key="normal" title="RESUME GAME">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -102,7 +102,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-rr-xRd" userLabel="NEWGAME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="63" width="125" height="38"/>
+                                                <rect key="frame" x="0.0" y="63" width="164" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
@@ -125,13 +125,13 @@
                                                     <segue destination="quh-g0-CaU" kind="presentation" identifier="goToNewGameScreen" id="IVC-yz-hAN"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-QM-Rhf" userLabel="SETUP" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="126" width="125" height="38"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nA-QM-Rhf" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="126" width="164" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <accessibility key="accessibilityConfiguration" label="SETUP"/>
                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                                 <size key="titleShadowOffset" width="-1" height="-2"/>
-                                                <state key="normal" title="SETUP">
+                                                <state key="normal" title="SETTINGS">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -701,7 +701,7 @@
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-YZ-HJY" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="268.5" width="300" height="31"/>
+                                <rect key="frame" x="10" y="527" width="300" height="31"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                 <size key="titleShadowOffset" width="-1" height="-2"/>
@@ -880,19 +880,29 @@
                                     <constraint firstItem="ybr-mo-SGI" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="top" id="ck7-uy-Dd9"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUTATION!" textAlignment="natural" lineBreakMode="middleTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-81-aRD" userLabel="Mutation">
+                                <rect key="frame" x="24.5" y="158" width="271" height="54"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="100"/>
+                                <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe"/>
-                            <constraint firstItem="Gzp-YZ-HJY" firstAttribute="centerY" secondItem="2o3-Km-KhW" secondAttribute="centerY" id="Hhy-dG-Fbf"/>
+                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="bottom" secondItem="Gzp-YZ-HJY" secondAttribute="bottom" constant="10" id="Ba7-WW-hR3"/>
+                            <constraint firstItem="gJp-81-aRD" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="JCT-il-pcP"/>
                             <constraint firstAttribute="trailing" secondItem="8Ul-ni-Q03" secondAttribute="trailing" id="Jdl-m1-vuo"/>
                             <constraint firstItem="Gzp-YZ-HJY" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="Ou9-Yk-qnT"/>
                             <constraint firstAttribute="bottom" secondItem="8Ul-ni-Q03" secondAttribute="bottom" id="PRf-Fl-kRy"/>
+                            <constraint firstItem="gJp-81-aRD" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="bottom" constant="10" id="Rti-1s-wcw"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="top" secondItem="gVP-AM-HEp" secondAttribute="bottom" id="WKh-fh-WSm"/>
+                            <constraint firstItem="gJp-81-aRD" firstAttribute="width" secondItem="FiY-k7-jgM" secondAttribute="width" multiplier="1.3" id="X9J-oG-iYx"/>
                             <constraint firstItem="8Ul-ni-Q03" firstAttribute="leading" secondItem="2o3-Km-KhW" secondAttribute="leading" id="eFt-sH-cUm"/>
                             <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:6" id="eqA-Gw-ZeU"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="40" id="h3o-Lz-iTR"/>
+                            <constraint firstItem="gJp-81-aRD" firstAttribute="height" secondItem="FiY-k7-jgM" secondAttribute="height" id="i7d-8Z-uP2"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" secondItem="Gzp-YZ-HJY" secondAttribute="trailing" constant="10" id="nmO-Gd-abm"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="leading" secondItem="oiU-9r-p77" secondAttribute="leading" id="pwa-Y0-IBI"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="width" multiplier="4" constant="30" id="rRt-Ae-YE2"/>
@@ -929,6 +939,7 @@
                         <outlet property="leftBeat" destination="PMg-iF-sOq" id="3yh-hF-rPj"/>
                         <outlet property="leftGoalArrow" destination="oiU-9r-p77" id="ZFB-Kh-NWw"/>
                         <outlet property="maxArrowWidth" destination="dGC-dm-qUU" id="jCc-Yu-twN"/>
+                        <outlet property="mutationLabel" destination="gJp-81-aRD" id="uTi-Pz-FPR"/>
                         <outlet property="rightBeat" destination="HC1-3a-Hv6" id="Plv-Qj-CmZ"/>
                         <outlet property="rightGoalArrow" destination="95u-2Z-fCC" id="5d7-H1-Gt9"/>
                         <outlet property="upGoalArrow" destination="ars-ME-efi" id="qIQ-NJ-a6g"/>
@@ -1139,6 +1150,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zmX-gm-fxp"/>
-        <segue reference="Y0K-xI-tRc"/>
+        <segue reference="vWc-XW-9Tq"/>
     </inferredMetricsTieBreakers>
 </document>

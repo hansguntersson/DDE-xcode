@@ -34,7 +34,7 @@ class ReadyViewController: HiddenStatusBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        areYouReadySound.play(stopIfAlreadyPlaying: false)
+        areYouReadySound.play()
         animateCountdown(downFrom: Settings.countdownDuration)
     }
     
