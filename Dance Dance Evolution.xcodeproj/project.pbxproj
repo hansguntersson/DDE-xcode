@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		890F85222169D7CC00765610 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85212169D7CC00765610 /* NewGameViewController.swift */; };
+		890A059E21AF486C00CCE81A /* CustomSequenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */; };
 		890F85242169DA6F00765610 /* EdgedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85232169DA6F00765610 /* EdgedButton.swift */; };
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892724AA2143B89300032125 /* DisplayUpdateInformer.swift */; };
@@ -26,12 +26,14 @@
 		89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AE41F72123720A00B5BF30 /* SetupViewController.swift */; };
 		89B469952120732D0097E859 /* PaddedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* PaddedImageView.swift */; };
 		89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C37A3E21249D3E00867B39 /* ReadyViewController.swift */; };
+		89DA8C3F21B082E300D865E8 /* DNAStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA8C3E21B082E300D865E8 /* DNAStorage.swift */; };
 		89F4B407214EB5E800F8871F /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4B406214EB5E800F8871F /* ArrowView.swift */; };
 		89F8D7972127611900571010 /* DDESound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8D7962127611900571010 /* DDESound.swift */; };
 		89F8D79B21277DA900571010 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 89F8D79A21277DA900571010 /* audio */; };
 		89FD33092117540500407B15 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD33082117540500407B15 /* MainViewController.swift */; };
 		89FD330C211766D600407B15 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD330B211766D600407B15 /* Settings.swift */; };
 		89FD3311211778D200407B15 /* HiddenStatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD3310211778D200407B15 /* HiddenStatusBarController.swift */; };
+		89FF0418219CC59C00FA0344 /* CustomSequencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */; };
 		E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1521011DA4002DA08D /* AppDelegate.swift */; };
 		E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1D21011DA4002DA08D /* GameViewController.swift */; };
 		E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1F21011DA4002DA08D /* Main.storyboard */; };
@@ -59,7 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		890F85212169D7CC00765610 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSequenceCell.swift; sourceTree = "<group>"; };
 		890F85232169DA6F00765610 /* EdgedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgedButton.swift; sourceTree = "<group>"; };
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892724AA2143B89300032125 /* DisplayUpdateInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUpdateInformer.swift; sourceTree = "<group>"; };
@@ -78,12 +80,14 @@
 		89AE41F72123720A00B5BF30 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		89B469942120732D0097E859 /* PaddedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedImageView.swift; sourceTree = "<group>"; };
 		89C37A3E21249D3E00867B39 /* ReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyViewController.swift; sourceTree = "<group>"; };
+		89DA8C3E21B082E300D865E8 /* DNAStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAStorage.swift; sourceTree = "<group>"; };
 		89F4B406214EB5E800F8871F /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 		89F8D7962127611900571010 /* DDESound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDESound.swift; sourceTree = "<group>"; };
 		89F8D79A21277DA900571010 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		89FD33082117540500407B15 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		89FD330B211766D600407B15 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		89FD3310211778D200407B15 /* HiddenStatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenStatusBarController.swift; sourceTree = "<group>"; };
+		89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSequencesViewController.swift; sourceTree = "<group>"; };
 		E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dance Dance Evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F85F1521011DA4002DA08D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5F85F1D21011DA4002DA08D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				8957D209215694C9005CAA78 /* DDEGame.swift */,
 				8958037C214D1CE200C458C9 /* GameState.swift */,
 				895CCF372150248500157DD2 /* DnaSequence.swift */,
+				89DA8C3D21B082C000D865E8 /* Storage */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -156,11 +161,11 @@
 			children = (
 				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
 				89FD33082117540500407B15 /* MainViewController.swift */,
-				890F85212169D7CC00765610 /* NewGameViewController.swift */,
 				89AE41F72123720A00B5BF30 /* SetupViewController.swift */,
 				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
 				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
 				89564B082160B82B005DAC2A /* TestViewController.swift */,
+				89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				890F85232169DA6F00765610 /* EdgedButton.swift */,
 				894BB17221706E06003C4173 /* NumberTextField.swift */,
 				8937BEAD2192330A00228D8C /* OutlinedLabel.swift */,
+				890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -207,6 +213,14 @@
 				8994FBCE215F81EE00387BF2 /* General */,
 			);
 			path = "Custom UI";
+			sourceTree = "<group>";
+		};
+		89DA8C3D21B082C000D865E8 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				89DA8C3E21B082E300D865E8 /* DNAStorage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		89F8D7952127610700571010 /* Sounds */ = {
@@ -416,11 +430,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8994FBD1215F845900387BF2 /* DNASequenceScrollView.swift in Sources */,
+				890A059E21AF486C00CCE81A /* CustomSequenceCell.swift in Sources */,
 				89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */,
 				89564B092160B82B005DAC2A /* TestViewController.swift in Sources */,
 				89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */,
+				89DA8C3F21B082E300D865E8 /* DNAStorage.swift in Sources */,
 				895CCF382150248500157DD2 /* DnaSequence.swift in Sources */,
 				89FD330C211766D600407B15 /* Settings.swift in Sources */,
+				89FF0418219CC59C00FA0344 /* CustomSequencesViewController.swift in Sources */,
 				8969908D212F697400B69CB1 /* EdgedLabel.swift in Sources */,
 				89B469952120732D0097E859 /* PaddedImageView.swift in Sources */,
 				89FD3311211778D200407B15 /* HiddenStatusBarController.swift in Sources */,
@@ -431,7 +448,6 @@
 				8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */,
 				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,
 				8994FBCD215F73B800387BF2 /* DNASegmentedControl.swift in Sources */,
-				890F85222169D7CC00765610 /* NewGameViewController.swift in Sources */,
 				8941519B213F111300AE240A /* Extensions.swift in Sources */,
 				894BB17321706E06003C4173 /* NumberTextField.swift in Sources */,
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,

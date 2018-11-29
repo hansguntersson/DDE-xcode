@@ -4,34 +4,35 @@
 import Foundation
 
 class DDEGame {
+    // The current Game State
+    private(set) var state: GameState
+    
+    // Callback that will run when a mutation occurs
+    var onMutation: (() -> Void)?
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Game Speed and Spacing based on Difficulty
+    // -------------------------------------------------------------------------
     enum Difficulty: Int, Codable {
         case easy = 0
         case normal = 1
         case hard = 2
         case pro = 3
     }
-    
-    enum Speed: Double {
+
+    enum Speed: Float {
         case slow = 0.9
         case normal = 1.0
         case fast = 1.1
         case veryFast = 1.2
     }
     
-    enum Spacing: Double {
+    enum Spacing: Float {
         case verySmall = 0.5
         case small = 0.75
         case normal = 1.0
         case large = 1.5
     }
-    
-    // Used for read/write to System Defaults
-    private enum GameKey: String {
-        case resumeKey = "DDE_Resume"
-        case savedState = "DDE_SavedState"
-    }
-    
-    private(set) var currentGameState: GameState!
     
     private var speeds: Dictionary<Difficulty,Speed> = [
         Difficulty.easy: Speed.slow
@@ -47,19 +48,12 @@ class DDEGame {
         , Difficulty.pro: Spacing.verySmall
     ]
     
+    // -------------------------------------------------------------------------
+    // Mark: - Game Init
+    // -------------------------------------------------------------------------
     init(dnaSequence: DnaSequence) {
-        self.currentGameState = newGameState(dnaSequence: dnaSequence)
-        DDEGame.clearSavedGame()
-    }
-    
-    init(gameState: GameState) {
-        self.currentGameState = gameState
-        DDEGame.clearSavedGame()
-    }
-    
-    private func newGameState(dnaSequence: DnaSequence) -> GameState {
         let difficulty = Settings.difficulty
-        let newState = GameState(
+        self.state = GameState(
             difficulty: difficulty
             , speed: speeds[difficulty]!.rawValue
             , spacing: spacings[difficulty]!.rawValue
@@ -68,54 +62,87 @@ class DDEGame {
             , carryOver: Settings.carryOverThreshold
             , sequence: dnaSequence
         )
-        return newState
+        DDEGame.clearSavedGame()
     }
     
-    func updateState(_ deltaTime: CFTimeInterval, _ arrowsPerGameScreen: Double) {
-        let sequence = currentGameState.sequence.nucleobaseSequence
+    init(gameState: GameState) {
+        self.state = gameState
+        DDEGame.clearSavedGame()
+    }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Game State gets updated from the Game Controller
+    // -------------------------------------------------------------------------
+    func updateState(_ deltaTime: CFTimeInterval, _ arrowsPerGameScreen: Float, _ minYPercent: Float) {
+        let sequence = state.sequence.nucleobaseSequence
         var isFirstHidden: Bool = true
-        let secondsSpentOnScreen: TimeInterval = 3.2
+        let secondsSpentOnScreen: TimeInterval = 2.5
 
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
-            if nucleobase.isVisible {
+            if nucleobase.isActive {
                 // Speed is affected by the display time (seconds on screen) and actual speed multiplier
-                nucleobase.percentY -= Float(deltaTime / secondsSpentOnScreen) * Float(currentGameState.speed)
-                if nucleobase.percentY <= 0  {
-                    nucleobase.percentY = 0
-                    nucleobase.isVisible = false
+                nucleobase.percentY -= Float(deltaTime / secondsSpentOnScreen) * state.speed
+                if nucleobase.evolutionState == .uncertain {
+                    if nucleobase.percentY < minYPercent {
+                        nucleobase.mutateToRandom()
+                        self.onMutation?()
+                    }
                 }
             } else {
                 if isFirstHidden {
                     if nucleobase.percentY == 1 {
                         isFirstHidden = false
                         if i > 0 {
-                            // Spacing (1 means exactly oen arrow size)
+                            // Spacing
                             let previousPercentY = sequence[i - 1].percentY
-                            if 1 - previousPercentY >= Float((currentGameState.spacing + 1) / arrowsPerGameScreen) {
-                                nucleobase.isVisible = true
-                                nucleobase.percentY = previousPercentY + Float((currentGameState.spacing + 1) / arrowsPerGameScreen)
+                            let deltaY = (state.spacing + 1) / arrowsPerGameScreen
+                            if 1 - previousPercentY >= deltaY {
+                                nucleobase.activate()
+                                nucleobase.percentY = previousPercentY + deltaY
                             }
                         } else {
-                            nucleobase.isVisible = true
+                            nucleobase.activate()
                         }
                     }
                 }
             }
         }
+        state.beatsScale += Float(deltaTime) * state.speed
+        if state.beatsScale >= 1 {
+            state.beatsScale -= 1
+        }
     }
     
-    func saveState() {
-        UserDefaults.standard.set(currentGameState.toString(), forKey: GameKey.savedState.rawValue)
-        UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
+    // -------------------------------------------------------------------------
+    // Mark: - End of Game
+    // -------------------------------------------------------------------------
+    func hasEnded() -> Bool {
+        let sequence = state.sequence.nucleobaseSequence
+        return sequence[sequence.count - 1].percentY == 0
     }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Debug for memory leaks
+    // -------------------------------------------------------------------------
     deinit {
         print("Game de-initialized")
     }
 }
 
+// Saving and retrieving saved game states
 extension DDEGame {
+    // Used for read/write to System Defaults
+    private enum GameKey: String {
+        case resumeKey = "DDE_Resume"
+        case savedState = "DDE_SavedState"
+    }
+    
+    func saveState() {
+        UserDefaults.standard.set(state.toString(), forKey: GameKey.savedState.rawValue)
+        UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
+    }
+    
     static func isGameAvailableForResume() -> Bool {
         return UserDefaults.standard.bool(forKey: GameKey.resumeKey.rawValue)
     }

@@ -14,10 +14,16 @@ class GameViewController: HiddenStatusBarController {
     /*
         In order to start a game, the gameState object (for resumed games) or
         the DNASequence object (for new games) must be set. One way this could
-        be done is in the PrepareForSegue function of the caller controller.
+        be done is in the PrepareForSegue function of the presenting controller.
     */
     var gameState: GameState? = nil
     var dnaSequence: DnaSequence? = nil
+    
+    /*
+        Booleans that are set in initGame (called from viewDidLoad) and later used
+        in viewDidAppear to correctly show the countdown screen (ReadyViewController)
+        and to resumePlay
+     */
     private var isNewGame: Bool = false
     private var isFirstTimeViewAppears: Bool = true
     
@@ -27,7 +33,7 @@ class GameViewController: HiddenStatusBarController {
     */
     var readyViewController: ReadyViewController? = nil
     
-    // The 2 sounds that can be played during the game
+    // The sounds that can be played during the game
     private var gameMusic: DDESound!
     private lazy var mutationSound = DDESound(sound: .mutation)
     
@@ -47,7 +53,7 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var upGoalArrow: UIImageView!
     @IBOutlet var rightGoalArrow: UIImageView!
     @IBOutlet var goalCard: UIView!
-    // Dictionary to easily retrieve certain goal arrow
+    // Dictionary to easily retrieve certain goal arrow by direction
     private lazy var goalArrows: Dictionary<ArrowView.ArrowDirection,UIView> = [
         .left: self.leftGoalArrow
         , .right: self.rightGoalArrow
@@ -58,26 +64,27 @@ class GameViewController: HiddenStatusBarController {
     // The 2 beats left and right of the goal arrows
     @IBOutlet var leftBeat: UILabel!
     @IBOutlet var rightBeat: UILabel!
-    // Tracks the beat scale at any given time
-    private var beatScale: Double = 0
     
     // Tracking the last User Input (arrow direction)
     private var userInput: ArrowView.ArrowDirection? = nil
     
+    // Game Arrows
     private var arrows: Array<ArrowView> = []
+    
+    // Game State
     private var isPaused: Bool = false
     
     // Screen Rendering Height - the space arrows will cover during movement
     private var gameHeight: CGFloat = 0
     
     // How many arrows sizes would fit the game height
-    private var arrowsPerGameScreen: Double = 0
+    private var arrowsPerGameScreen: Float = 0
     
     /*
         The goal arrows might be smaller in Portrait due to AutoLayout
         The below outlets (constraints and stack view) are used to calculate
             a "fixed-max" arrow size so that, even if the screen is rotated,
-            AutoLayout produces the same outcome in Landscape also
+            AutoLayout produces the same outcome in any Orientation
     */
     @IBOutlet var maxArrowWidth: NSLayoutConstraint!
     @IBOutlet var beatHeightMultiplier: NSLayoutConstraint!
@@ -87,6 +94,7 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var goalCardHeightConstraint: NSLayoutConstraint!
     
     private var screenOrientation: UIInterfaceOrientationMask = .all
+    
     private var arrowSize: CGFloat = 0 {
         didSet {
             maxArrowWidth.constant = arrowSize
@@ -95,12 +103,18 @@ class GameViewController: HiddenStatusBarController {
     
     @IBOutlet var mutationLabel: UILabel!
     
+    // Mapping
+    private var nucleobaseTypeToDirection: Dictionary<DnaSequence.NucleobaseType,ArrowView.ArrowDirection>
+        = [.cytosine: .left, .adenine: .down, .thymine: .up, .guanine: .right]
+    private var directionToNucleobaseType: Dictionary<ArrowView.ArrowDirection,DnaSequence.NucleobaseType>
+        = [.left: .cytosine, .down: .adenine, .up: .thymine, .right: .guanine]
+    
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
     // -------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initGame()
         addAppObservers()
         initSwipes()
@@ -114,7 +128,7 @@ class GameViewController: HiddenStatusBarController {
                 resumePlay()
             } else {
                 isPaused = true
-                renderScreen(0)
+                renderScreen()
                 performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
             }
         } else {
@@ -137,8 +151,7 @@ class GameViewController: HiddenStatusBarController {
             hideArrows()
             // Make sure arrows still look good while rotating device when game is paused
             coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
-                self.showArrows()
-                self.renderBeats(0)
+                self.renderScreen()
             })
         }
     }
@@ -164,27 +177,37 @@ class GameViewController: HiddenStatusBarController {
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
         )
-        mutationLabel.alpha = 0.0
-        initMusic()
-        createArrows()
         
+        game.onMutation = {[unowned self] in self.mutation()}
+        mutationLabel.alpha = 0.0
+        
+        initMusic()
+        
+        createArrows()
         limitArrowSize()
-        gameHeight = max(view.frame.width, view.frame.height) + arrowSize // (1/2 at bottom and top)
-        arrowsPerGameScreen = Double(gameHeight / arrowSize)
+        
+        /*
+            The game height is the maximum view.frame size plus one extra arrow size
+            The extra arrow size is used to start the arrow below the bottom screen edge and
+                end it above the top screen edge (as arrows are position by center).
+            Basically the extra arrow is made of two arrow halfs (1/2 at bottom and 1/2 at top)
+        */
+        gameHeight = max(view.frame.width, view.frame.height) + arrowSize
+        arrowsPerGameScreen = Float(gameHeight / arrowSize)
         
         initTolerance()
     }
     private func initMusic() {
-        if game.currentGameState.difficulty == .pro {
+        if game.state.difficulty == .pro {
             gameMusic = DDESound(sound: .vShort200bpm)
         } else {
             gameMusic = DDESound(sound: .vShort150bpm)
         }
     }
     private func createArrows() {
-        let sequence = game.currentGameState.sequence.nucleobaseSequence
+        let sequence = game.state.sequence.nucleobaseSequence
         for i in 0..<sequence.count {
-            let arrowDirection = nucleobaseTypeToDirection(type: sequence[i].type)
+            let arrowDirection = nucleobaseTypeToDirection[sequence[i].type]!
             let arrow = ArrowView(direction: arrowDirection)
             view.addSubview(arrow)
             arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
@@ -198,20 +221,8 @@ class GameViewController: HiddenStatusBarController {
         let maxArrowSize = arrowsAndBeatsWidth / (2 * beatHeightMultiplier.multiplier + 4)
         arrowSize = min(maxArrowSize.rounded(.down), maxArrowWidth.constant)
     }
-    private func nucleobaseTypeToDirection(type: DnaSequence.NucleobaseType) -> ArrowView.ArrowDirection {
-        switch type {
-        case .adenine:
-            return .down
-        case .cytosine:
-            return .left
-        case .guanine:
-            return .right
-        case .thymine:
-            return .up
-        }
-    }
     private func initTolerance() {
-        goalCardHeightConstraint.constant = CGFloat(game.currentGameState.tolerance) * (arrowSize / 15).rounded()
+        goalCardHeightConstraint.constant = CGFloat(game.state.tolerance) * (arrowSize / 15).rounded()
         goalCard.layoutIfNeeded()
         if Settings.isToleranceVisibilityOn {
             let thickness: CGFloat = 1
@@ -253,7 +264,7 @@ class GameViewController: HiddenStatusBarController {
         DDEGame.clearSavedGame()
     }
     @objc func appDidBecomeActive() {
-        showArrows()
+        renderScreen()
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     
@@ -329,36 +340,47 @@ class GameViewController: HiddenStatusBarController {
             arrow.isHidden = true
         }
     }
-    private func showArrows() {
-        renderArrows()
-    }
     
     // -------------------------------------------------------------------------
     // Mark: - Game Loop and Rendering
     // -------------------------------------------------------------------------
     private func gameLoop(_ deltaTime: CFTimeInterval) {
         processUserInput()
-        game.updateState(deltaTime, arrowsPerGameScreen)
-        renderScreen(deltaTime)
+        game.updateState(deltaTime, arrowsPerGameScreen, minYPercent())
+        renderScreen()
+        if game.hasEnded() && !mutationSound.isPlaying() {
+            endGame()
+        }
+    }
+    
+    /*
+        To calculate the center of the arrow we use nucleobase.percentY * gameHeight - arrowSize / 2
+        and then we compare that center.Y with goalCard.frame.minY to see if the arrow has past beyond the threshold
+        Since the game has no idea of what goalCard, gameHeight and arrowSize are, we directly pass the percentage
+        needed to compare with nucleobase.percentY as minYPercent - See gameLoop above
+    */
+    private func minYPercent() -> Float {
+        return Float((goalCard.frame.minY + arrowSize / 2) / gameHeight)
     }
     
     private func processUserInput() {
         if userInput == nil {
             return
         }
-        let sequence = game.currentGameState.sequence.nucleobaseSequence
+        let sequence = game.state.sequence.nucleobaseSequence
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
-            if nucleobase.isVisible && nucleobase.hitState == .none && nucleobase.percentY < 0.5 {
+            if nucleobase.isActive && nucleobase.evolutionState == .uncertain && nucleobase.percentY < 0.5 {
                 let arrow = arrows[i]
                 if arrow.direction != userInput {
-                    nucleobase.hitState = .miss
+                    let mutatedType = directionToNucleobaseType[userInput!]!
+                    nucleobase.mutate(to: mutatedType)
                     mutation()
                 } else {
                     if arrow.center.y >= goalCard.frame.minY && arrow.center.y <= goalCard.frame.maxY {
-                        nucleobase.hitState = .hit
+                        nucleobase.preserve()
                     } else {
-                        nucleobase.hitState = .miss
+                        nucleobase.mutateToRandom()
                         mutation()
                     }
                 }
@@ -368,18 +390,14 @@ class GameViewController: HiddenStatusBarController {
         userInput = .none
     }
 
-    private func renderScreen(_ deltaTime: CFTimeInterval) {
-        renderBeats(deltaTime)
+    private func renderScreen() {
+        renderBeats()
         renderArrows()
     }
 
-    private func renderBeats(_ deltaTime: CFTimeInterval) {
-        beatScale += Double(deltaTime) * game.currentGameState.speed
-        if beatScale >= 1 {
-            beatScale -= 1
-        }
-        scaleBeat(leftBeat, CGFloat(beatScale))
-        scaleBeat(rightBeat, CGFloat(beatScale))
+    private func renderBeats() {
+        scaleBeat(leftBeat, CGFloat(game.state.beatsScale))
+        scaleBeat(rightBeat, CGFloat(game.state.beatsScale))
     }
     private func scaleBeat(_ beat: UILabel, _ scale: CGFloat) {
         beat.transform = .identity
@@ -388,11 +406,10 @@ class GameViewController: HiddenStatusBarController {
     }
     
     private func renderArrows() {
-        let sequence = game.currentGameState.sequence.nucleobaseSequence
-        let minY = goalCard.frame.minY
+        let sequence = game.state.sequence.nucleobaseSequence
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
-            if nucleobase.isVisible {
+            if nucleobase.isActive {
                 let arrow = arrows[i]
                 arrow.isHidden = false
                 let goalArrow = goalArrows[arrow.direction]!
@@ -401,14 +418,7 @@ class GameViewController: HiddenStatusBarController {
                 let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2
                 arrow.center = CGPoint(x: x, y: y)
                 
-                if nucleobase.hitState == .none {
-                    if arrow.center.y < minY {
-                        nucleobase.hitState = .miss
-                        mutation()
-                    }
-                }
-                
-                arrow.fillColor = ArrowView.FillColor(rawValue: nucleobase.hitState.rawValue)!
+                arrow.fillColor = ArrowView.FillColor(rawValue: nucleobase.evolutionState.rawValue)!
                 arrow.alpha = 1 - CGFloat(nucleobase.percentY)
             } else {
                 arrows[i].isHidden = true
@@ -427,8 +437,12 @@ class GameViewController: HiddenStatusBarController {
     }
     
     // -------------------------------------------------------------------------
-    // Mark: - Cleaning
+    // Mark: - End Game & Cleaning
     // -------------------------------------------------------------------------
+    private func endGame() {
+        clean()
+        dismiss(animated: false, completion: nil)
+    }
     @IBAction func goToMainMenu(_ sender: UIButton) {
         clean()
         dismiss(animated: false, completion: nil)

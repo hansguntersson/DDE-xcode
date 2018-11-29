@@ -3,9 +3,11 @@
 
 import UIKit
 
-class SetupViewController: HiddenStatusBarController {
+class SetupViewController: HiddenStatusBarController, UITextFieldDelegate {
 
     @IBOutlet var soundOn: UISwitch!
+    @IBOutlet var sequenceLengthInput: NumberTextField!
+    @IBOutlet var sequenceLengthSlider: UISlider!
     @IBOutlet var countdownStepper: UIStepper!
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet var difficulty: UISegmentedControl!
@@ -19,12 +21,16 @@ class SetupViewController: HiddenStatusBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        sequenceLengthInput.delegate = self
         updateDisplayedSettings()
+        prepareSequenceLength()
     }
     
     private func updateDisplayedSettings() {
         soundOn.isOn = Settings.isSoundOn
+        sequenceLengthSlider.value = Float(Settings.sequenceLength)
+        updateSequenceText()
         countdownStepper.value = Double(Settings.countdownDuration)
         countdownLabel.text = String(Settings.countdownDuration)
         difficulty.selectedSegmentIndex = Settings.difficulty.rawValue
@@ -37,8 +43,42 @@ class SetupViewController: HiddenStatusBarController {
         toleranceVisibilityOn.isOn = Settings.isToleranceVisibilityOn
     }
     
+    private func updateSequenceText() {
+        sequenceLengthInput.text = "\(Settings.sequenceLength)"
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+    }
+    
+    func prepareSequenceLength() {
+        sequenceLengthInput.doneButtonAction = { [unowned self] in
+            let newTextValue = self.sequenceLengthInput.text ?? ""
+            let newFloatValue =  Float(newTextValue) ?? -1.0
+
+            // Apply the new value
+            if newFloatValue >= self.sequenceLengthSlider.minimumValue
+                && newFloatValue <= self.sequenceLengthSlider.maximumValue
+            {
+                self.sequenceLengthSlider.value = newFloatValue
+                Settings.sequenceLength = Int(newFloatValue)
+            }
+            // Sync displayed text with slider value
+            self.updateSequenceText()
+            // Dismiss Keyboard
+            if self.sequenceLengthInput.isFirstResponder {
+                self.sequenceLengthInput.resignFirstResponder()
+            }
+        }
+    }
+    
     @IBAction func soundToggled(_ sender: UISwitch) {
         Settings.isSoundOn = sender.isOn
+    }
+    
+    @IBAction func sequenceLengthHasChanged(_ sender: UISlider) {
+        Settings.sequenceLength = Int(sender.value)
+        updateSequenceText()
     }
     
     @IBAction func countdownChanged(_ sender: UIStepper) {

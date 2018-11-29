@@ -5,18 +5,20 @@ import Foundation
 
 struct GameState: Codable {
     let difficulty: DDEGame.Difficulty
-    let speed: Double
-    let spacing: Double
+    let speed: Float
+    let spacing: Float
     let tolerance: Int
     let fidelity: Double
     let carryOver: Double
     
-    private(set) var sequence: DnaSequence!
+    private(set) var sequence: DnaSequence
+    
+    var beatsScale: Float = 0.0
     
     init(
         difficulty: DDEGame.Difficulty
-        , speed: Double
-        , spacing: Double
+        , speed: Float
+        , spacing: Float
         , tolerance: Int
         , fidelity: Double
         , carryOver: Double
@@ -31,6 +33,9 @@ struct GameState: Codable {
         self.sequence = sequence
     }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Encode / Decode to / from JSON String
+    // -------------------------------------------------------------------------
     func toString() -> String? {
         do {
             let jsonByteData: Data = try JSONEncoder().encode(self)
@@ -39,7 +44,6 @@ struct GameState: Codable {
             return nil
         }
     }
-    
     static func initFromString(from jsonString: String) -> GameState? {
         if let jsonData: Data = jsonString.data(using: .utf8) {
             do {

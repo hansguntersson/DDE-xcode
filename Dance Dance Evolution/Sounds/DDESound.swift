@@ -48,6 +48,10 @@ class DDESound {
         }
     }
     
+    func isPlaying() -> Bool {
+        return audioPlayer?.isPlaying ?? false
+    }
+    
     private func getSoundURL(sound: Sound) -> URL? {
         let soundType: String = "mp3" // must switch sound if different
         
