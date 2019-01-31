@@ -3,8 +3,9 @@
 
 import UIKit
 
-class CustomSequencesViewController: HiddenStatusBarController {
-
+class SequencesViewController: HiddenStatusBarController {
+    // Swift 4: let sortedKeys = dictionary.keys.sorted()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +23,7 @@ class CustomSequencesViewController: HiddenStatusBarController {
     
 }
 
-extension CustomSequencesViewController: UITableViewDataSource, UITableViewDelegate {
+extension SequencesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10

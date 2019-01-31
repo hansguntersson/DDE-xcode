@@ -54,9 +54,14 @@ class DNASequenceScrollView: UIScrollView {
         clearStackSubviews()
         
         for nucleobase in dnaSequence.nucleobaseSequence {
-            let segment = DNASegmentedControl()
-            stackContainer.addArrangedSubview(segment)
-            segment.selectedSegmentIndex = nucleobase.type.rawValue
+            let dnaSegment = DNASegmentedControl()
+            stackContainer.addArrangedSubview(dnaSegment)
+            for index in 0..<dnaSegment.numberOfSegments {
+                if dnaSegment.titleForSegment(at: index) == nucleobase.type.rawValue {
+                    dnaSegment.selectedSegmentIndex = index
+                    break
+                }
+            }
         }
     }
     

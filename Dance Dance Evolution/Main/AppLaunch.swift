@@ -4,7 +4,7 @@
 import AVFoundation
 
 func appHasLaunched() {
-    // Set Audio Session Category to Playback so that Sounds can be played in Silent Mode
+    // Set Audio Session Category to Playback so that Sounds can be played independent of Silent Mode
     do {
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
     } catch {

@@ -16,24 +16,30 @@
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* ResizableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* ResizableSwitch.swift */; };
 		894BB17321706E06003C4173 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BB17221706E06003C4173 /* NumberTextField.swift */; };
+		894E2D2B21EB4C2300D1CD7B /* COGO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E2D2A21EB4C2300D1CD7B /* COGO.swift */; };
 		89564B092160B82B005DAC2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89564B082160B82B005DAC2A /* TestViewController.swift */; };
 		8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8957D209215694C9005CAA78 /* DDEGame.swift */; };
 		8958037D214D1CE200C458C9 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958037C214D1CE200C458C9 /* GameState.swift */; };
 		895CCF382150248500157DD2 /* DnaSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895CCF372150248500157DD2 /* DnaSequence.swift */; };
 		8969908D212F697400B69CB1 /* EdgedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969908C212F697400B69CB1 /* EdgedLabel.swift */; };
+		8984732C21B47CF4007D332E /* DnaSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8984732B21B47CF4007D332E /* DnaSequences.swift */; };
 		8994FBCD215F73B800387BF2 /* DNASegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */; };
 		8994FBD1215F845900387BF2 /* DNASequenceScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */; };
+		8998E62221E2806D00EE26F4 /* CubicBeziersThroughPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */; };
 		89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AE41F72123720A00B5BF30 /* SetupViewController.swift */; };
+		89B0F28621DE98EB00E7F1A6 /* DnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0F28521DE98EB00E7F1A6 /* DnaView.swift */; };
+		89B0F28821DE9B0100E7F1A6 /* DnaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0F28721DE9B0100E7F1A6 /* DnaController.swift */; };
 		89B469952120732D0097E859 /* PaddedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B469942120732D0097E859 /* PaddedImageView.swift */; };
 		89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C37A3E21249D3E00867B39 /* ReadyViewController.swift */; };
-		89DA8C3F21B082E300D865E8 /* DNAStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA8C3E21B082E300D865E8 /* DNAStorage.swift */; };
+		89DA8C3F21B082E300D865E8 /* DnaStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA8C3E21B082E300D865E8 /* DnaStorage.swift */; };
+		89F1F04A21F34249005F983E /* DnaScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1F04921F34249005F983E /* DnaScrollView.swift */; };
 		89F4B407214EB5E800F8871F /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4B406214EB5E800F8871F /* ArrowView.swift */; };
 		89F8D7972127611900571010 /* DDESound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8D7962127611900571010 /* DDESound.swift */; };
 		89F8D79B21277DA900571010 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 89F8D79A21277DA900571010 /* audio */; };
 		89FD33092117540500407B15 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD33082117540500407B15 /* MainViewController.swift */; };
 		89FD330C211766D600407B15 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD330B211766D600407B15 /* Settings.swift */; };
 		89FD3311211778D200407B15 /* HiddenStatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FD3310211778D200407B15 /* HiddenStatusBarController.swift */; };
-		89FF0418219CC59C00FA0344 /* CustomSequencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */; };
+		89FF0418219CC59C00FA0344 /* SequencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF0417219CC59C00FA0344 /* SequencesViewController.swift */; };
 		E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1521011DA4002DA08D /* AppDelegate.swift */; };
 		E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F85F1D21011DA4002DA08D /* GameViewController.swift */; };
 		E5F85F2121011DA4002DA08D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F85F1F21011DA4002DA08D /* Main.storyboard */; };
@@ -70,24 +76,30 @@
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* ResizableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableSwitch.swift; sourceTree = "<group>"; };
 		894BB17221706E06003C4173 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
+		894E2D2A21EB4C2300D1CD7B /* COGO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COGO.swift; sourceTree = "<group>"; };
 		89564B082160B82B005DAC2A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8957D209215694C9005CAA78 /* DDEGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDEGame.swift; sourceTree = "<group>"; };
 		8958037C214D1CE200C458C9 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		895CCF372150248500157DD2 /* DnaSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaSequence.swift; sourceTree = "<group>"; };
 		8969908C212F697400B69CB1 /* EdgedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgedLabel.swift; sourceTree = "<group>"; };
+		8984732B21B47CF4007D332E /* DnaSequences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaSequences.swift; sourceTree = "<group>"; };
 		8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNASegmentedControl.swift; sourceTree = "<group>"; };
 		8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNASequenceScrollView.swift; sourceTree = "<group>"; };
+		8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicBeziersThroughPoints.swift; sourceTree = "<group>"; };
 		89AE41F72123720A00B5BF30 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		89B0F28521DE98EB00E7F1A6 /* DnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaView.swift; sourceTree = "<group>"; };
+		89B0F28721DE9B0100E7F1A6 /* DnaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaController.swift; sourceTree = "<group>"; };
 		89B469942120732D0097E859 /* PaddedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedImageView.swift; sourceTree = "<group>"; };
 		89C37A3E21249D3E00867B39 /* ReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyViewController.swift; sourceTree = "<group>"; };
-		89DA8C3E21B082E300D865E8 /* DNAStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAStorage.swift; sourceTree = "<group>"; };
+		89DA8C3E21B082E300D865E8 /* DnaStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaStorage.swift; sourceTree = "<group>"; };
+		89F1F04921F34249005F983E /* DnaScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaScrollView.swift; sourceTree = "<group>"; };
 		89F4B406214EB5E800F8871F /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 		89F8D7962127611900571010 /* DDESound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDESound.swift; sourceTree = "<group>"; };
 		89F8D79A21277DA900571010 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		89FD33082117540500407B15 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		89FD330B211766D600407B15 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		89FD3310211778D200407B15 /* HiddenStatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenStatusBarController.swift; sourceTree = "<group>"; };
-		89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSequencesViewController.swift; sourceTree = "<group>"; };
+		89FF0417219CC59C00FA0344 /* SequencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencesViewController.swift; sourceTree = "<group>"; };
 		E5F85F1221011DA4002DA08D /* Dance Dance Evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dance Dance Evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F85F1521011DA4002DA08D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5F85F1D21011DA4002DA08D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +155,11 @@
 				8957D209215694C9005CAA78 /* DDEGame.swift */,
 				8958037C214D1CE200C458C9 /* GameState.swift */,
 				895CCF372150248500157DD2 /* DnaSequence.swift */,
+				8984732B21B47CF4007D332E /* DnaSequences.swift */,
+				8998E61F21E27E9900EE26F4 /* GameUI */,
 				89DA8C3D21B082C000D865E8 /* Storage */,
+				89FD330A211766BF00407B15 /* Settings */,
+				89F8D7952127610700571010 /* Sounds */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -159,13 +175,8 @@
 		898FA87E210FAB8800054D0B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
-				89FD33082117540500407B15 /* MainViewController.swift */,
-				89AE41F72123720A00B5BF30 /* SetupViewController.swift */,
-				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
-				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
-				89564B082160B82B005DAC2A /* TestViewController.swift */,
-				89FF0417219CC59C00FA0344 /* CustomSequencesViewController.swift */,
+				8998E61E21E27E7300EE26F4 /* ReusableControllers */,
+				8998E61D21E27E4E00EE26F4 /* GameControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -181,10 +192,44 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		8994FBCE215F81EE00387BF2 /* General */ = {
+		8998E61D21E27E4E00EE26F4 /* GameControllers */ = {
+			isa = PBXGroup;
+			children = (
+				891B10952116FBE800CC5C4D /* EntryViewController.swift */,
+				89FD33082117540500407B15 /* MainViewController.swift */,
+				89AE41F72123720A00B5BF30 /* SetupViewController.swift */,
+				89C37A3E21249D3E00867B39 /* ReadyViewController.swift */,
+				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
+				89564B082160B82B005DAC2A /* TestViewController.swift */,
+				89FF0417219CC59C00FA0344 /* SequencesViewController.swift */,
+				89B0F28721DE9B0100E7F1A6 /* DnaController.swift */,
+			);
+			path = GameControllers;
+			sourceTree = "<group>";
+		};
+		8998E61E21E27E7300EE26F4 /* ReusableControllers */ = {
 			isa = PBXGroup;
 			children = (
 				89FD3310211778D200407B15 /* HiddenStatusBarController.swift */,
+			);
+			path = ReusableControllers;
+			sourceTree = "<group>";
+		};
+		8998E61F21E27E9900EE26F4 /* GameUI */ = {
+			isa = PBXGroup;
+			children = (
+				89F4B406214EB5E800F8871F /* ArrowView.swift */,
+				8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */,
+				8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */,
+				89B0F28521DE98EB00E7F1A6 /* DnaView.swift */,
+				89F1F04921F34249005F983E /* DnaScrollView.swift */,
+			);
+			path = GameUI;
+			sourceTree = "<group>";
+		};
+		8998E62021E27EAF00EE26F4 /* ReusableUI */ = {
+			isa = PBXGroup;
+			children = (
 				89B469942120732D0097E859 /* PaddedImageView.swift */,
 				89465AB9212A11770061F4E1 /* ResizableSwitch.swift */,
 				8969908C212F697400B69CB1 /* EdgedLabel.swift */,
@@ -193,32 +238,13 @@
 				8937BEAD2192330A00228D8C /* OutlinedLabel.swift */,
 				890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */,
 			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		8994FBCF215F81FF00387BF2 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				89F4B406214EB5E800F8871F /* ArrowView.swift */,
-				8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */,
-				8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */,
-			);
-			path = Game;
-			sourceTree = "<group>";
-		};
-		89B469932120730A0097E859 /* Custom UI */ = {
-			isa = PBXGroup;
-			children = (
-				8994FBCF215F81FF00387BF2 /* Game */,
-				8994FBCE215F81EE00387BF2 /* General */,
-			);
-			path = "Custom UI";
+			path = ReusableUI;
 			sourceTree = "<group>";
 		};
 		89DA8C3D21B082C000D865E8 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				89DA8C3E21B082E300D865E8 /* DNAStorage.swift */,
+				89DA8C3E21B082E300D865E8 /* DnaStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -268,10 +294,10 @@
 				898FA87F210FABB300054D0B /* Main */,
 				898FA87E210FAB8800054D0B /* ViewControllers */,
 				892724A92143B4EB00032125 /* Game */,
-				89B469932120730A0097E859 /* Custom UI */,
-				89FD330A211766BF00407B15 /* Settings */,
+				8998E62021E27EAF00EE26F4 /* ReusableUI */,
 				89415199213F10F900AE240A /* Extensions */,
-				89F8D7952127610700571010 /* Sounds */,
+				8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */,
+				894E2D2A21EB4C2300D1CD7B /* COGO.swift */,
 			);
 			path = "Dance Dance Evolution";
 			sourceTree = "<group>";
@@ -432,18 +458,24 @@
 				8994FBD1215F845900387BF2 /* DNASequenceScrollView.swift in Sources */,
 				890A059E21AF486C00CCE81A /* CustomSequenceCell.swift in Sources */,
 				89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */,
+				89B0F28821DE9B0100E7F1A6 /* DnaController.swift in Sources */,
+				8984732C21B47CF4007D332E /* DnaSequences.swift in Sources */,
 				89564B092160B82B005DAC2A /* TestViewController.swift in Sources */,
 				89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */,
-				89DA8C3F21B082E300D865E8 /* DNAStorage.swift in Sources */,
+				89DA8C3F21B082E300D865E8 /* DnaStorage.swift in Sources */,
 				895CCF382150248500157DD2 /* DnaSequence.swift in Sources */,
 				89FD330C211766D600407B15 /* Settings.swift in Sources */,
-				89FF0418219CC59C00FA0344 /* CustomSequencesViewController.swift in Sources */,
+				89FF0418219CC59C00FA0344 /* SequencesViewController.swift in Sources */,
 				8969908D212F697400B69CB1 /* EdgedLabel.swift in Sources */,
 				89B469952120732D0097E859 /* PaddedImageView.swift in Sources */,
+				894E2D2B21EB4C2300D1CD7B /* COGO.swift in Sources */,
 				89FD3311211778D200407B15 /* HiddenStatusBarController.swift in Sources */,
 				890F85242169DA6F00765610 /* EdgedButton.swift in Sources */,
 				E5F85F1E21011DA4002DA08D /* GameViewController.swift in Sources */,
+				89F1F04A21F34249005F983E /* DnaScrollView.swift in Sources */,
 				8958037D214D1CE200C458C9 /* GameState.swift in Sources */,
+				89B0F28621DE98EB00E7F1A6 /* DnaView.swift in Sources */,
+				8998E62221E2806D00EE26F4 /* CubicBeziersThroughPoints.swift in Sources */,
 				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
 				8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */,
 				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,

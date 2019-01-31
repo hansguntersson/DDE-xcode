@@ -74,3 +74,58 @@ extension CALayer {
         addSublayer(border)
     }
 }
+
+extension Date {
+    func toString(format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+}
+
+extension Comparable {
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}
+
+extension UIGestureRecognizer {
+    enum GestureType {
+        case tap
+        case pinch
+        case rotation
+        case swipe
+        case pan
+        case screenEdgePan
+        case longPress
+        case other
+    }
+    
+    func type() -> GestureType {
+        switch self {
+            case is UITapGestureRecognizer:
+                return .tap
+            case is UIPinchGestureRecognizer:
+                return .pinch
+            case is UIRotationGestureRecognizer:
+                return .rotation
+            case is UISwipeGestureRecognizer:
+                return .swipe
+            case is UIPanGestureRecognizer:
+                return .pan
+            case is UIScreenEdgePanGestureRecognizer:
+                return .screenEdgePan
+            case is UILongPressGestureRecognizer:
+                return .longPress
+            default:
+                return .other
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+}

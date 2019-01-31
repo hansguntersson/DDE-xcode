@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2kU-Zb-fll">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pQx-Ca-anq">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Dna Controller-->
+        <scene sceneID="miD-aN-5Mi">
+            <objects>
+                <viewController id="pQx-Ca-anq" customClass="DnaController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OLR-cw-27m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="20" y="40" width="280" height="508"/>
+                                <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="20" id="3UO-sw-QG9"/>
+                            <constraint firstAttribute="bottom" secondItem="1my-pb-ycH" secondAttribute="bottom" constant="20" symbolic="YES" id="75e-zs-EbX"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="brF-9O-BoZ"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="dbg-tB-4ym"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GGT-7L-QCD"/>
+                    </view>
+                    <connections>
+                        <outlet property="dnaScrollView" destination="1my-pb-ycH" id="JST-EV-Fro"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aw-G4-6rY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="339.375" y="-716.19718309859161"/>
+        </scene>
         <!--Entry View Controller-->
         <scene sceneID="lWW-9Z-x00">
             <objects>
@@ -704,10 +734,10 @@
             </objects>
             <point key="canvasLocation" x="1464" y="-1126"/>
         </scene>
-        <!--Custom Sequences View Controller-->
+        <!--Sequences View Controller-->
         <scene sceneID="8fC-Ok-ipc">
             <objects>
-                <viewController id="vjx-2h-RsF" customClass="CustomSequencesViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vjx-2h-RsF" customClass="SequencesViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="42b-um-AG7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1176,6 +1206,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V8L-n5-YJy"/>
+        <segue reference="Y0K-xI-tRc"/>
     </inferredMetricsTieBreakers>
 </document>

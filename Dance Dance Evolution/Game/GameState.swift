@@ -36,7 +36,7 @@ struct GameState: Codable {
     // -------------------------------------------------------------------------
     // Mark: - Encode / Decode to / from JSON String
     // -------------------------------------------------------------------------
-    func toString() -> String? {
+    func encodeToString() -> String? {
         do {
             let jsonByteData: Data = try JSONEncoder().encode(self)
             return String(bytes: jsonByteData, encoding: .utf8)
@@ -44,7 +44,7 @@ struct GameState: Codable {
             return nil
         }
     }
-    static func initFromString(from jsonString: String) -> GameState? {
+    static func decodeFromString(from jsonString: String) -> GameState? {
         if let jsonData: Data = jsonString.data(using: .utf8) {
             do {
                 let gameState = try JSONDecoder().decode(GameState.self, from: jsonData)

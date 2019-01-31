@@ -139,7 +139,7 @@ extension DDEGame {
     }
     
     func saveState() {
-        UserDefaults.standard.set(state.toString(), forKey: GameKey.savedState.rawValue)
+        UserDefaults.standard.set(state.encodeToString(), forKey: GameKey.savedState.rawValue)
         UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
     }
     
@@ -151,7 +151,7 @@ extension DDEGame {
         var savedGamedState: GameState? = nil
         if DDEGame.isGameAvailableForResume() {
             if let encodedState: String = UserDefaults.standard.string(forKey: GameKey.savedState.rawValue) {
-                savedGamedState = GameState.initFromString(from: encodedState)
+                savedGamedState = GameState.decodeFromString(from: encodedState)
             }
         }
         return savedGamedState
