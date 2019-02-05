@@ -23,6 +23,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         clearsContextBeforeDrawing = false
         initSizeConstraints()
         updateGestures()
+        initTextAppearance()
+        self.clearsContextBeforeDrawing = false
     }
     private func initSizeConstraints() {
         heightConstraint = self.heightAnchor.constraint(equalToConstant: 0)
@@ -241,7 +243,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let mainColor: UIColor = baseType?.color ?? UIColor.gray
         let pairColor: UIColor = baseType?.pair.color ?? UIColor.gray
         let mainCharacter: String = baseType?.rawValue ?? "+"
-        let pairCharacter: String? = (baseType == nil ? "-" : nil)
+        let pairCharacter: String? = baseType?.pair.rawValue ?? "-" //(baseType == nil ? "-" : nil)
         
         // Define necessary points
         let mainCenter: CGPoint
@@ -322,20 +324,6 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private func drawElements() {
         let segmentPairs = generateSegments()
         
-        // Define Text Appearance
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .center
-        let font = UIFont(name: "Arial", size: 18)?.bold() ?? UIFont.boldSystemFont(ofSize: 18)
-        var mainTextAttributes: [NSAttributedString.Key: Any] = [
-            .strokeColor: UIColor.white,
-            .strokeWidth: -2.0,
-            .foregroundColor: UIColor.white,
-            .font: font,
-            .paragraphStyle: paragraph
-        ]
-        //let dummyText = "M" as NSString
-        //let textSize: CGSize = dummyText.size(withAttributes: mainTextAttributes)
-        
         for segmentPair in segmentPairs {
             // Circles (at the end of each segment)
             let mainCirclePath = segmentPair.mainSegment.circle.path()
@@ -349,12 +337,14 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             
             // Rectangles (the circles are inscribed); Text will go inside
             let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
-            //let pairRect = segmentPair.pairSegment.circle.circumscribedRect()
+            let pairRect = segmentPair.pairSegment.circle.circumscribedRect()
             
-            // Main Letter / Character
-            let mainCharacter = segmentPair.mainSegment.character! as NSString
-            let newFontSize = getFontSizeForTextInRect(text: mainCharacter, rect: mainRect, withAttributes: mainTextAttributes)
-            mainTextAttributes[.font] = font.withSize(newFontSize)
+            // Letters / Characters
+            let mainCharacter = segmentPair.mainSegment.character!
+            let mainDrawableChar = getFittedAttributedText(textToFit: mainCharacter, fitRect: mainRect, attributes: mainTextAttributes)
+            let pairCharacter = segmentPair.pairSegment.character!
+            let pairDrawableChar = getFittedAttributedText(textToFit: pairCharacter, fitRect: pairRect, attributes: pairTextAttributes)
+            
             
             // Stroke and fill from the back towards the front
             let blendMode: CGBlendMode = .normal
@@ -362,29 +352,78 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 segmentPair.pairSegment.color.set()
                 pairLinePath.stroke(with: blendMode, alpha: segmentPair.pairSegment.alpha)
                 pairCirclePath.fill(with: blendMode, alpha: segmentPair.pairSegment.alpha)
+                pairDrawableChar.draw(in: pairRect)
                 
                 segmentPair.mainSegment.color.set()
                 mainLinePath.stroke(with: blendMode, alpha: segmentPair.pairSegment.alpha) // Pair Alpha used
                 mainCirclePath.fill(with: blendMode, alpha: segmentPair.mainSegment.alpha)
-                mainCharacter.draw(in: mainRect, withAttributes: mainTextAttributes)
+                mainDrawableChar.draw(in: mainRect)
             } else {
                 segmentPair.mainSegment.color.set()
                 mainLinePath.stroke(with: blendMode, alpha: segmentPair.mainSegment.alpha)
                 mainCirclePath.fill(with: blendMode, alpha: segmentPair.mainSegment.alpha)
-                mainCharacter.draw(in: mainRect, withAttributes: mainTextAttributes)
+                mainDrawableChar.draw(in: mainRect)
                 
                 segmentPair.pairSegment.color.set()
                 pairLinePath.stroke(with: blendMode, alpha: segmentPair.mainSegment.alpha) // Main Alpha used
                 pairCirclePath.fill(with: blendMode, alpha: segmentPair.pairSegment.alpha)
+                pairDrawableChar.draw(in: pairRect)
             }
         }
     }
 
-    private func getFontSizeForTextInRect(text: NSString, rect: CGRect, withAttributes: [NSAttributedString.Key: Any]) -> CGFloat {
+    // -------------------------------------------------------------------------
+    // Mark: - Fitting Text in Rectangles
+    // -------------------------------------------------------------------------
+    var paragraph: NSMutableParagraphStyle = NSMutableParagraphStyle()
+    let defaultFont: UIFont = UIFont(name: "Arial", size: 18)?.bold() ?? UIFont.boldSystemFont(ofSize: 18)
+    var mainTextAttributes: [NSAttributedString.Key: Any]!
+    var pairTextAttributes: [NSAttributedString.Key: Any]!
+    
+    // Store Fonts in a dictionary for fast retrieval. The key is the actual pointSize
+    // This approach is several times faster than creating new fonts by using:
+    //    defaultFont.withSize(newFontSize)
+    var fontDict: Dictionary<CGFloat,UIFont> = [:]
+    
+    // Init reusable variables for getDnaFittedString
+    private func initTextAppearance() {
+        paragraph.alignment = .center
+        mainTextAttributes = [
+            .strokeColor: UIColor.black,
+            .strokeWidth: -2.0,
+            .foregroundColor: UIColor.white,
+            .font: defaultFont,
+            .paragraphStyle: paragraph
+        ]
+        pairTextAttributes = [
+            .strokeColor: UIColor.black,
+            .strokeWidth: -2,
+            .foregroundColor: UIColor.lightGray,
+            .font: defaultFont,
+            .paragraphStyle: paragraph
+        ]
+    }
+
+    // Fits a String into a Rect and returns a drawable NSMutableAttributedString
+    private func getFittedAttributedText(textToFit: String, fitRect: CGRect, attributes: [NSAttributedString.Key: Any]?) -> NSMutableAttributedString {
+        let newFontSize: CGFloat = floor(getFontSizeForTextInRect(text: textToFit, rect: fitRect, withAttributes: attributes) * 5) / 5
+        var newAttributes = attributes
+        if fontDict[newFontSize] != nil  {
+            newAttributes?[.font] = fontDict[newFontSize]
+        } else {
+            let newFont = defaultFont.withSize(newFontSize)
+            fontDict[newFontSize] = newFont
+            newAttributes?[.font] = newFont
+        }
+        return NSMutableAttributedString(string: textToFit, attributes: newAttributes)
+    }
+    
+    // Fits a String into a Rect and returns the new Font Size
+    private func getFontSizeForTextInRect(text: String, rect: CGRect, withAttributes: [NSAttributedString.Key: Any]?) -> CGFloat {
         let textSize: CGSize = text.size(withAttributes: withAttributes)
         let textAspectRatio: CGFloat = textSize.width / textSize.height
         let fitHorizontally: Bool = (rect.width >= rect.height * textAspectRatio)
-        let textFont: UIFont = withAttributes[.font] as? UIFont ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        let textFont: UIFont = withAttributes?[.font] as? UIFont ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
         
         if fitHorizontally {
             return rect.height *  textFont.pointSize / textSize.height
@@ -461,5 +500,9 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setNeedsDisplay()
+    }
+    
+    deinit {
+        print("DnaView terminated")
     }
 }
