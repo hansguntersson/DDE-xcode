@@ -19,20 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="20" y="40" width="280" height="508"/>
+                                <rect key="frame" x="20" y="35" width="280" height="503"/>
                                 <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-Ly-KPM">
+                                <rect key="frame" x="120" y="538" width="94" height="29"/>
+                                <connections>
+                                    <action selector="blendHasChanged:" destination="pQx-Ca-anq" eventType="valueChanged" id="7lw-0m-mCp"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOB-nn-AmQ">
+                                <rect key="frame" x="286.5" y="540" width="13.5" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="20" id="3UO-sw-QG9"/>
-                            <constraint firstAttribute="bottom" secondItem="1my-pb-ycH" secondAttribute="bottom" constant="20" symbolic="YES" id="75e-zs-EbX"/>
+                            <constraint firstItem="1dN-Ly-KPM" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="2La-HX-Atn"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="3UO-sw-QG9"/>
+                            <constraint firstAttribute="bottom" secondItem="1my-pb-ycH" secondAttribute="bottom" constant="30" id="75e-zs-EbX"/>
+                            <constraint firstItem="1dN-Ly-KPM" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="120" id="Wes-Ut-9eS"/>
+                            <constraint firstItem="1dN-Ly-KPM" firstAttribute="centerY" secondItem="dOB-nn-AmQ" secondAttribute="centerY" id="Wf0-rJ-5gf"/>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="brF-9O-BoZ"/>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="dbg-tB-4ym"/>
+                            <constraint firstItem="dOB-nn-AmQ" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" constant="2" id="ojG-Ja-vrt"/>
+                            <constraint firstItem="dOB-nn-AmQ" firstAttribute="trailing" secondItem="1my-pb-ycH" secondAttribute="trailing" id="uLP-VJ-GjP"/>
+                            <constraint firstItem="GGT-7L-QCD" firstAttribute="bottom" secondItem="dOB-nn-AmQ" secondAttribute="bottom" constant="2" id="xOr-SV-WdP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GGT-7L-QCD"/>
                     </view>
                     <connections>
+                        <outlet property="blendLabel" destination="dOB-nn-AmQ" id="QTb-mC-cBq"/>
+                        <outlet property="blendStepper" destination="1dN-Ly-KPM" id="wq9-No-Pvx"/>
                         <outlet property="dnaScrollView" destination="1my-pb-ycH" id="JST-EV-Fro"/>
                     </connections>
                 </viewController>
@@ -369,7 +389,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5K2-Hz-Fxf" userLabel="SoundSwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -553,7 +573,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="80n-oM-iHu" userLabel="ToleranceVisibilitySwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -1206,6 +1226,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y0K-xI-tRc"/>
+        <segue reference="V8L-n5-YJy"/>
     </inferredMetricsTieBreakers>
 </document>

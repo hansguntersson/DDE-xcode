@@ -347,30 +347,32 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             
             
             // Stroke and fill from the back towards the front
-            let blendMode: CGBlendMode = .normal
+            let mainBlendMode: CGBlendMode = .normal
+            let pairBlendMode: CGBlendMode = blend
             if segmentPair.isMainOnTop {
                 segmentPair.pairSegment.color.set()
-                pairLinePath.stroke(with: blendMode, alpha: segmentPair.pairSegment.alpha)
-                pairCirclePath.fill(with: blendMode, alpha: segmentPair.pairSegment.alpha)
+                pairLinePath.stroke(with: pairBlendMode, alpha: segmentPair.pairSegment.alpha)
+                pairCirclePath.fill(with: pairBlendMode, alpha: segmentPair.pairSegment.alpha)
                 pairDrawableChar.draw(in: pairRect)
                 
                 segmentPair.mainSegment.color.set()
-                mainLinePath.stroke(with: blendMode, alpha: segmentPair.pairSegment.alpha) // Pair Alpha used
-                mainCirclePath.fill(with: blendMode, alpha: segmentPair.mainSegment.alpha)
+                mainLinePath.stroke(with: mainBlendMode, alpha: segmentPair.pairSegment.alpha) // Pair Alpha used
+                mainCirclePath.fill(with: mainBlendMode, alpha: segmentPair.mainSegment.alpha)
                 mainDrawableChar.draw(in: mainRect)
             } else {
                 segmentPair.mainSegment.color.set()
-                mainLinePath.stroke(with: blendMode, alpha: segmentPair.mainSegment.alpha)
-                mainCirclePath.fill(with: blendMode, alpha: segmentPair.mainSegment.alpha)
+                mainLinePath.stroke(with: mainBlendMode, alpha: segmentPair.mainSegment.alpha)
+                mainCirclePath.fill(with: mainBlendMode, alpha: segmentPair.mainSegment.alpha)
                 mainDrawableChar.draw(in: mainRect)
                 
                 segmentPair.pairSegment.color.set()
-                pairLinePath.stroke(with: blendMode, alpha: segmentPair.mainSegment.alpha) // Main Alpha used
-                pairCirclePath.fill(with: blendMode, alpha: segmentPair.pairSegment.alpha)
+                pairLinePath.stroke(with: pairBlendMode, alpha: segmentPair.mainSegment.alpha) // Main Alpha used
+                pairCirclePath.fill(with: pairBlendMode, alpha: segmentPair.pairSegment.alpha)
                 pairDrawableChar.draw(in: pairRect)
             }
         }
     }
+    var blend: CGBlendMode = .normal
 
     // -------------------------------------------------------------------------
     // Mark: - Fitting Text in Rectangles
