@@ -61,7 +61,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     var editMode: Bool = false {
         didSet {
-            updateDimensions()
+            //updateDimensions()
+            animateEditMode()
         }
     }
     var lineWidth: CGFloat = 2.0 {
@@ -86,6 +87,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             setNeedsDisplay()
         }
     }
+    private var isRotationEnabled: Bool = true
     var torsion: CGFloat = 0.4 {
         didSet {
             torsion = torsion.clamped(to: 0.0...0.6)
@@ -348,7 +350,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             
             // Stroke and fill from the back towards the front
             let mainBlendMode: CGBlendMode = .normal
-            let pairBlendMode: CGBlendMode = blend
+            let pairBlendMode: CGBlendMode = .luminosity
             if segmentPair.isMainOnTop {
                 segmentPair.pairSegment.color.set()
                 pairLinePath.stroke(with: pairBlendMode, alpha: segmentPair.pairSegment.alpha)
@@ -372,7 +374,6 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             }
         }
     }
-    var blend: CGBlendMode = .normal
 
     // -------------------------------------------------------------------------
     // Mark: - Fitting Text in Rectangles
@@ -435,6 +436,82 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     
     // -------------------------------------------------------------------------
+    // Mark: - Animate
+    // -------------------------------------------------------------------------
+    private var displayUpdateInformer: DisplayUpdateInformer!
+    private struct DnaAnimation {
+        unowned let viewToAnimate: DnaView
+        let totalAnimationTime: CFTimeInterval
+        let startTorsion: CGFloat
+        let targetTorsion: CGFloat
+        let startRotation: CGFloat
+        let targetRotation: CGFloat
+        private var timeLeft: CFTimeInterval
+        var finished: Bool = false
+        
+        init(dnaView: DnaView, totalAnimationTime: CFTimeInterval, targetTorsion: CGFloat, targetRotation: CGFloat) {
+            self.viewToAnimate = dnaView
+            
+            // Time
+            self.totalAnimationTime = totalAnimationTime
+            self.timeLeft = totalAnimationTime
+            
+            // Torsion
+            self.startTorsion = viewToAnimate.torsion
+            self.targetTorsion = targetTorsion
+            
+            // Angle
+            self.targetRotation = targetRotation.truncatingRemainder(dividingBy: 2 * CGFloat.pi)
+            var tempStart = viewToAnimate.rotation3D.truncatingRemainder(dividingBy: 2 * CGFloat.pi)
+            if tempStart > self.targetRotation {
+                tempStart -= 2 * CGFloat.pi
+            }
+            if self.targetRotation - tempStart < CGFloat.pi {
+                tempStart -= 2 * CGFloat.pi
+            }
+            self.startRotation = tempStart
+        }
+        
+        mutating func update(_ deltaTime: CFTimeInterval) {
+            timeLeft -= deltaTime
+            if timeLeft < 0 {
+                timeLeft = 0.0
+            }
+            if !finished {
+                viewToAnimate.torsion = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startTorsion, x2: 0, y2: targetTorsion) ?? targetTorsion
+                viewToAnimate.rotation3D = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startRotation, x2: 0, y2: targetRotation) ?? targetRotation
+            }
+            if timeLeft == 0 {
+                self.finished = true
+            }
+        }
+    }
+    private var dnaAnimation: DnaAnimation!
+    
+
+    private func animateEditMode() {
+        isRotationEnabled = false
+        if editMode {
+            dnaAnimation = DnaAnimation(dnaView: self, totalAnimationTime: 2.0, targetTorsion: 0.0, targetRotation: 1.4)
+        } else {
+            dnaAnimation = DnaAnimation(dnaView: self, totalAnimationTime: 2.0, targetTorsion: 0.4, targetRotation: 0.0)
+        }
+        displayUpdateInformer = DisplayUpdateInformer(
+            onDisplayUpdate: {[unowned self] deltaTime in self.animationLoop(deltaTime)}
+        )
+        displayUpdateInformer.resume()
+    }
+    private func animationLoop(_ deltaTime: CFTimeInterval) {
+        dnaAnimation?.update(deltaTime)
+        if dnaAnimation?.finished ?? true {
+            displayUpdateInformer?.close()
+            displayUpdateInformer = nil
+            dnaAnimation = nil
+            isRotationEnabled = !editMode
+        }
+    }
+    
+    // -------------------------------------------------------------------------
     // Mark: - Gestures
     // -------------------------------------------------------------------------
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -462,11 +539,13 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     private var originalRotation: CGFloat = 0.0
     @objc func handlePanGesture(pan: UIPanGestureRecognizer) {
-        if pan.state == .began {
-            originalRotation = self.rotation3D
-        } else if pan.state == .changed {
-            let translation = pan.translation(in: self)
-            self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+        if isRotationEnabled {
+            if pan.state == .began {
+                originalRotation = self.rotation3D
+            } else if pan.state == .changed {
+                let translation = pan.translation(in: self)
+                self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+            }
         }
     }
     
