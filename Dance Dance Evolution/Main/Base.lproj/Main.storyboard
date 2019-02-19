@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="20" y="35" width="280" height="503"/>
+                                <rect key="frame" x="60" y="35" width="240" height="503"/>
                                 <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pE-40-XSE">
@@ -30,17 +30,29 @@
                                     <action selector="btnTap:" destination="pQx-Ca-anq" eventType="touchUpInside" id="8WO-M7-ncc"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1e-ks-CeG" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="20" y="35" width="40" height="503"/>
+                                <color key="backgroundColor" white="0.84943100742009114" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="q6c-AZ-dBn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="3UO-sw-QG9"/>
                             <constraint firstAttribute="bottom" secondItem="1my-pb-ycH" secondAttribute="bottom" constant="30" id="75e-zs-EbX"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="brF-9O-BoZ"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="dbg-tB-4ym"/>
+                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="Io6-fq-U07"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="Q1e-ks-CeG" secondAttribute="trailing" id="NOH-PE-zN3"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="trailing" secondItem="OLR-cw-27m" secondAttribute="trailing" constant="-20" id="brF-9O-BoZ"/>
+                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="cfO-w7-Mpp"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="Q1e-ks-CeG" secondAttribute="trailing" id="dbg-tB-4ym"/>
+                            <constraint firstItem="GGT-7L-QCD" firstAttribute="bottom" secondItem="Q1e-ks-CeG" secondAttribute="bottom" constant="30" id="shT-Ed-ItK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GGT-7L-QCD"/>
                     </view>
                     <connections>
+                        <outlet property="dnaMapView" destination="Q1e-ks-CeG" id="Dho-6m-uJB"/>
                         <outlet property="dnaScrollView" destination="1my-pb-ycH" id="JST-EV-Fro"/>
                     </connections>
                 </viewController>

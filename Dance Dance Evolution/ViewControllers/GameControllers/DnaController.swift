@@ -5,14 +5,19 @@ import UIKit
 
 class DnaController: UIViewController {
     @IBOutlet var dnaScrollView: DnaScrollView!
+    @IBOutlet var dnaMapView: DnaView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        dnaScrollView.dnaView.orientation = .vertical
-        dnaScrollView.dnaView.baseTypes = DnaSequence(length: 100).nucleobaseTypesSequence()
-        dnaScrollView.dnaView.isUserInteractionEnabled = true
-
+        let dnaView = dnaScrollView.dnaView!
+        dnaView.orientation = .vertical
+        dnaView.areMainLettersEnabled = true
+        dnaView.arePairLettersEnabled = true
+        dnaView.baseTypes = DnaSequence(length: 80).nucleobaseTypesSequence()
+        dnaView.isUserInteractionEnabled = true
+        
+        dnaView.syncMapView = dnaMapView
     }
     @IBAction func btnTap(_ sender: UIButton) {
         dnaScrollView.dnaView.editMode = !dnaScrollView.dnaView.editMode
