@@ -22,9 +22,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         contentMode = .scaleAspectFit
         clearsContextBeforeDrawing = false
         initSizeConstraints()
-        updateGestures()
+        initGestures()
         initTextAppearance()
-        self.clearsContextBeforeDrawing = false
     }
     private func initSizeConstraints() {
         heightConstraint = self.heightAnchor.constraint(equalToConstant: 0)
@@ -116,14 +115,15 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             syncMapView?.baseTypes = baseTypes
             syncMapView?.rotation3D = rotation3D
             syncMapView?.torsion = torsion
+            setMapHighlight()
         }
     }
     
-    override var isUserInteractionEnabled: Bool {
-        didSet {
-            updateGestures()
-        }
-    }
+//    override var isUserInteractionEnabled: Bool {
+//        didSet {
+//            updateGestures()
+//        }
+//    }
     
     // -------------------------------------------------------------------------
     // Mark: - Spatial Dimensions
@@ -135,12 +135,15 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private var segmentLength: CGFloat = 0.0
     private var distanceBetweenSegments: CGFloat = 0.0
     private var circleRadius: CGFloat = 0.0
+    
+    private(set) var height: CGFloat = 0.0
+    private(set) var width: CGFloat = 0.0
+    
     // Size Update
     private func updateDimensions() {
         // Width and height refer to the internal representation of the dnaView
         // based on the orientation property
-        let width: CGFloat
-        let height: CGFloat
+
         
         if orientation == .horizontal {
             width = self.bounds.height
@@ -177,6 +180,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             wereDimensionsJustUpdated = true
             setNeedsLayout()
         }
+        setMapHighlight()
     }
     
     // -------------------------------------------------------------------------
@@ -272,7 +276,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let mainColor: UIColor = baseType?.color ?? UIColor.gray
         let pairColor: UIColor = baseType?.pair.color ?? UIColor.gray
         let mainCharacter: String = baseType?.rawValue ?? "+"
-        let pairCharacter: String? = baseType?.pair.rawValue ?? "-" //(baseType == nil ? "-" : nil)
+        let pairCharacter: String? = baseType?.pair.rawValue ?? "\u{2212}" //(baseType == nil ? "-" : nil)
         
         // Define necessary points
         let mainCenter: CGPoint
@@ -486,105 +490,61 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     // Mark: - Animate
     // -------------------------------------------------------------------------
-    private var displayUpdateInformer: DisplayUpdateInformer!
-    private struct DnaAnimation {
-        unowned let viewToAnimate: DnaView
-        let totalAnimationTime: CFTimeInterval
-        let startTorsion: CGFloat
-        let targetTorsion: CGFloat
-        let startRotation: CGFloat
-        let targetRotation: CGFloat
-        private var timeLeft: CFTimeInterval
-        var finished: Bool = false
-        
-        init(dnaView: DnaView, totalAnimationTime: CFTimeInterval, targetTorsion: CGFloat, targetRotation: CGFloat) {
-            self.viewToAnimate = dnaView
-            
-            // Time
-            self.totalAnimationTime = totalAnimationTime
-            self.timeLeft = totalAnimationTime
-            
-            // Torsion
-            self.startTorsion = viewToAnimate.torsion
-            self.targetTorsion = targetTorsion
-            
-            // Angle
-            self.targetRotation = targetRotation.truncatingRemainder(dividingBy: 2 * CGFloat.pi)
-            var tempStart = viewToAnimate.rotation3D.truncatingRemainder(dividingBy: 2 * CGFloat.pi)
-            if dnaView.editMode {
-                if tempStart > self.targetRotation {
-                    tempStart -= 2 * CGFloat.pi
-                }
-                if self.targetRotation - tempStart < CGFloat.pi {
-                    tempStart -= 2 * CGFloat.pi
-                } 
-            }
-            self.startRotation = tempStart
-        }
-        
-        mutating func update(_ deltaTime: CFTimeInterval) {
-            timeLeft -= deltaTime
-            if timeLeft < 0 {
-                timeLeft = 0.0
-            }
-            if !finished {
-                viewToAnimate.torsion = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startTorsion, x2: 0, y2: targetTorsion) ?? targetTorsion
-                viewToAnimate.rotation3D = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startRotation, x2: 0, y2: targetRotation) ?? targetRotation
-            }
-            if timeLeft == 0 {
-                self.finished = true
-            }
-        }
-    }
     private var dnaAnimation: DnaAnimation!
     
-
     private func animateEditMode() {
         isRotationEnabled = false
-        if editMode {
-            dnaAnimation = DnaAnimation(dnaView: self, totalAnimationTime: 2.0, targetTorsion: 0.0, targetRotation: 1.3)
-        } else {
-            dnaAnimation = DnaAnimation(dnaView: self, totalAnimationTime: 2.0, targetTorsion: 0.4, targetRotation: 0.0)
-        }
-        displayUpdateInformer = DisplayUpdateInformer(
-            onDisplayUpdate: {[unowned self] deltaTime in self.animationLoop(deltaTime)}
+        dnaAnimation = DnaAnimation(
+            withDuration: 2.0
+            , dnaView: self
+            , targetTorsion: editMode ? 0.0 : 0.4
+            , targetRotation: editMode ? 1.3 : 0.0
+            , onFinished: {[unowned self] in self.animationFinished()}
         )
-        displayUpdateInformer.resume()
     }
-    private func animationLoop(_ deltaTime: CFTimeInterval) {
-        dnaAnimation?.update(deltaTime)
-        if dnaAnimation?.finished ?? true {
-            displayUpdateInformer?.close()
-            displayUpdateInformer = nil
-            dnaAnimation = nil
-            isRotationEnabled = !editMode
+    private func animationFinished() {
+        dnaAnimation = nil
+        isRotationEnabled = !editMode
+    }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Map
+    // -------------------------------------------------------------------------
+    private func setMapHighlight() {
+        drawRect = convert(self.superview!.bounds, to: self)
+        if orientation == .horizontal {
+            syncMapView?.highlight(startPercent: drawRect.minX / self.bounds.width, endPercent: drawRect.maxX / self.bounds.width)
+        } else {
+            syncMapView?.highlight(startPercent: drawRect.minY / self.bounds.height, endPercent: drawRect.maxY / self.bounds.height)
         }
     }
     
     // -------------------------------------------------------------------------
     // Mark: - Gestures
     // -------------------------------------------------------------------------
+    private let panGesture: UIPanGestureRecognizer! = nil
+    private let pinchGesture: UIPinchGestureRecognizer! = nil
+    private let tapGesture: UITapGestureRecognizer! = nil
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer.type() == .pinch || otherGestureRecognizer.type() == .pinch {
+        if gestureRecognizer === pinchGesture || otherGestureRecognizer === pinchGesture {
             return false
         }
         return true
     }
     
-    private var areGesturesInitialized: Bool = false
-    
-    private func updateGestures() {
-        if isUserInteractionEnabled && !areGesturesInitialized {
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-            panGesture.delegate = self
-            self.addGestureRecognizer(panGesture)
-            
-            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture))
-            pinchGesture.delegate = self
-            self.addGestureRecognizer(pinchGesture)
-            
-            areGesturesInitialized = true
-        }
+    func initGestures() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        panGesture.delegate = self
+        self.addGestureRecognizer(panGesture)
+        
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture))
+        pinchGesture.delegate = self
+        self.addGestureRecognizer(pinchGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapGesture.delegate = self
+        self.addGestureRecognizer(tapGesture)
     }
     
     private var originalRotation: CGFloat = 0.0
@@ -629,18 +589,14 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             }
         }
     }
+    @objc func handleTapGesture(tap: UITapGestureRecognizer) {
+        print(tap.location(in: self))
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setMapHighlight()
         syncMapView?.setNeedsDisplay()
         setNeedsDisplay()
-    }
-    private func setMapHighlight() {
-        drawRect = convert(self.superview!.bounds, to: self)
-        if orientation == .horizontal {
-            syncMapView?.highlight(startPercent: drawRect.minX / self.bounds.width, endPercent: drawRect.maxX / self.bounds.width)
-        } else {
-            syncMapView?.highlight(startPercent: drawRect.minY / self.bounds.height, endPercent: drawRect.maxY / self.bounds.height)
-        }
     }
     
     deinit {

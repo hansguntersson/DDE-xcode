@@ -16,6 +16,7 @@
 		89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB72129FE020061F4E1 /* AppLaunch.swift */; };
 		89465ABA212A11770061F4E1 /* ResizableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89465AB9212A11770061F4E1 /* ResizableSwitch.swift */; };
 		894BB17321706E06003C4173 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BB17221706E06003C4173 /* NumberTextField.swift */; };
+		894C1340222C375D007653AA /* DnaAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C133F222C375D007653AA /* DnaAnimation.swift */; };
 		894E2D2B21EB4C2300D1CD7B /* COGO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E2D2A21EB4C2300D1CD7B /* COGO.swift */; };
 		89564B092160B82B005DAC2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89564B082160B82B005DAC2A /* TestViewController.swift */; };
 		8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8957D209215694C9005CAA78 /* DDEGame.swift */; };
@@ -25,7 +26,6 @@
 		8984732C21B47CF4007D332E /* DnaSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8984732B21B47CF4007D332E /* DnaSequences.swift */; };
 		8994FBCD215F73B800387BF2 /* DNASegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */; };
 		8994FBD1215F845900387BF2 /* DNASequenceScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */; };
-		8998E62221E2806D00EE26F4 /* CubicBeziersThroughPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */; };
 		89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AE41F72123720A00B5BF30 /* SetupViewController.swift */; };
 		89B0F28621DE98EB00E7F1A6 /* DnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0F28521DE98EB00E7F1A6 /* DnaView.swift */; };
 		89B0F28821DE9B0100E7F1A6 /* DnaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0F28721DE9B0100E7F1A6 /* DnaController.swift */; };
@@ -76,6 +76,7 @@
 		89465AB72129FE020061F4E1 /* AppLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunch.swift; sourceTree = "<group>"; };
 		89465AB9212A11770061F4E1 /* ResizableSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableSwitch.swift; sourceTree = "<group>"; };
 		894BB17221706E06003C4173 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
+		894C133F222C375D007653AA /* DnaAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaAnimation.swift; sourceTree = "<group>"; };
 		894E2D2A21EB4C2300D1CD7B /* COGO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COGO.swift; sourceTree = "<group>"; };
 		89564B082160B82B005DAC2A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8957D209215694C9005CAA78 /* DDEGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDEGame.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		8984732B21B47CF4007D332E /* DnaSequences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaSequences.swift; sourceTree = "<group>"; };
 		8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNASegmentedControl.swift; sourceTree = "<group>"; };
 		8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNASequenceScrollView.swift; sourceTree = "<group>"; };
-		8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicBeziersThroughPoints.swift; sourceTree = "<group>"; };
 		89AE41F72123720A00B5BF30 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		89B0F28521DE98EB00E7F1A6 /* DnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaView.swift; sourceTree = "<group>"; };
 		89B0F28721DE9B0100E7F1A6 /* DnaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaController.swift; sourceTree = "<group>"; };
@@ -156,6 +156,7 @@
 				8958037C214D1CE200C458C9 /* GameState.swift */,
 				895CCF372150248500157DD2 /* DnaSequence.swift */,
 				8984732B21B47CF4007D332E /* DnaSequences.swift */,
+				894C133F222C375D007653AA /* DnaAnimation.swift */,
 				8998E61F21E27E9900EE26F4 /* GameUI */,
 				89DA8C3D21B082C000D865E8 /* Storage */,
 				89FD330A211766BF00407B15 /* Settings */,
@@ -296,7 +297,6 @@
 				892724A92143B4EB00032125 /* Game */,
 				8998E62021E27EAF00EE26F4 /* ReusableUI */,
 				89415199213F10F900AE240A /* Extensions */,
-				8998E62121E2806D00EE26F4 /* CubicBeziersThroughPoints.swift */,
 				894E2D2A21EB4C2300D1CD7B /* COGO.swift */,
 			);
 			path = "Dance Dance Evolution";
@@ -475,7 +475,6 @@
 				89F1F04A21F34249005F983E /* DnaScrollView.swift in Sources */,
 				8958037D214D1CE200C458C9 /* GameState.swift in Sources */,
 				89B0F28621DE98EB00E7F1A6 /* DnaView.swift in Sources */,
-				8998E62221E2806D00EE26F4 /* CubicBeziersThroughPoints.swift in Sources */,
 				E5F85F1621011DA4002DA08D /* AppDelegate.swift in Sources */,
 				8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */,
 				891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */,
@@ -483,6 +482,7 @@
 				8941519B213F111300AE240A /* Extensions.swift in Sources */,
 				894BB17321706E06003C4173 /* NumberTextField.swift in Sources */,
 				89AE41F82123720A00B5BF30 /* SetupViewController.swift in Sources */,
+				894C1340222C375D007653AA /* DnaAnimation.swift in Sources */,
 				8937BEAE2192330A00228D8C /* OutlinedLabel.swift in Sources */,
 				89F8D7972127611900571010 /* DDESound.swift in Sources */,
 				89F4B407214EB5E800F8871F /* ArrowView.swift in Sources */,
