@@ -5,7 +5,8 @@ import UIKit
 
 class DnaController: UIViewController {
     @IBOutlet var dnaScrollView: DnaScrollView!
-    @IBOutlet var dnaMapView: DnaView!
+    @IBOutlet var dnaMapScrollView: DnaScrollView!
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -13,12 +14,13 @@ class DnaController: UIViewController {
         let dnaView = dnaScrollView.dnaView!
         dnaView.areMainLettersEnabled = true
         dnaView.arePairLettersEnabled = true
-        dnaView.baseTypes = DnaSequence(length: 100).nucleobaseTypesSequence()
+        dnaView.baseTypes = DnaSequence(length: 60).nucleobaseTypesSequence()
         dnaView.isUserInteractionEnabled = true
         
-        dnaView.syncMapView = dnaMapView
-        dnaMapView.isAutoOriented = false
-        dnaMapView.helixOrientation = .vertical
+        let dnaMap = dnaMapScrollView.dnaView!
+        dnaView.syncMapView = dnaMap
+        dnaMap.isAutoOriented = false
+        dnaMap.helixOrientation = .vertical
     }
     @IBAction func btnTap(_ sender: UIButton) {
         dnaScrollView.dnaView.editMode = !dnaScrollView.dnaView.editMode

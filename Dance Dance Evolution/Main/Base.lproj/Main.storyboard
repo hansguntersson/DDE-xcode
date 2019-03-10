@@ -44,13 +44,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="60" y="35" width="240" height="503"/>
+                                <rect key="frame" x="50" y="35" width="250" height="503"/>
                                 <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1e-ks-CeG" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="20" y="35" width="40" height="503"/>
-                                <color key="backgroundColor" white="0.88389162385844733" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9h-QY-qJT" userLabel="Button2">
                                 <rect key="frame" x="20" y="538" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
@@ -78,28 +74,34 @@
                                     <action selector="btnTap:" destination="pQx-Ca-anq" eventType="touchUpInside" id="8WO-M7-ncc"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-DE-z1G" userLabel="Map Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="16" y="35" width="44" height="503"/>
+                                <color key="backgroundColor" white="0.88389162389999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="cy8-3f-k0q"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="0sb-f1-6vp"/>
-                            <constraint firstItem="n9h-QY-qJT" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="1Hd-pB-AyG"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="bottom" secondItem="GGT-7L-QCD" secondAttribute="bottom" constant="-30" id="306-G1-eMb"/>
-                            <constraint firstItem="g4C-cQ-hol" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="6he-XS-Orf"/>
-                            <constraint firstItem="n9h-QY-qJT" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="8FE-cT-hMw"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="Q1e-ks-CeG" secondAttribute="trailing" id="9ei-8v-15Y"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="trailing" secondItem="GGT-7L-QCD" secondAttribute="trailing" constant="-20" id="AzF-ZO-fvo"/>
-                            <constraint firstItem="1my-pb-ycH" firstAttribute="leading" secondItem="OLR-cw-27m" secondAttribute="leading" constant="60" id="KUy-t1-bHG"/>
-                            <constraint firstItem="GGT-7L-QCD" firstAttribute="trailing" secondItem="3pE-40-XSE" secondAttribute="trailing" constant="20" id="Mhe-fF-h3z"/>
-                            <constraint firstItem="g4C-cQ-hol" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="UVO-vV-GUU"/>
-                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="XbI-eF-rOT"/>
-                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="bottom" secondItem="1my-pb-ycH" secondAttribute="bottom" id="fqx-rF-dcw"/>
-                            <constraint firstItem="3pE-40-XSE" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="ghp-yT-AvW"/>
-                            <constraint firstItem="Q1e-ks-CeG" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="top" id="kDt-RJ-eGt"/>
+                            <constraint firstItem="mNu-DE-z1G" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="1UD-4I-04h"/>
+                            <constraint firstItem="n9h-QY-qJT" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="Gab-Qy-LN8"/>
+                            <constraint firstItem="n9h-QY-qJT" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="H3S-lN-qCG"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="bottom" secondItem="GGT-7L-QCD" secondAttribute="bottom" constant="-30" id="J1b-OB-1v6"/>
+                            <constraint firstItem="GGT-7L-QCD" firstAttribute="trailing" secondItem="3pE-40-XSE" secondAttribute="trailing" constant="20" id="NCV-aR-POe"/>
+                            <constraint firstItem="3pE-40-XSE" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="SE6-oS-Hjx"/>
+                            <constraint firstItem="g4C-cQ-hol" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="W5Y-QK-7gq"/>
+                            <constraint firstItem="mNu-DE-z1G" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="XSy-WY-xXx"/>
+                            <constraint firstItem="mNu-DE-z1G" firstAttribute="bottom" secondItem="GGT-7L-QCD" secondAttribute="bottom" constant="-30" id="a9d-p2-e3c"/>
+                            <constraint firstItem="g4C-cQ-hol" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="lfa-py-z2R"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="trailing" secondItem="GGT-7L-QCD" secondAttribute="trailing" constant="-20" id="sVH-vA-A5h"/>
+                            <constraint firstItem="mNu-DE-z1G" firstAttribute="trailing" secondItem="1my-pb-ycH" secondAttribute="leading" id="uE5-H4-XdJ"/>
+                            <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="xE9-6s-wrK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GGT-7L-QCD"/>
                     </view>
                     <connections>
-                        <outlet property="dnaMapView" destination="Q1e-ks-CeG" id="Dho-6m-uJB"/>
+                        <outlet property="dnaMapScrollView" destination="mNu-DE-z1G" id="uLc-GZ-QQz"/>
                         <outlet property="dnaScrollView" destination="1my-pb-ycH" id="JST-EV-Fro"/>
                     </connections>
                 </viewController>
@@ -436,7 +438,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5K2-Hz-Fxf" userLabel="SoundSwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -620,7 +622,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="80n-oM-iHu" userLabel="ToleranceVisibilitySwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
