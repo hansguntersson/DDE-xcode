@@ -99,5 +99,3 @@ class DnaAnimation {
         displayUpdateInformer = nil
     }
 }
-
-

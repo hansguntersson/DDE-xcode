@@ -49,7 +49,7 @@
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1e-ks-CeG" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="20" y="35" width="40" height="503"/>
-                                <color key="backgroundColor" white="0.84943100742009114" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.88389162385844733" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9h-QY-qJT" userLabel="Button2">
                                 <rect key="frame" x="20" y="538" width="46" height="30"/>

@@ -43,7 +43,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     // Mark: - Exposed Variables
     // -------------------------------------------------------------------------
-    enum Orientation {
+    enum HelixOrientation {
         case vertical
         case horizontal
     }
@@ -71,12 +71,12 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             setNeedsDisplay()
         }
     }
-    var orientation: Orientation = .horizontal {
+    var helixOrientation: HelixOrientation = .horizontal {
         didSet {
-            defer {syncMapView?.orientation = orientation}
             updateDimensions()
         }
     }
+    var isAutoOriented: Bool = true
     var scale: CGFloat = 0.75 {
         didSet {
             scale = scale.clamped(to: 0.1...1)
@@ -100,7 +100,6 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         }
     }
     
-    private var isRotationEnabled: Bool = true
     var torsion: CGFloat = 0.4 {
         didSet {
             torsion = torsion.clamped(to: 0.0...0.6)
@@ -111,19 +110,13 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var syncMapView: DnaView? {
         didSet {
             syncMapView?.isUserInteractionEnabled = false
-            syncMapView?.orientation = orientation
+            syncMapView?.helixOrientation = helixOrientation
             syncMapView?.baseTypes = baseTypes
             syncMapView?.rotation3D = rotation3D
             syncMapView?.torsion = torsion
             setMapHighlight()
         }
     }
-    
-//    override var isUserInteractionEnabled: Bool {
-//        didSet {
-//            updateGestures()
-//        }
-//    }
     
     // -------------------------------------------------------------------------
     // Mark: - Spatial Dimensions
@@ -143,9 +136,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private func updateDimensions() {
         // Width and height refer to the internal representation of the dnaView
         // based on the orientation property
-
-        
-        if orientation == .horizontal {
+        if helixOrientation == .horizontal {
             width = self.bounds.height
         } else {
             width = self.bounds.width
@@ -161,7 +152,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let oldHeight: CGFloat
         
         // Adjust size constraints
-        if orientation == .horizontal {
+        if helixOrientation == .horizontal {
             widthConstraint.isActive = true
             oldHeight = widthConstraint.constant
             widthConstraint.constant = height
@@ -175,12 +166,10 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         
         if height == oldHeight {
             setNeedsDisplay()
+            setMapHighlight()
         } else {
-            // Must avoid infinite loop. See var bounds (overriden)
-            wereDimensionsJustUpdated = true
             setNeedsLayout()
         }
-        setMapHighlight()
     }
     
     // -------------------------------------------------------------------------
@@ -220,6 +209,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let character: String?
     }
     private struct DnaSegmentPair {
+        let index: Int
         let mainSegment: DnaSegment
         let pairSegment: DnaSegment
         let isMainOnTop: Bool
@@ -247,7 +237,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let x: CGFloat = (CGFloat(index) + 0.5) * distanceBetweenSegments
         
         // Do not generate segments if outside of the drawing rectangle
-        if orientation == .horizontal {
+        if helixOrientation == .horizontal {
             if (x < drawRect.minX - distanceBetweenSegments) || (x > drawRect.maxX + distanceBetweenSegments) {
                 return nil
             }
@@ -290,14 +280,14 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         // Apply correction to end points so that they are on the egde of the circle
         // instead of the center
         let correctionSign: CGFloat = (dY > 0 ? 1 : -1)
-        if orientation == .horizontal {
+        if helixOrientation == .horizontal {
             let midY = self.bounds.origin.y + self.bounds.height / 2
-            mainCenter = CGPoint(x: x, y: midY + dY)
+            mainCenter = CGPoint(x: x, y: midY - dY)
             mainStart = CGPoint(x: x, y: midY)
-            mainEnd = CGPoint(x: x, y: mainCenter.y - mainRadius * correctionSign)
-            pairCenter = CGPoint(x: x, y: midY - dY)
+            mainEnd = CGPoint(x: x, y: mainCenter.y + mainRadius * correctionSign)
+            pairCenter = CGPoint(x: x, y: midY + dY)
             pairStart = mainStart
-            pairEnd = CGPoint(x: x, y: pairCenter.y + pairRadius * correctionSign)
+            pairEnd = CGPoint(x: x, y: pairCenter.y - pairRadius * correctionSign)
         } else {
             // Vertical orientation. Reverse x and dY because now y is fixed and dX is relative
             let dX = dY
@@ -320,29 +310,22 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let pairLine = DnaLine(start: pairStart, end: pairEnd)
         let pairSegment = DnaSegment(circle: pairCircle, line: pairLine, color: pairColor, alpha: pairAlpha, character: pairCharacter)
         
-        return DnaSegmentPair(mainSegment: mainSegment, pairSegment: pairSegment, isMainOnTop: isMainOnTop)
+        return DnaSegmentPair(index: index, mainSegment: mainSegment, pairSegment: pairSegment, isMainOnTop: isMainOnTop)
     }
     
     // -------------------------------------------------------------------------
     // Mark: - Layout Changes
     // -------------------------------------------------------------------------
-    // 1. If the bounds are changed externally (ex .phone rotated) then the
-    //    updateDimensions must be called
-    // 2. updateDimenssion could be called from the class API (ex. the sequence
-    //    is longer) or from 1. and so it needs to call setNeedsLayout which in
-    //    turn sets the bounds
-    // 1. and 2. above create an infinite loop and a control boolean is used to
-    //    overcome this problem - wereDimensionsJustUpdated - which must be set
-    //    to true from inside the updateDimensions function
-    private var wereDimensionsJustUpdated: Bool = false
     override var bounds: CGRect {
         didSet {
-            if wereDimensionsJustUpdated {
-                wereDimensionsJustUpdated = false
-                setNeedsDisplay()
-            } else {
-                updateDimensions()
+            if isAutoOriented {
+                let newHelixOrientation: HelixOrientation = UIDevice.current.orientation.isLandscape ? .horizontal : .vertical
+                if helixOrientation != newHelixOrientation {
+                    helixOrientation = newHelixOrientation
+                    return
+                }
             }
+            updateDimensions()
         }
     }
     
@@ -420,7 +403,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     
     func highlight(startPercent: CGFloat, endPercent: CGFloat) {
-        if orientation == .horizontal {
+        if helixOrientation == .horizontal {
             highlightRect = CGRect(x: startPercent * widthConstraint.constant, y: 0, width: (endPercent - startPercent) * widthConstraint.constant, height: bounds.height)
         } else {
             highlightRect = CGRect(x: 0, y: startPercent * heightConstraint.constant, width: bounds.width, height: (endPercent - startPercent) * heightConstraint.constant)
@@ -493,7 +476,6 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private var dnaAnimation: DnaAnimation!
     
     private func animateEditMode() {
-        isRotationEnabled = false
         dnaAnimation = DnaAnimation(
             withDuration: 2.0
             , dnaView: self
@@ -504,19 +486,26 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     private func animationFinished() {
         dnaAnimation = nil
-        isRotationEnabled = !editMode
+    }
+    private func isAnimating() -> Bool {
+        return !(dnaAnimation?.isFinished ?? true)
     }
     
     // -------------------------------------------------------------------------
     // Mark: - Map
     // -------------------------------------------------------------------------
-    private func setMapHighlight() {
+    private func visibleHelixBounds() -> (startPercent: CGFloat, endPercent: CGFloat) {
         drawRect = convert(self.superview!.bounds, to: self)
-        if orientation == .horizontal {
-            syncMapView?.highlight(startPercent: drawRect.minX / self.bounds.width, endPercent: drawRect.maxX / self.bounds.width)
+        if helixOrientation == .horizontal {
+            return (drawRect.minX / self.bounds.width, drawRect.maxX / self.bounds.width)
         } else {
-            syncMapView?.highlight(startPercent: drawRect.minY / self.bounds.height, endPercent: drawRect.maxY / self.bounds.height)
+            return (drawRect.minY / self.bounds.height, drawRect.maxY / self.bounds.height)
         }
+    }
+    
+    private func setMapHighlight() {
+        let visibleBounds = visibleHelixBounds()
+        syncMapView?.highlight(startPercent: visibleBounds.startPercent , endPercent: visibleBounds.endPercent)
     }
     
     // -------------------------------------------------------------------------
@@ -549,12 +538,16 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     private var originalRotation: CGFloat = 0.0
     @objc func handlePanGesture(pan: UIPanGestureRecognizer) {
-        if isRotationEnabled {
-            if pan.state == .began {
-                originalRotation = self.rotation3D
-            } else if pan.state == .changed {
+        if pan.state == .began {
+            originalRotation = self.rotation3D
+        } else if pan.state == .changed {
+            if !isAnimating() && !editMode {
                 let translation = pan.translation(in: self)
-                self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+                if helixOrientation == .horizontal {
+                    self.rotation3D = originalRotation + translation.y / self.bounds.height * CGFloat.pi * 2
+                } else {
+                    self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+                }
             }
         }
     }
@@ -571,27 +564,42 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             startTorsion = self.torsion
             startScale = self.scale
         } else if pinch.state == .changed {
-            let p1: CGPoint = pinch.location(ofTouch: 0, in: self)
-            let p2: CGPoint = pinch.location(ofTouch: 1, in: self)
-            
-            let azimuth: CGFloat = COGO.azimuth(x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y)!
-            let quarterPI = CGFloat.pi / 4
-            let pinchDirection: Orientation
-            if abs(azimuth) < quarterPI || abs(azimuth) > 3 * quarterPI {
-                pinchDirection = .vertical
-            } else {
-                pinchDirection = .horizontal
-            }
-            if pinchDirection == self.orientation {
-                self.torsion = startTorsion + 0.4 * (pinch.scale - 1)
-            } else {
-                self.scale = startScale + 0.3 * (pinch.scale - 1)
+            if !isAnimating() {
+                let p1: CGPoint = pinch.location(ofTouch: 0, in: self)
+                let p2: CGPoint = pinch.location(ofTouch: 1, in: self)
+                
+                let azimuth: CGFloat = COGO.azimuth(x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y)!
+                let quarterPI = CGFloat.pi / 4
+                let pinchDirection: HelixOrientation
+                if abs(azimuth) < quarterPI || abs(azimuth) > 3 * quarterPI {
+                    pinchDirection = .vertical
+                } else {
+                    pinchDirection = .horizontal
+                }
+                if pinchDirection == self.helixOrientation {
+                    if !editMode {
+                        self.torsion = startTorsion + 0.4 * (pinch.scale - 1)
+                    }
+                } else {
+                    self.scale = startScale + 0.3 * (pinch.scale - 1)
+                }
             }
         }
     }
     @objc func handleTapGesture(tap: UITapGestureRecognizer) {
-        print(tap.location(in: self))
+        if !isAnimating() && editMode {
+            let segmentPairs = generateSegments()
+            for segmentPair in segmentPairs {
+                let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
+                if mainRect.contains(tap.location(in: self)) {
+                    baseTypes[segmentPair.index] = baseTypes[segmentPair.index].next
+                    self.setNeedsDisplay()
+                    return
+                }
+            }
+        }
     }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setMapHighlight()

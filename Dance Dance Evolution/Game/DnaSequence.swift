@@ -40,6 +40,18 @@ class DnaSequence: Codable, CustomStringConvertible {
                 return .cytosine
             }
         }
+        var next: NucleobaseType {
+            switch self {
+            case .cytosine:
+                return .adenine
+            case .adenine:
+                return .thymine
+            case .thymine:
+                return .guanine
+            case .guanine:
+                return .cytosine
+            }
+        }
         var color: UIColor {
             switch self {
             case .cytosine:
