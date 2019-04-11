@@ -14,7 +14,7 @@ class DnaController: UIViewController {
         let dnaView = dnaScrollView.dnaView!
         dnaView.areMainLettersEnabled = true
         dnaView.arePairLettersEnabled = true
-        dnaView.baseTypes = DnaSequence(length: 60).nucleobaseTypesSequence()
+        dnaView.baseTypes = DnaSequence(length: 150).nucleobaseTypesSequence()
         dnaView.isUserInteractionEnabled = true
         
         let dnaMap = dnaMapScrollView.dnaView!

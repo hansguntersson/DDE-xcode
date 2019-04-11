@@ -128,7 +128,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     // Constants
     private let segmentDistancePercentOfSize: CGFloat = 0.25
-    private let radiusPercentOfSpacing :CGFloat = 0.8
+    private let radiusPercentOfSpacing :CGFloat = 0.85
     // Variables
     private var segmentLength: CGFloat = 0.0
     private var distanceBetweenSegments: CGFloat = 0.0
@@ -508,13 +508,17 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // Mark: - Animate
     // -------------------------------------------------------------------------
     private var dnaAnimation: DnaAnimation!
-    private var isSuperUserInteractionOn: Bool = false
+    private var isRestored: Bool = true
+    private var isUserInteractionOn: Bool = false //for restoring state after animation
     
     private func animateEditMode() {
-        isSuperUserInteractionOn = self.superview!.isUserInteractionEnabled
-        self.superview!.isUserInteractionEnabled = false
+        if isRestored {
+            isUserInteractionOn = self.isUserInteractionEnabled
+            isRestored = false
+        }
+        self.isUserInteractionEnabled = false
         dnaAnimation = DnaAnimation(
-            withDuration: 2.0
+            withDuration: 3.0
             , dnaView: self
             , targetTorsion: editMode ? 0.0 : 0.4
             , targetRotation: editMode ? 1.3 : 0.0
@@ -523,7 +527,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     private func animationFinished() {
         dnaAnimation = nil
-        self.superview!.isUserInteractionEnabled = isSuperUserInteractionOn
+        self.isUserInteractionEnabled = isUserInteractionOn
+        isRestored = true
     }
     
     // -------------------------------------------------------------------------
@@ -639,8 +644,10 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setMapHighlight()
-        syncMapView?.setNeedsDisplay()
-        setNeedsDisplay()
+        if dnaAnimation == nil {
+            syncMapView?.setNeedsDisplay()
+            setNeedsDisplay()
+        }
     }
     
     deinit {

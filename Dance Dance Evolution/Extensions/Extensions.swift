@@ -121,11 +121,4 @@ extension UIGestureRecognizer {
                 return .other
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }
