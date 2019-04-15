@@ -41,9 +41,9 @@ class DnaScrollView: UIScrollView {
     // -------------------------------------------------------------------------
     func scrollToBottom() {
         if self.dnaView.helixOrientation == .horizontal {
-            scrollRectToVisible(CGRect(x: self.dnaView.height - 1, y: 0, width: 1, height: 1), animated: false)
+            scrollRectToVisible(CGRect(x: self.dnaView.helixHeight - 1, y: 0, width: 1, height: 1), animated: false)
         } else {
-            scrollRectToVisible(CGRect(x: 0, y: self.dnaView.height - 1, width: 1, height: 1), animated: false)
+            scrollRectToVisible(CGRect(x: 0, y: self.dnaView.helixHeight - 1, width: 1, height: 1), animated: false)
         }
     }
     func scrollToTop() {

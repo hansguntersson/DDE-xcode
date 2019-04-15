@@ -71,6 +71,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     var editMode: Bool = false {
         didSet {
+            if editMode {
+                if visibleHelixBounds().endPercent >= 0.99 {
+                    mustScrollToBottom = true
+                }
+            }
             updateDimensions()
             animateEditMode()
         }
@@ -153,54 +158,52 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private let segmentDistancePercentOfSize: CGFloat = 0.25
     private let radiusPercentOfSpacing :CGFloat = 0.85
     // Variables
-    private var segmentLength: CGFloat = 0.0
-    private var distanceBetweenSegments: CGFloat = 0.0
-    private var circleRadius: CGFloat = 0.0
-    
-    private(set) var height: CGFloat = 0.0
-    private(set) var width: CGFloat = 0.0
+    private(set) var segmentLength: CGFloat = 0.0
+    private(set) var distanceBetweenSegments: CGFloat = 0.0
+    private(set) var circleRadius: CGFloat = 0.0
+    private(set) var helixHeight: CGFloat = 0.0
+    private(set) var helixWidth: CGFloat = 0.0
     
     // Size Update
     private func updateDimensions() {
-        // Width and height refer to the internal representation of the dnaView
-        // based on the orientation property
+        // helixWidth and helixHeight refer to the internal representation of the dnaView based on the orientation property
         if helixOrientation == .horizontal {
-            width = self.bounds.height
+            helixWidth = self.bounds.height
         } else {
-            width = self.bounds.width
+            helixWidth = self.bounds.width
         }
         
         // The class dimensions used to generate all the drawable elements data
-        segmentLength = width * self.scale / (1 + segmentDistancePercentOfSize)
+        segmentLength = helixWidth * self.scale / (1 + segmentDistancePercentOfSize)
         distanceBetweenSegments = segmentLength  * self.segmentDistancePercentOfSize
         circleRadius = distanceBetweenSegments / 2 * radiusPercentOfSpacing
         
         // Extra Segment for Edit Mode
-        height = distanceBetweenSegments * CGFloat(baseTypes.count + (editMode ? 1 : 0))
-        let oldHeight: CGFloat
+        helixHeight = distanceBetweenSegments * CGFloat(baseTypes.count + (editMode ? 1 : 0))
+        let oldHelixHeight: CGFloat
         
         // Adjust size constraints
         if helixOrientation == .horizontal {
             widthConstraint.isActive = true
-            oldHeight = widthConstraint.constant
-            widthConstraint.constant = height
+            oldHelixHeight = widthConstraint.constant
+            widthConstraint.constant = helixHeight
             heightConstraint.isActive = false
         } else {
             widthConstraint.isActive = false
             heightConstraint.isActive = true
-            oldHeight = heightConstraint.constant
-            heightConstraint.constant = height
+            oldHelixHeight = heightConstraint.constant
+            heightConstraint.constant = helixHeight
         }
         
         // Check if helix height has changed (within a precision of 1 pixel)
-        if abs(height - oldHeight) < 1 {
+        if abs(helixHeight - oldHelixHeight) < 1 {
             if previousStartPercent != nil {
                 if let scrollView = self.superview as? UIScrollView {
                     let rect: CGRect
                     if helixOrientation == .horizontal {
-                        rect = CGRect(x: previousStartPercent! * height, y: 0, width: scrollView.bounds.width, height: 1)
+                        rect = CGRect(x: previousStartPercent! * helixHeight, y: 0, width: scrollView.bounds.width, height: 1)
                     } else {
-                        rect = CGRect(x: 0, y: previousStartPercent! * height, width: 1, height: scrollView.bounds.height)
+                        rect = CGRect(x: 0, y: previousStartPercent! * helixHeight, width: 1, height: scrollView.bounds.height)
                     }
                     scrollView.scrollRectToVisible(rect, animated: false)
                 }
@@ -210,9 +213,9 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 mustScrollToBottom = false
                 if let scrollView = self.superview! as? UIScrollView {
                     if helixOrientation == .horizontal {
-                        scrollView.scrollRectToVisible(CGRect(x: self.height-1, y: 0, width: 1, height: 1), animated: false)
+                        scrollView.scrollRectToVisible(CGRect(x: self.helixHeight-1, y: 0, width: 1, height: 1), animated: false)
                     } else {
-                        scrollView.scrollRectToVisible(CGRect(x: 0, y: self.height-1, width: 1, height: 1), animated: false)
+                        scrollView.scrollRectToVisible(CGRect(x: 0, y: self.helixHeight-1, width: 1, height: 1), animated: false)
                     }
                 }
             }
@@ -566,7 +569,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     private func visibleHelixBounds() -> (startPercent: CGFloat, endPercent: CGFloat) {
         let visibleRect = convert(self.superview!.bounds, to: self)
-        let trueHeight = editMode ? self.height - distanceBetweenSegments : self.height
+        let trueHeight = editMode ? self.helixHeight - distanceBetweenSegments : self.helixHeight
         if helixOrientation == .horizontal {
             return (visibleRect.minX / trueHeight, visibleRect.maxX / trueHeight)
         } else {
@@ -585,6 +588,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private let panGesture: UIPanGestureRecognizer! = nil
     private let pinchGesture: UIPinchGestureRecognizer! = nil
     private let tapGesture: UITapGestureRecognizer! = nil
+    private let longPressGesture: UILongPressGestureRecognizer! = nil
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer === pinchGesture || otherGestureRecognizer === pinchGesture {
@@ -605,6 +609,10 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         tapGesture.delegate = self
         self.addGestureRecognizer(tapGesture)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
+        longPressGesture.delegate = self
+        self.addGestureRecognizer(longPressGesture)
     }
     
     private var originalRotation: CGFloat = 0.0
@@ -648,7 +656,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             }
             if pinchDirection == self.helixOrientation {
                 if !editMode {
-                    self.torsion = startTorsion + 0.4 * (pinch.scale - 1)
+                    self.torsion = startTorsion + 0.4 * (1 - pinch.scale)
                 }
             } else {
                 self.scale = startScale + 0.3 * (pinch.scale - 1)
@@ -691,6 +699,28 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 if mainRect.contains(tapPoint) {
                     if segmentPair.index < baseTypes.count {
                         baseTypes[segmentPair.index] = baseTypes[segmentPair.index].next
+                        if isDrawingEnabled {
+                            setNeedsDisplay()
+                        }
+                        onEdit?()
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func handleLongPressGesture(press: UILongPressGestureRecognizer) {
+        if editMode {
+            let pressPoint = press.location(in: self)
+            let segmentPairs = generateSegments()
+        
+            // Loop through segments and check main only
+            for segmentPair in segmentPairs {
+                let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
+                if mainRect.contains(pressPoint) {
+                    if segmentPair.index < baseTypes.count {
+                        baseTypes[segmentPair.index] = baseTypes[segmentPair.index].pair
                         if isDrawingEnabled {
                             setNeedsDisplay()
                         }
