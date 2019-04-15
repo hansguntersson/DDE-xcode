@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" userLabel="Dna Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="50" y="35" width="250" height="503"/>
                                 <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
@@ -56,9 +56,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4C-cQ-hol" userLabel="Button3">
                                 <rect key="frame" x="137" y="538" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="WAJ-wE-sfC"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="testBtn:" destination="pQx-Ca-anq" eventType="touchUpInside" id="HZ7-fh-7cD"/>
@@ -66,9 +63,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pE-40-XSE">
                                 <rect key="frame" x="254" y="538" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="Byh-Td-wFb"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="btnTap:" destination="pQx-Ca-anq" eventType="touchUpInside" id="8WO-M7-ncc"/>
@@ -89,11 +83,13 @@
                             <constraint firstItem="n9h-QY-qJT" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="H3S-lN-qCG"/>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="bottom" secondItem="GGT-7L-QCD" secondAttribute="bottom" constant="-30" id="J1b-OB-1v6"/>
                             <constraint firstItem="GGT-7L-QCD" firstAttribute="trailing" secondItem="3pE-40-XSE" secondAttribute="trailing" constant="20" id="NCV-aR-POe"/>
+                            <constraint firstItem="g4C-cQ-hol" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n9h-QY-qJT" secondAttribute="trailing" constant="8" symbolic="YES" id="PDv-LI-QJw"/>
                             <constraint firstItem="3pE-40-XSE" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="SE6-oS-Hjx"/>
                             <constraint firstItem="g4C-cQ-hol" firstAttribute="centerX" secondItem="OLR-cw-27m" secondAttribute="centerX" id="W5Y-QK-7gq"/>
                             <constraint firstItem="mNu-DE-z1G" firstAttribute="leading" secondItem="GGT-7L-QCD" secondAttribute="leading" constant="20" id="XSy-WY-xXx"/>
                             <constraint firstItem="mNu-DE-z1G" firstAttribute="bottom" secondItem="GGT-7L-QCD" secondAttribute="bottom" constant="-30" id="a9d-p2-e3c"/>
                             <constraint firstItem="g4C-cQ-hol" firstAttribute="top" secondItem="1my-pb-ycH" secondAttribute="bottom" id="lfa-py-z2R"/>
+                            <constraint firstItem="3pE-40-XSE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g4C-cQ-hol" secondAttribute="trailing" constant="8" symbolic="YES" id="pyY-Cr-33A"/>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="trailing" secondItem="GGT-7L-QCD" secondAttribute="trailing" constant="-20" id="sVH-vA-A5h"/>
                             <constraint firstItem="mNu-DE-z1G" firstAttribute="trailing" secondItem="1my-pb-ycH" secondAttribute="leading" id="uE5-H4-XdJ"/>
                             <constraint firstItem="1my-pb-ycH" firstAttribute="top" secondItem="GGT-7L-QCD" secondAttribute="top" constant="15" id="xE9-6s-wrK"/>
@@ -363,9 +359,9 @@
                                 <exclude reference="mKl-ZF-L4v"/>
                                 <include reference="qsB-zq-yNo"/>
                                 <include reference="wRY-io-Y9d"/>
-                                <exclude reference="kDe-Be-YJW"/>
                                 <exclude reference="2g0-Ik-6IV"/>
                                 <include reference="Geu-oC-4ca"/>
+                                <exclude reference="kDe-Be-YJW"/>
                                 <include reference="XF0-LH-Dsn"/>
                                 <exclude reference="b86-Dk-0gs"/>
                                 <exclude reference="bRt-DI-bR9"/>
@@ -712,11 +708,11 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="IYZ-uV-geP"/>
+                                <include reference="7NY-vS-SOY"/>
+                                <exclude reference="GcX-2g-zhz"/>
                                 <exclude reference="10z-TB-5s1"/>
                                 <exclude reference="mQ2-sT-U1Q"/>
                                 <exclude reference="roU-bw-tdF"/>
-                                <include reference="7NY-vS-SOY"/>
-                                <exclude reference="GcX-2g-zhz"/>
                             </mask>
                         </variation>
                     </view>

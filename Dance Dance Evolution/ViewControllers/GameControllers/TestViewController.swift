@@ -21,7 +21,7 @@ class TestViewController: HiddenStatusBarController {
         
         for i in 0..<sequenceCount {
             let dna = DnaSequence(length: i * 5 + 30, name: "RandomSequence" + String(i))
-            dnas.add(sequence: dna)
+            _ = dnas.add(sequence: dna)
         }
         DnaStorage.storeSequences(sequences: dnas)
         
@@ -33,7 +33,7 @@ class TestViewController: HiddenStatusBarController {
         }
         print("second time")
         let dna = DnaSequence(length: 5 * 5 + 30, name: "RandomSequence5")
-        dnas2.add(sequence: dna)
+        _ = dnas2.add(sequence: dna)
         for dna in dnas2 {
             print(dna)
         }

@@ -14,13 +14,14 @@ class DnaController: UIViewController {
         let dnaView = dnaScrollView.dnaView!
         dnaView.areMainLettersEnabled = true
         dnaView.arePairLettersEnabled = true
-        dnaView.baseTypes = DnaSequence(length: 150).nucleobaseTypesSequence()
+        dnaView.baseTypes = DnaSequence(length: 60).nucleobaseTypesSequence()
         dnaView.isUserInteractionEnabled = true
         
         let dnaMap = dnaMapScrollView.dnaView!
         dnaView.syncMapView = dnaMap
         dnaMap.isAutoOriented = false
         dnaMap.helixOrientation = .vertical
+        dnaView.isDrawingEnabled = true
     }
     @IBAction func btnTap(_ sender: UIButton) {
         dnaScrollView.dnaView.editMode = !dnaScrollView.dnaView.editMode
@@ -29,7 +30,6 @@ class DnaController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     @IBAction func testBtn(_ sender: UIButton) {
-        print(dnaScrollView.dnaView.height)
-        dnaScrollView.scrollRectToVisible(CGRect(x: 0, y: dnaScrollView.dnaView.height-1, width: 1, height: 1), animated: false)
+        dnaScrollView.scrollToBottom()
     }
 }

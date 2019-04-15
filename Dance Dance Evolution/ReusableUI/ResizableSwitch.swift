@@ -37,6 +37,8 @@ class ResizableSwitch: UISwitch {
             horizontalSign = -1
         case .trailing, .right:
             horizontalSign = 1
+        @unknown default:
+            fatalError()
         }
         
         return frame.width * (1 - scale) / 2 * horizontalSign
@@ -52,6 +54,8 @@ class ResizableSwitch: UISwitch {
             verticalSign = -1
         case .bottom:
             verticalSign = 1
+        @unknown default:
+            fatalError()
         }
         
         return frame.height * (1 - scale) / 2 * verticalSign

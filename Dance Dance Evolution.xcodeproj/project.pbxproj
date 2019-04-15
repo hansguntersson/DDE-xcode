@@ -388,16 +388,16 @@
 				TargetAttributes = {
 					E5F85F1121011DA3002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					E5F85F2B21011DAD002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = E5F85F1121011DA3002DA08D;
 					};
 					E5F85F3621011DAD002DA08D = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = E5F85F1121011DA3002DA08D;
 					};
 				};
@@ -670,7 +670,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -688,7 +688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-Evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -708,7 +708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
 			};
@@ -729,7 +729,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dance Dance Evolution.app/Dance Dance Evolution";
 			};
@@ -749,7 +749,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Dance Dance Evolution";
 			};
@@ -769,7 +769,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-hansguntersson.Dance-Dance-EvolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Dance Dance Evolution";
 			};

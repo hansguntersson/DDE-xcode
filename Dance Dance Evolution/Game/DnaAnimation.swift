@@ -78,8 +78,10 @@ class DnaAnimation {
             timeLeft = 0.0
         }
         if !isFinished {
+            viewToAnimate.isDrawingEnabled = false
             viewToAnimate.torsion = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startTorsion, x2: 0, y2: targetTorsion) ?? targetTorsion
             viewToAnimate.rotation3D = COGO.interpolate2D(x: CGFloat(timeLeft), x1: CGFloat(totalAnimationTime), y1: startRotation, x2: 0, y2: targetRotation) ?? targetRotation
+            viewToAnimate.isDrawingEnabled = true
         }
         if timeLeft == 0 {
             finished()

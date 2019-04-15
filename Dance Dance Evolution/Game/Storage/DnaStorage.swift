@@ -14,7 +14,7 @@ class DnaStorage {
             let encodedSequences: [String] = try JSONDecoder().decode([String].self, from: jsonData)
             for encodedSequence in encodedSequences {
                 if let dna = DnaSequence.decodeFromMinimalString(from: encodedSequence) {
-                    sequences.add(sequence: dna)
+                    _ = sequences.add(sequence: dna)
                 }
             }
         } catch {

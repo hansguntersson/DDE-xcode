@@ -31,9 +31,14 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
 
     // -------------------------------------------------------------------------
+    // Mark: - Callbacks
+    // -------------------------------------------------------------------------
+    var onEdit: (() -> Void)? // base added / removed / changed
+
+    // -------------------------------------------------------------------------
     // Mark: - Nucleobase type sequence
     // -------------------------------------------------------------------------
-    private var itemWasAddedInEditMode: Bool = false
+    private var mustScrollToBottom: Bool = false // when adding / removing base
     var baseTypes: [DnaSequence.NucleobaseType] = [] {
         didSet {
             defer {syncMapView?.baseTypes = baseTypes}
@@ -51,13 +56,17 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var depthAlpha: CGFloat = 0.3 {
         didSet {
             depthAlpha = depthAlpha.clamped(to: 0.1...1.0)
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var depthScale: CGFloat = 0.3 {
         didSet {
             depthScale = depthScale.clamped(to: 0.1...1.0)
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var editMode: Bool = false {
@@ -69,7 +78,9 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var lineWidth: CGFloat = 2.0 {
         didSet {
             lineWidth = lineWidth.clamped(to: 0.0...5.0)
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var helixOrientation: HelixOrientation = .horizontal {
@@ -87,24 +98,32 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     var rotation3D: CGFloat = 0.0 {
         didSet {
             defer {syncMapView?.rotation3D = rotation3D}
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var areMainLettersEnabled: Bool = false {
         didSet {
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var arePairLettersEnabled: Bool = false {
         didSet {
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var torsion: CGFloat = 0.4 {
         didSet {
             torsion = torsion.clamped(to: 0.0...0.6)
             defer {syncMapView?.torsion = torsion}
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     var syncMapView: DnaView? {
@@ -114,12 +133,16 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             syncMapView?.baseTypes = baseTypes
             syncMapView?.rotation3D = rotation3D
             syncMapView?.torsion = torsion
+            syncMapView?.isDrawingEnabled = isDrawingEnabled
             setMapHighlight()
         }
     }
     var isDrawingEnabled: Bool = false {
         didSet {
-            setNeedsDisplay()
+            defer {syncMapView?.isDrawingEnabled = isDrawingEnabled}
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     
@@ -183,8 +206,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 }
                 previousStartPercent = nil
             }
-            if itemWasAddedInEditMode {
-                itemWasAddedInEditMode = false
+            if mustScrollToBottom {
+                mustScrollToBottom = false
                 if let scrollView = self.superview! as? UIScrollView {
                     if helixOrientation == .horizontal {
                         scrollView.scrollRectToVisible(CGRect(x: self.height-1, y: 0, width: 1, height: 1), animated: false)
@@ -194,7 +217,9 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 }
             }
             setMapHighlight()
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         } else {
             setNeedsLayout()
         }
@@ -277,7 +302,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         
         // The segment rotation angle. Line is rotated around X axis in vertical orientation
         // and around Y axis in horizontal orientation
-        let rotation: CGFloat = CGFloat(index) * self.torsion + self.rotation3D //.truncatingRemainder(dividingBy: 2 * CGFloat.pi)
+        let rotation: CGFloat = CGFloat(index) * self.torsion + self.rotation3D
         
         // Compute dY as if orientation is horizontal
         let dY: CGFloat = cos(rotation) * segmentLength / 2
@@ -294,7 +319,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         let mainColor: UIColor = baseType?.color ?? UIColor.gray
         let pairColor: UIColor = baseType?.pair.color ?? UIColor.gray
         let mainCharacter: String = baseType?.rawValue ?? "+"
-        let pairCharacter: String? = baseType?.pair.rawValue ?? "\u{2212}" //(baseType == nil ? "-" : nil)
+        let pairCharacter: String? = baseType?.pair.rawValue ?? "\u{2212}" // "-" does not render as nice as the used Unicode character
         
         // Define necessary points
         let mainCenter: CGPoint
@@ -332,10 +357,10 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         
         // Create elements
         let mainCircle = DnaCircle(center: mainCenter, radius: mainRadius)
-        let mainLine = DnaLine(start: mainStart, end: mainEnd)
+        let mainLine = DnaLine(start: mainStart, end: baseType == nil ? mainStart : mainEnd)
         let mainSegment = DnaSegment(circle: mainCircle, line: mainLine, color: mainColor, alpha: mainAlpha, character: mainCharacter)
         let pairCircle = DnaCircle(center: pairCenter, radius: baseType == nil ? mainRadius : pairRadius)
-        let pairLine = DnaLine(start: pairStart, end: pairEnd)
+        let pairLine = DnaLine(start: pairStart, end: baseType == nil ? pairStart : pairEnd)
         let pairSegment = DnaSegment(circle: pairCircle, line: pairLine, color: pairColor, alpha: pairAlpha, character: pairCharacter)
         
         return DnaSegmentPair(index: index, mainSegment: mainSegment, pairSegment: pairSegment, isMainOnTop: isMainOnTop)
@@ -349,7 +374,12 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     override var bounds: CGRect {
         didSet {
             if isAutoOriented {
-                let newHelixOrientation: HelixOrientation = UIDevice.current.orientation.isLandscape ? .horizontal : .vertical
+                let newHelixOrientation: HelixOrientation
+                if UIDevice.current.orientation.isValidInterfaceOrientation {
+                    newHelixOrientation = UIDevice.current.orientation.isLandscape ? .horizontal : .vertical
+                } else {
+                    newHelixOrientation = UIApplication.shared.statusBarOrientation.isLandscape ? .horizontal : .vertical
+                }
                 if helixOrientation != newHelixOrientation {
                     previousStartPercent = visibleHelixBounds().startPercent
                     helixOrientation = newHelixOrientation
@@ -518,7 +548,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         }
         self.isUserInteractionEnabled = false
         dnaAnimation = DnaAnimation(
-            withDuration: 3.0
+            withDuration: 2.0
             , dnaView: self
             , targetTorsion: editMode ? 0.0 : 0.4
             , targetRotation: editMode ? 1.3 : 0.0
@@ -536,10 +566,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     private func visibleHelixBounds() -> (startPercent: CGFloat, endPercent: CGFloat) {
         let visibleRect = convert(self.superview!.bounds, to: self)
+        let trueHeight = editMode ? self.height - distanceBetweenSegments : self.height
         if helixOrientation == .horizontal {
-            return (visibleRect.minX / self.bounds.width, visibleRect.maxX / self.bounds.width)
+            return (visibleRect.minX / trueHeight, visibleRect.maxX / trueHeight)
         } else {
-            return (visibleRect.minY / self.bounds.height, visibleRect.maxY / self.bounds.height)
+            return (visibleRect.minY / trueHeight, visibleRect.maxY / trueHeight)
         }
     }
     
@@ -626,16 +657,45 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     @objc func handleTapGesture(tap: UITapGestureRecognizer) {
         if editMode {
+            let tapPoint = tap.location(in: self)
             let segmentPairs = generateSegments()
+            
+            // Check + or - first
+            let segmentPair = segmentPairs[segmentPairs.count - 1]
+            if segmentPair.mainSegment.circle.circumscribedRect().contains(tapPoint) {
+                mustScrollToBottom = true
+                baseTypes.append(DnaSequence.NucleobaseType(rawValue: DnaSequence.NucleobaseType.cytosine.rawValue)!)
+                if isDrawingEnabled {
+                    setNeedsDisplay()
+                    syncMapView?.setNeedsDisplay()
+                }
+                onEdit?()
+                return
+            }
+            if segmentPair.pairSegment.circle.circumscribedRect().contains(tapPoint) {
+                if baseTypes.count > 0 {
+                    mustScrollToBottom = true
+                    baseTypes.remove(at: baseTypes.count - 1)
+                    if isDrawingEnabled {
+                        setNeedsDisplay()
+                        syncMapView?.setNeedsDisplay()
+                    }
+                }
+                onEdit?()
+                return
+            }
+            
+            // Loop through segments and check main only
             for segmentPair in segmentPairs {
                 let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
-                if mainRect.contains(tap.location(in: self)) {
+                if mainRect.contains(tapPoint) {
                     if segmentPair.index < baseTypes.count {
                         baseTypes[segmentPair.index] = baseTypes[segmentPair.index].next
-                        self.setNeedsDisplay()
-                    } else {
-                        itemWasAddedInEditMode = true
-                        baseTypes.append(DnaSequence.NucleobaseType(rawValue: DnaSequence.NucleobaseType.cytosine.rawValue)!)
+                        if isDrawingEnabled {
+                            setNeedsDisplay()
+                        }
+                        onEdit?()
+                        return
                     }
                 }
             }
@@ -646,7 +706,9 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         setMapHighlight()
         if dnaAnimation == nil {
             syncMapView?.setNeedsDisplay()
-            setNeedsDisplay()
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
         }
     }
     
