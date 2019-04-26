@@ -200,10 +200,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             if previousStartPercent != nil {
                 if let scrollView = self.superview as? UIScrollView {
                     let rect: CGRect
+                    let trueHeight = editMode ? self.helixHeight - distanceBetweenSegments : self.helixHeight
                     if helixOrientation == .horizontal {
-                        rect = CGRect(x: previousStartPercent! * helixHeight, y: 0, width: scrollView.bounds.width, height: 1)
+                        rect = CGRect(x: previousStartPercent! * trueHeight, y: 0, width: scrollView.bounds.width, height: 1)
                     } else {
-                        rect = CGRect(x: 0, y: previousStartPercent! * helixHeight, width: 1, height: scrollView.bounds.height)
+                        rect = CGRect(x: 0, y: previousStartPercent! * trueHeight, width: 1, height: scrollView.bounds.height)
                     }
                     scrollView.scrollRectToVisible(rect, animated: false)
                 }
@@ -463,6 +464,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 UIColor.red.set()
                 highlightPath.fill(with: .normal, alpha: 0.005)
             }
+            popup?.updateButtonsPositioning()
         }
     }
     
@@ -542,11 +544,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     private var dnaAnimation: DnaAnimation!
     private var isRestored: Bool = true
-    private var isUserInteractionOn: Bool = false //for restoring state after animation
+    private var storedUserInteraction: Bool = false //for restoring state after animation
     
     private func animateEditMode() {
         if isRestored {
-            isUserInteractionOn = self.isUserInteractionEnabled
+            storedUserInteraction = self.isUserInteractionEnabled
             isRestored = false
         }
         self.isUserInteractionEnabled = false
@@ -560,7 +562,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     private func animationFinished() {
         dnaAnimation = nil
-        self.isUserInteractionEnabled = isUserInteractionOn
+        self.isUserInteractionEnabled = storedUserInteraction
         isRestored = true
     }
     
@@ -589,12 +591,13 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private let pinchGesture: UIPinchGestureRecognizer! = nil
     private let tapGesture: UITapGestureRecognizer! = nil
     private let longPressGesture: UILongPressGestureRecognizer! = nil
+    private var areGesturesEnabled: Bool = true
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer === pinchGesture || otherGestureRecognizer === pinchGesture {
             return false
         }
-        return true
+        return areGesturesEnabled
     }
     
     func initGestures() {
@@ -617,15 +620,17 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     private var originalRotation: CGFloat = 0.0
     @objc func handlePanGesture(pan: UIPanGestureRecognizer) {
-        if pan.state == .began {
-            originalRotation = self.rotation3D
-        } else if pan.state == .changed {
-            if !editMode {
-                let translation = pan.translation(in: self)
-                if helixOrientation == .horizontal {
-                    self.rotation3D = originalRotation + translation.y / self.bounds.height * CGFloat.pi * 2
-                } else {
-                    self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+        if areGesturesEnabled {
+            if pan.state == .began {
+                originalRotation = self.rotation3D
+            } else if pan.state == .changed {
+                if !editMode {
+                    let translation = pan.translation(in: self)
+                    if helixOrientation == .horizontal {
+                        self.rotation3D = originalRotation + translation.y / self.bounds.height * CGFloat.pi * 2
+                    } else {
+                        self.rotation3D = originalRotation + translation.x / self.bounds.width * CGFloat.pi * 2
+                    }
                 }
             }
         }
@@ -634,37 +639,39 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private var startTorsion: CGFloat = 0
     private var startScale: CGFloat = 0
     @objc func handlePinchGesture(pinch: UIPinchGestureRecognizer) {
-        // Avoid errors
-        if pinch.numberOfTouches < 2 {
-            return
-        }
-        
-        if pinch.state == .began {
-            startTorsion = self.torsion
-            startScale = self.scale
-        } else if pinch.state == .changed {
-            let p1: CGPoint = pinch.location(ofTouch: 0, in: self)
-            let p2: CGPoint = pinch.location(ofTouch: 1, in: self)
-            
-            let azimuth: CGFloat = COGO.azimuth(x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y)!
-            let quarterPI = CGFloat.pi / 4
-            let pinchDirection: HelixOrientation
-            if abs(azimuth) < quarterPI || abs(azimuth) > 3 * quarterPI {
-                pinchDirection = .vertical
-            } else {
-                pinchDirection = .horizontal
+        if areGesturesEnabled {
+            // Avoid errors
+            if pinch.numberOfTouches < 2 {
+                return
             }
-            if pinchDirection == self.helixOrientation {
-                if !editMode {
-                    self.torsion = startTorsion + 0.4 * (1 - pinch.scale)
+            
+            if pinch.state == .began {
+                startTorsion = self.torsion
+                startScale = self.scale
+            } else if pinch.state == .changed {
+                let p1: CGPoint = pinch.location(ofTouch: 0, in: self)
+                let p2: CGPoint = pinch.location(ofTouch: 1, in: self)
+                
+                let azimuth: CGFloat = COGO.azimuth(x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y)!
+                let quarterPI = CGFloat.pi / 4
+                let pinchDirection: HelixOrientation
+                if abs(azimuth) < quarterPI || abs(azimuth) > 3 * quarterPI {
+                    pinchDirection = .vertical
+                } else {
+                    pinchDirection = .horizontal
                 }
-            } else {
-                self.scale = startScale + 0.3 * (pinch.scale - 1)
+                if pinchDirection == self.helixOrientation {
+                    if !editMode {
+                        self.torsion = startTorsion + 0.4 * (1 - pinch.scale)
+                    }
+                } else {
+                    self.scale = startScale + 0.3 * (pinch.scale - 1)
+                }
             }
         }
     }
     @objc func handleTapGesture(tap: UITapGestureRecognizer) {
-        if editMode {
+        if editMode && areGesturesEnabled {
             let tapPoint = tap.location(in: self)
             let segmentPairs = generateSegments()
             
@@ -710,26 +717,64 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         }
     }
     
+    private var popup: DnaEditPopup? = nil
+    private var longPressedIndex: Int? = nil
     @objc func handleLongPressGesture(press: UILongPressGestureRecognizer) {
-        if editMode {
-            let pressPoint = press.location(in: self)
-            let segmentPairs = generateSegments()
-        
-            // Loop through segments and check main only
-            for segmentPair in segmentPairs {
-                let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
-                if mainRect.contains(pressPoint) {
-                    if segmentPair.index < baseTypes.count {
-                        baseTypes[segmentPair.index] = baseTypes[segmentPair.index].pair
-                        if isDrawingEnabled {
-                            setNeedsDisplay()
+        if editMode && areGesturesEnabled {
+            if press.state == .began {
+                let pressPoint = press.location(in: self)
+                let segmentPairs = generateSegments()
+            
+                // Loop through segments and check main only
+                for segmentPair in segmentPairs {
+                    let mainRect = segmentPair.mainSegment.circle.circumscribedRect()
+                    if mainRect.contains(pressPoint) {
+                        if segmentPair.index < baseTypes.count {
+                            longPressedIndex = segmentPair.index
+                            
+                            popup = DnaEditPopup()
+                            popup!.getPositioning = {[unowned self] in self.popupButtonsPositioning()}
+                            popup!.onClose = {[unowned self] selection in self.handleLongPressSelection(selection)}
+                            popup!.view.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.4)
+                            popup!.modalPresentationStyle = .overCurrentContext
+                            defer {
+                                self.parentViewController?.present(popup!, animated: false, completion: nil)
+                            }
+                            press.state = .ended
+                            areGesturesEnabled = false
+                            return
                         }
-                        onEdit?()
-                        return
                     }
                 }
             }
         }
+    }
+    private func handleLongPressSelection(_ selection: DnaEditPopup.PopupSelection) {
+        areGesturesEnabled = true
+        print(selection)
+        if isDrawingEnabled {
+            setNeedsDisplay()
+        }
+        onEdit?()
+        popup = nil
+    }
+    private func popupButtonsPositioning() -> DnaEditPopup.ButtonsPositioning? {
+        if longPressedIndex == nil {
+            return nil
+        }
+        let segmentPair = generateSegmentPair(index: longPressedIndex!, baseType: nil)
+        let tapPoint = convert(segmentPair?.mainSegment.circle.center ?? CGPoint.zero, to: self.parentViewController?.view)
+        let circleRadius = segmentPair?.mainSegment.circle.radius ?? 0.00
+        let addBtnRect: CGRect
+        let removeBtnRect: CGRect
+        if helixOrientation == .horizontal {
+            addBtnRect = CGRect(x: tapPoint.x - circleRadius, y: tapPoint.y - 3.5 * circleRadius, width: circleRadius * 2, height: circleRadius * 2)
+            removeBtnRect = CGRect(x: tapPoint.x - circleRadius, y: tapPoint.y + 1.5 * circleRadius, width: circleRadius * 2, height: circleRadius * 2)
+        } else {
+            addBtnRect = CGRect(x: tapPoint.x + 1.5 * circleRadius, y: tapPoint.y - circleRadius, width: circleRadius * 2, height: circleRadius * 2)
+            removeBtnRect = CGRect(x: tapPoint.x - 3.5 * circleRadius, y: tapPoint.y - circleRadius, width: circleRadius * 2, height: circleRadius * 2)
+        }
+        return DnaEditPopup.ButtonsPositioning(circleRadius: circleRadius, addBtnRect: addBtnRect, removeBtnRect: removeBtnRect)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -741,8 +786,81 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             }
         }
     }
+}
+
+fileprivate class DnaEditPopup: HiddenStatusBarController {
+    var onClose: ((_ selection: PopupSelection) -> ())?
+    var getPositioning: (() -> ButtonsPositioning?)?
     
-    deinit {
-        print("DnaView terminated")
+    struct ButtonsPositioning {
+        var circleRadius: CGFloat
+        var addBtnRect: CGRect
+        var removeBtnRect: CGRect
+    }
+    
+    enum PopupSelection {
+        case add
+        case remove
+        case cancel
+    }
+    
+    var addBtn: UIButton! = nil
+    var removeBtn: UIButton! = nil
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBtn = UIButton()
+        view.addSubview(addBtn)
+        addBtn.setTitle("+", for: .normal)
+        addBtn.backgroundColor = UIColor.gray
+        let tapGestureAdd = UITapGestureRecognizer(target: self, action: #selector(handleAddTap))
+        addBtn.addGestureRecognizer(tapGestureAdd)
+        
+        removeBtn = UIButton()
+        view.addSubview(removeBtn)
+        removeBtn.setTitle("\u{2212}", for: .normal)
+        removeBtn.backgroundColor = UIColor.gray
+        let tapGestureRemove = UITapGestureRecognizer(target: self, action: #selector(handleRemoveTap))
+        removeBtn.addGestureRecognizer(tapGestureRemove)
+        
+        let tapGestureCancel = UITapGestureRecognizer(target: self, action: #selector(handleCancelTap))
+        view.addGestureRecognizer(tapGestureCancel)
+        
+        updateButtonsPositioning()
+    }
+    
+    func updateButtonsPositioning() {
+        guard let btnPos: ButtonsPositioning = getPositioning?() else {
+            return
+        }
+        let buttonFont = UIFont(name: "Arial", size: btnPos.circleRadius * 2)?.bold() ?? UIFont.boldSystemFont(ofSize: btnPos.circleRadius * 2)
+        addBtn.frame = btnPos.addBtnRect
+        removeBtn.frame = btnPos.removeBtnRect
+        addBtn.layer.cornerRadius = btnPos.circleRadius
+        removeBtn.layer.cornerRadius = btnPos.circleRadius
+        addBtn.titleLabel?.font = buttonFont
+        removeBtn.titleLabel?.font = buttonFont
+    }
+    
+    @objc private func handleAddTap() {
+        close(.add)
+    }
+    @objc private func handleRemoveTap() {
+        close(.remove)
+    }
+    @objc private func handleCancelTap() {
+        close(.cancel)
+    }
+    
+    private func close(_ selection: PopupSelection) {
+        self.onClose?(selection)
+        dismiss(animated: false, completion: nil)
+    }
+}
+
+fileprivate extension UIResponder {
+    var parentViewController: UIViewController? {
+        return next as? UIViewController ?? next?.parentViewController
     }
 }

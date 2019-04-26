@@ -3,7 +3,7 @@
 
 import UIKit
 
-class DnaController: UIViewController {
+class DnaController: HiddenStatusBarController {
     @IBOutlet var dnaScrollView: DnaScrollView!
     @IBOutlet var dnaMapScrollView: DnaScrollView!
     
