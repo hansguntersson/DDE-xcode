@@ -16,11 +16,11 @@ class TestViewController: HiddenStatusBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let sequenceCount: Int = 5
+        let sequenceCount: Int = 10
         let dnas = DnaSequences()
         
         for i in 0..<sequenceCount {
-            let dna = DnaSequence(length: i * 5 + 30, name: "RandomSequence" + String(i))
+            let dna = DnaSequence(length: i * 5 + 30)
             _ = dnas.add(sequence: dna)
         }
         DnaStorage.storeSequences(sequences: dnas)

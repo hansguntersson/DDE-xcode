@@ -4,11 +4,13 @@
 import UIKit
 
 class SequencesViewController: HiddenStatusBarController {
-    // Swift 4: let sortedKeys = dictionary.keys.sorted()
+    var sequences: DnaSequences?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
@@ -26,19 +28,16 @@ class SequencesViewController: HiddenStatusBarController {
 extension SequencesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return sequences?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "sequenceCell") as! CustomSequenceCell
-        cell.nameLabel.text = "Name " + String(indexPath.row)
-        cell.lengthLabel.text = "Lenght: 5"
-        cell.lastSavedLabel.text = "Sometime"
+        let sequence = sequences![indexPath.row]
+        cell.nameLabel.text = sequence.name
+        cell.lengthLabel.text = "(\(sequence.count))"
+        cell.lettersLabel.text = sequence.letters()
         
         return cell
     }
-    
-    
-    
 }

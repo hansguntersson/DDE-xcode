@@ -10,6 +10,7 @@ class MainViewController: HiddenStatusBarController {
     private enum Segues: String {
         case goToGameScreen = "goToGameScreen"
         case goToReadyScreen = "goToReadyScreen"
+        case goToSequences = "goToSequences"
     }
     
     // -------------------------------------------------------------------------
@@ -79,6 +80,9 @@ class MainViewController: HiddenStatusBarController {
             let gameController = segue.destination as! GameViewController
             gameController.gameState = sender as? GameState
             gameController.dnaSequence = sender as? DnaSequence
+        case Segues.goToSequences.rawValue:
+            let sequencesController = segue.destination as! SequencesViewController
+            sequencesController.sequences = DnaStorage.getStoredSequences()
         default:
             break
         }

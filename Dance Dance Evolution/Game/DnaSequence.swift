@@ -15,6 +15,9 @@ class DnaSequence: Codable, CustomStringConvertible {
     private(set) var name: String
     var sequenceDescription: String = ""
     private(set) var nucleobaseSequence: [Nucleobase]
+    var count: Int {
+        return nucleobaseSequence.count
+    }
     
     // -------------------------------------------------------------------------
     // Mark: - Nucleobase Type and Evolution State enumerations
@@ -126,7 +129,7 @@ class DnaSequence: Codable, CustomStringConvertible {
     // Mark: - Sequence Initializers
     // -------------------------------------------------------------------------
     convenience init(length: Int) {
-        self.init(length: length, name: "RandomSequence")
+        self.init(length: length, name: "Rand" + String(Date.timeIntervalSinceReferenceDate))
     }
     
     init(length: Int, name: String) {
@@ -174,8 +177,8 @@ class DnaSequence: Codable, CustomStringConvertible {
             for nucleobase in nucleobaseSequence {
                 mutatedNucleobaseSequence.append(nucleobase.mutatedType ?? nucleobase.type)
             }
-            let newName = name + "_Mutated_" + Date().toString(format: "yyyy-MM-dd_HH:mm:ss")
-            let newDescription = "Mutated from: " + self.description
+            let newName = name + "_Mutated"
+            let newDescription = "Mutated at " + Date().toString(format: "yyyy-MM-dd_HH:mm:ss") + " from: " + (self.description == "" ? "..." : self.description)
             return DnaSequence(from: mutatedNucleobaseSequence, name: newName , description: newDescription)
         } else {
             return nil

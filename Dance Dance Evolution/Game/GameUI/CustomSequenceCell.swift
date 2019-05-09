@@ -8,8 +8,7 @@ class CustomSequenceCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var lengthLabel: UILabel!
-    @IBOutlet var lastSavedLabel: UILabel!
-    
+    @IBOutlet var lettersLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

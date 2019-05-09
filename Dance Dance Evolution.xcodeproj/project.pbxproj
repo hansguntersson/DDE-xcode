@@ -220,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				89F4B406214EB5E800F8871F /* ArrowView.swift */,
+				890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */,
 				8994FBCC215F73B800387BF2 /* DNASegmentedControl.swift */,
 				8994FBD0215F845900387BF2 /* DNASequenceScrollView.swift */,
 				89B0F28521DE98EB00E7F1A6 /* DnaView.swift */,
@@ -237,7 +238,6 @@
 				890F85232169DA6F00765610 /* EdgedButton.swift */,
 				894BB17221706E06003C4173 /* NumberTextField.swift */,
 				8937BEAD2192330A00228D8C /* OutlinedLabel.swift */,
-				890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";

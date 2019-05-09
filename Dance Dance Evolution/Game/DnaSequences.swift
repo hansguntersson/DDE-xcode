@@ -3,22 +3,33 @@
 
 import Foundation
 
-class DnaSequences: Sequence, IteratorProtocol {
+class DnaSequences: Sequence, IteratorProtocol, Collection {
+
+    
     private var sequencesDict: [String: DnaSequence] = [:]
     
     init() {
         sequencesDict = [:]
     }
     
+    var count: Int {
+        get {
+            return sequencesDict.count
+        }
+    }
+    
     // -------------------------------------------------------------------------
-    // Mark: - Iteration
+    // Mark: - IteratorProtocol
     // -------------------------------------------------------------------------
     private var currentIndex: Int = 0
-    private var keys: [String] = []
+    private var keys: [String] {
+        get {
+            return sequencesDict.keys.sorted()
+        }
+    }
     
     func makeIterator() -> DnaSequences {
         currentIndex = 0
-        keys = sequencesDict.keys.sorted()
         return self
     }
     
@@ -29,6 +40,26 @@ class DnaSequences: Sequence, IteratorProtocol {
             return sequencesDict[key]
         }
         return nil
+    }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Collection
+    // -------------------------------------------------------------------------
+    subscript(position: Int) -> DnaSequence {
+        return sequencesDict[self.keys[position]]!
+    }
+    func index(after i: Int) -> Int {
+        return i + 1
+    }
+    var startIndex: Int {
+        get {
+            return 0
+        }
+    }
+    var endIndex: Int {
+        get {
+            return sequencesDict.count - 1
+        }
     }
     
     // -------------------------------------------------------------------------
