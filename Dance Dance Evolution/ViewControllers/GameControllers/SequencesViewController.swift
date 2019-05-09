@@ -25,19 +25,21 @@ class SequencesViewController: HiddenStatusBarController {
     
 }
 
+// -------------------------------------------------------------------------
+// Table View
+// -------------------------------------------------------------------------
 extension SequencesViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sequences?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sequenceCell") as! CustomSequenceCell
-        let sequence = sequences![indexPath.row]
-        cell.nameLabel.text = sequence.name
-        cell.lengthLabel.text = "(\(sequence.count))"
-        cell.lettersLabel.text = sequence.letters()
-        
+        cell.setup(sequence: sequences![indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 78
     }
 }

@@ -4,11 +4,9 @@
 import UIKit
 
 class CustomSequenceCell: UITableViewCell {
-
-    
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var lengthLabel: UILabel!
-    @IBOutlet var lettersLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var lengthLabel: UILabel!
+    @IBOutlet private var lettersLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +19,9 @@ class CustomSequenceCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    
-    
-    
-    
+    func setup(sequence: DnaSequence) {
+        nameLabel.text = sequence.name
+        lengthLabel.text = "(\(sequence.count))"
+        lettersLabel.text = sequence.letters()
+    }
 }
