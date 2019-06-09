@@ -7,6 +7,7 @@ class CustomSequenceCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var lengthLabel: UILabel!
     @IBOutlet private var lettersLabel: UILabel!
+    @IBOutlet var dnaView: DnaView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +24,12 @@ class CustomSequenceCell: UITableViewCell {
         nameLabel.text = sequence.name
         lengthLabel.text = "(\(sequence.count))"
         lettersLabel.text = sequence.letters()
+        
+
+        dnaView.baseTypes = sequence.nucleobaseTypesSequence()
+        dnaView.isAutoOriented = false
+        dnaView.helixOrientation = .horizontal
+        dnaView.isUserInteractionEnabled = true
+        dnaView.isDrawingEnabled = true
     }
 }

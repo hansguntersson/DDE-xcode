@@ -76,6 +76,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                     mustScrollToBottom = true
                 }
             }
+            tapGesture.isEnabled = self.editMode
+            longPressGesture.isEnabled = self.editMode
             updateDimensions()
             animateEditMode()
         }
@@ -607,25 +609,32 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     // Mark: - Gestures
     // -------------------------------------------------------------------------
+    private var panGesture: UIPanGestureRecognizer!
+    private var pinchGesture: UIPinchGestureRecognizer!
+    private var tapGesture: UITapGestureRecognizer!
+    private var longPressGesture: UILongPressGestureRecognizer!
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return gestureRecognizer.type() != .pinch && otherGestureRecognizer.type() != .pinch
     }
     
     func initGestures() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         panGesture.delegate = self
         self.addGestureRecognizer(panGesture)
         
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture))
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture))
         pinchGesture.delegate = self
         self.addGestureRecognizer(pinchGesture)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         tapGesture.delegate = self
+        tapGesture.isEnabled = self.editMode
         self.addGestureRecognizer(tapGesture)
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
         longPressGesture.delegate = self
+        longPressGesture.isEnabled = self.editMode
         self.addGestureRecognizer(longPressGesture)
     }
     
