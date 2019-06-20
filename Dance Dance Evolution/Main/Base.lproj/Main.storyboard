@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="140.5" y="35" width="39" height="16"/>
+                                <rect key="frame" x="37" y="35" width="246" height="100.00000000000006"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pBE-R4-GR8" secondAttribute="height" multiplier="123:50" id="WEb-X9-dUE"/>
@@ -135,7 +135,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="74.5" y="461" width="171" height="80"/>
+                                <rect key="frame" x="74.5" y="461" width="171.00000000000006" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
@@ -143,10 +143,10 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="67.5" y="71" width="185" height="370"/>
+                                <rect key="frame" x="67.5" y="155" width="185" height="286"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="50" width="185" height="270"/>
+                                        <rect key="frame" x="0.0" y="8" width="185" height="270"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
@@ -367,7 +367,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="w97-a8-Cwg">
-                                <rect key="frame" x="152" y="35" width="16" height="16"/>
+                                <rect key="frame" x="10" y="35" width="300" height="80.000000000000057"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
@@ -391,7 +391,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="61" width="300" height="454"/>
+                                <rect key="frame" x="10" y="125" width="300" height="390"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
                                         <rect key="frame" x="10" y="10" width="280" height="448"/>
@@ -786,13 +786,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom DNA Sequences" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBR-4Q-zBH" userLabel="CustomHeader">
-                                <rect key="frame" x="51" y="35" width="259" height="38"/>
+                                <rect key="frame" x="51" y="35" width="259" height="25.5"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Tx-xB-nIh">
-                                <rect key="frame" x="10" y="78" width="300" height="480"/>
+                                <rect key="frame" x="10" y="65.5" width="300" height="492.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.95812821061643838" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sequenceCell" rowHeight="100" id="01F-Lu-hkf" customClass="CustomSequenceCell" customModule="Dance_Dance_Evolution" customModuleProvider="target">
@@ -865,20 +865,15 @@
                                     <outlet property="delegate" destination="vjx-2h-RsF" id="nEc-52-3ik"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGj-hG-HiX" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="35" width="41" height="38"/>
+                            <button opaque="NO" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGj-hG-HiX" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="10" y="30" width="41" height="35.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="titleShadowOffset" width="-1" height="-2"/>
-                                <state key="normal" title="⮐ ">
+                                <state key="normal" image="Caret">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="goBack:" destination="vjx-2h-RsF" eventType="touchUpInside" id="NrE-Ov-CL3"/>
                                     <action selector="goToMainMenu:" destination="oBc-HA-PYg" eventType="touchUpInside" id="gvh-g9-jFf"/>
@@ -897,8 +892,8 @@
                             <constraint firstItem="IT6-Kb-69m" firstAttribute="trailing" secondItem="1Tx-xB-nIh" secondAttribute="trailing" constant="10" id="fnp-xJ-aWD"/>
                             <constraint firstItem="Bpg-op-jJ2" firstAttribute="leading" secondItem="42b-um-AG7" secondAttribute="leading" id="gxP-3l-Lng"/>
                             <constraint firstItem="vBR-4Q-zBH" firstAttribute="leading" secondItem="mGj-hG-HiX" secondAttribute="trailing" id="jEz-Nv-fxG"/>
-                            <constraint firstItem="mGj-hG-HiX" firstAttribute="top" secondItem="IT6-Kb-69m" secondAttribute="top" constant="15" id="ki6-2f-Ndn"/>
-                            <constraint firstItem="vBR-4Q-zBH" firstAttribute="height" secondItem="mGj-hG-HiX" secondAttribute="height" id="lyP-vt-OaJ"/>
+                            <constraint firstItem="mGj-hG-HiX" firstAttribute="top" secondItem="IT6-Kb-69m" secondAttribute="top" constant="10" id="ki6-2f-Ndn"/>
+                            <constraint firstItem="mGj-hG-HiX" firstAttribute="height" secondItem="vBR-4Q-zBH" secondAttribute="height" constant="10" id="lyP-vt-OaJ"/>
                             <constraint firstItem="IT6-Kb-69m" firstAttribute="bottom" secondItem="1Tx-xB-nIh" secondAttribute="bottom" constant="10" id="uat-JU-1VT"/>
                             <constraint firstItem="Bpg-op-jJ2" firstAttribute="top" secondItem="42b-um-AG7" secondAttribute="top" id="xoT-lv-8m4"/>
                         </constraints>
@@ -1249,6 +1244,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Caret" width="13" height="21"/>
         <image name="DDE_logo" width="614" height="249"/>
         <image name="DownArrowOutline" width="100" height="100"/>
         <image name="LeftArrowOutline" width="100" height="100"/>
