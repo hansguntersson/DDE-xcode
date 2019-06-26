@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		890A059E21AF486C00CCE81A /* CustomSequenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */; };
 		890F85242169DA6F00765610 /* EdgedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F85232169DA6F00765610 /* EdgedButton.swift */; };
+		891761B122C4186800046A85 /* SequencePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891761B022C4186800046A85 /* SequencePopup.swift */; };
 		891B10962116FBE800CC5C4D /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891B10952116FBE800CC5C4D /* EntryViewController.swift */; };
 		892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892724AA2143B89300032125 /* DisplayUpdateInformer.swift */; };
 		8937BEAE2192330A00228D8C /* OutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8937BEAD2192330A00228D8C /* OutlinedLabel.swift */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		890A059D21AF486C00CCE81A /* CustomSequenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSequenceCell.swift; sourceTree = "<group>"; };
 		890F85232169DA6F00765610 /* EdgedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgedButton.swift; sourceTree = "<group>"; };
+		891761B022C4186800046A85 /* SequencePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencePopup.swift; sourceTree = "<group>"; };
 		891B10952116FBE800CC5C4D /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		892724AA2143B89300032125 /* DisplayUpdateInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUpdateInformer.swift; sourceTree = "<group>"; };
 		8937BEAD2192330A00228D8C /* OutlinedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedLabel.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				E5F85F1D21011DA4002DA08D /* GameViewController.swift */,
 				89564B082160B82B005DAC2A /* TestViewController.swift */,
 				89FF0417219CC59C00FA0344 /* SequencesViewController.swift */,
+				891761B022C4186800046A85 /* SequencePopup.swift */,
 				89B0F28721DE9B0100E7F1A6 /* DnaController.swift */,
 			);
 			path = GameControllers;
@@ -459,6 +462,7 @@
 				890A059E21AF486C00CCE81A /* CustomSequenceCell.swift in Sources */,
 				89C37A3F21249D3E00867B39 /* ReadyViewController.swift in Sources */,
 				89B0F28821DE9B0100E7F1A6 /* DnaController.swift in Sources */,
+				891761B122C4186800046A85 /* SequencePopup.swift in Sources */,
 				8984732C21B47CF4007D332E /* DnaSequences.swift in Sources */,
 				89564B092160B82B005DAC2A /* TestViewController.swift in Sources */,
 				89465AB82129FE020061F4E1 /* AppLaunch.swift in Sources */,

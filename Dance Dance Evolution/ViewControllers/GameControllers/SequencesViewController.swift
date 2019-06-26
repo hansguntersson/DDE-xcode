@@ -6,13 +6,26 @@ import UIKit
 class SequencesViewController: HiddenStatusBarController {
     var sequences: DnaSequences?
     
+    private enum Segues: String {
+        case goToSequencePopup = "goToSequencePopup"
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
+  
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Segues.goToSequencePopup.rawValue:
+            break
+        default:
+            break
+        }
+    }
+    
     
     
     
@@ -23,7 +36,18 @@ class SequencesViewController: HiddenStatusBarController {
         self.dismiss(animated: false, completion: nil)
     }
     
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
 
 // -------------------------------------------------------------------------
 // Table View
@@ -41,5 +65,15 @@ extension SequencesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // need a pop-up view controller
+        performSegue(withIdentifier: Segues.goToSequencePopup.rawValue, sender: nil)
+        
+//        let alert = UIAlertController(title: "Sequence", message: "...", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Play", style: .default, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
     }
 }
