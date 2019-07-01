@@ -75,7 +75,7 @@ class MainViewController: HiddenStatusBarController {
         case Segues.goToReadyScreen.rawValue:
             let readyController = segue.destination as! ReadyViewController
             let isRandom = sender as! Bool
-            readyController.onClose = {[unowned self] in (isRandom ? self.startRandomGame() : self.startCustomGame())}
+            readyController.onClose = {[unowned self] in (isRandom ? self.startRandomGame() : self.startRandomGame())}
         case Segues.goToGameScreen.rawValue:
             let gameController = segue.destination as! GameViewController
             gameController.gameState = sender as? GameState
@@ -83,6 +83,7 @@ class MainViewController: HiddenStatusBarController {
         case Segues.goToSequences.rawValue:
             let sequencesController = segue.destination as! SequencesViewController
             sequencesController.sequences = DnaStorage.getStoredSequences()
+            sequencesController.onPlay = {[unowned self] sequence in self.startCustomGame(sequence)}
         default:
             break
         }
@@ -93,9 +94,9 @@ class MainViewController: HiddenStatusBarController {
             performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: randomSequence)
         }
     }
-    private func startCustomGame() {
+    private func startCustomGame(_ sequence: DnaSequence) {
         if UIApplication.shared.applicationState == .active {
-            // custom game
+            performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: sequence)
         }
     }
 }
