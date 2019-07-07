@@ -7,12 +7,6 @@ class MainViewController: HiddenStatusBarController {
     @IBOutlet var resistanceLogo: PaddedImageView!
     @IBOutlet var btnResume: UIButton!
     
-    private enum Segues: String {
-        case goToGameScreen = "goToGameScreen"
-        case goToReadyScreen = "goToReadyScreen"
-        case goToSequences = "goToSequences"
-    }
-    
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
     // -------------------------------------------------------------------------
@@ -26,9 +20,6 @@ class MainViewController: HiddenStatusBarController {
         super.viewWillAppear(animated)
         
         refreshResumeButton()
-    }
-    private func refreshResumeButton() {
-        btnResume.isHidden = !DDEGame.isGameAvailableForResume()
     }
     
     // -------------------------------------------------------------------------
@@ -46,13 +37,21 @@ class MainViewController: HiddenStatusBarController {
             paddingView.layer.cornerRadius = 10
         }
     }
+    private func refreshResumeButton() {
+        btnResume.isHidden = !DDEGame.isGameAvailableForResume()
+    }
     @objc private func handleLogoTap() {
         dismiss(animated: false, completion: nil)
     }
     
     // -------------------------------------------------------------------------
-    // Mark: - Game types and Navigation
+    // Mark: - Navigation
     // -------------------------------------------------------------------------
+    private enum Segues: String {
+        case goToGameScreen = "goToGameScreen"
+        case goToSequences = "goToSequences"
+    }
+    
     @IBAction func resumeGame(_ sender: UIButton) {
         if let savedGameState = DDEGame.getSavedGameState() {
             performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: savedGameState)
@@ -67,15 +66,12 @@ class MainViewController: HiddenStatusBarController {
         }
     }
     @IBAction func newRandomGame(_ sender: UIButton) {
-        let isRandomGame = true
-        performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: isRandomGame)
+        let randomSequence = DnaSequence(length: Settings.sequenceLength)
+        performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: randomSequence)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case Segues.goToReadyScreen.rawValue:
-            let readyController = segue.destination as! ReadyViewController
-            let isRandom = sender as! Bool
-            readyController.onClose = {[unowned self] in (isRandom ? self.startRandomGame() : self.startRandomGame())}
         case Segues.goToGameScreen.rawValue:
             let gameController = segue.destination as! GameViewController
             gameController.gameState = sender as? GameState
@@ -83,20 +79,8 @@ class MainViewController: HiddenStatusBarController {
         case Segues.goToSequences.rawValue:
             let sequencesController = segue.destination as! SequencesViewController
             sequencesController.sequences = DnaStorage.getStoredSequences()
-            sequencesController.onPlay = {[unowned self] sequence in self.startCustomGame(sequence)}
         default:
             break
-        }
-    }
-    private func startRandomGame() {
-        if UIApplication.shared.applicationState == .active {
-            let randomSequence = DnaSequence(length: Settings.sequenceLength)
-            performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: randomSequence)
-        }
-    }
-    private func startCustomGame(_ sequence: DnaSequence) {
-        if UIApplication.shared.applicationState == .active {
-            performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: sequence)
         }
     }
 }

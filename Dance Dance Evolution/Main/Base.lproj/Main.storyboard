@@ -78,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aw-G4-6rY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4382" y="-1011"/>
+            <point key="canvasLocation" x="4348" y="-1614"/>
         </scene>
         <!--Entry View Controller-->
         <scene sceneID="lWW-9Z-x00">
@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="37" y="35" width="246" height="100.00000000000006"/>
+                                <rect key="frame" x="140.5" y="35" width="39" height="16"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pBE-R4-GR8" secondAttribute="height" multiplier="123:50" id="WEb-X9-dUE"/>
@@ -135,7 +135,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="74.5" y="461" width="171.00000000000006" height="80"/>
+                                <rect key="frame" x="74.5" y="461" width="171" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
@@ -143,10 +143,10 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="67.5" y="155" width="185" height="286"/>
+                                <rect key="frame" x="67.5" y="71" width="185" height="370"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="8" width="185" height="270"/>
+                                        <rect key="frame" x="0.0" y="50" width="185" height="270"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
@@ -219,9 +219,6 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <segue destination="qxk-hI-mtj" kind="presentation" animates="NO" id="rqm-63-Ap7"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="or2-c9-Mm0" userLabel="CUSTOMGAME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="174" width="185" height="38"/>
@@ -348,7 +345,6 @@
                         <outlet property="btnResume" destination="Hct-66-Lgb" id="5Di-wJ-GwG"/>
                         <outlet property="resistanceLogo" destination="lr6-8O-6un" id="UN1-5m-ZS3"/>
                         <segue destination="oBc-HA-PYg" kind="presentation" identifier="goToGameScreen" animates="NO" id="j3K-m0-PmQ"/>
-                        <segue destination="L9W-B4-s7C" kind="presentation" identifier="goToReadyScreen" animates="NO" id="V8L-n5-YJy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afu-Nr-2Le" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -367,7 +363,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="w97-a8-Cwg">
-                                <rect key="frame" x="10" y="35" width="300" height="80.000000000000057"/>
+                                <rect key="frame" x="152" y="35" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
@@ -391,7 +387,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="125" width="300" height="390"/>
+                                <rect key="frame" x="10" y="61" width="300" height="454"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
                                         <rect key="frame" x="10" y="10" width="280" height="448"/>
@@ -409,7 +405,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5K2-Hz-Fxf" userLabel="SoundSwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -593,7 +589,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="80n-oM-iHu" userLabel="ToleranceVisibilitySwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
+                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -709,70 +705,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIK-0E-HKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="576" y="836"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="6zG-8B-YAZ">
-            <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="qxk-hI-mtj" customClass="TestViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oBG-KV-j9e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Cfi-1c-s59">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ne5-W1-Ei6" customClass="DNASequenceScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="40" width="300" height="477"/>
-                                <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="500" constant="400" id="AP1-Ad-Hsg"/>
-                                </constraints>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxv-Kc-LWn" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="527" width="300" height="31"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                <size key="titleShadowOffset" width="-1" height="-2"/>
-                                <state key="normal" title="〈 Main Menu">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="goBack:" destination="I2K-9b-V2Y" eventType="touchUpInside" id="LDo-gi-cqh"/>
-                                    <action selector="goBack:" destination="qxk-hI-mtj" eventType="touchUpInside" id="ZAB-MK-w8i"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="ne5-W1-Ei6" firstAttribute="top" secondItem="uW9-MV-SQv" secondAttribute="top" constant="20" id="1Lk-Ft-Zpw"/>
-                            <constraint firstItem="Bxv-Kc-LWn" firstAttribute="centerX" secondItem="ne5-W1-Ei6" secondAttribute="centerX" id="2Br-PE-RcU"/>
-                            <constraint firstItem="Cfi-1c-s59" firstAttribute="trailing" secondItem="oBG-KV-j9e" secondAttribute="trailing" id="PY5-aK-N5G"/>
-                            <constraint firstItem="Cfi-1c-s59" firstAttribute="top" secondItem="oBG-KV-j9e" secondAttribute="top" id="YfZ-qW-DNG"/>
-                            <constraint firstItem="Bxv-Kc-LWn" firstAttribute="top" secondItem="ne5-W1-Ei6" secondAttribute="bottom" constant="10" id="ZsB-zS-hVw"/>
-                            <constraint firstItem="Bxv-Kc-LWn" firstAttribute="width" secondItem="ne5-W1-Ei6" secondAttribute="width" id="gbN-RX-7GL"/>
-                            <constraint firstItem="Cfi-1c-s59" firstAttribute="bottom" secondItem="oBG-KV-j9e" secondAttribute="bottom" id="rAp-x4-7em"/>
-                            <constraint firstItem="Bxv-Kc-LWn" firstAttribute="bottom" secondItem="uW9-MV-SQv" secondAttribute="bottom" constant="-10" id="rpN-1D-iIc"/>
-                            <constraint firstItem="ne5-W1-Ei6" firstAttribute="centerX" secondItem="uW9-MV-SQv" secondAttribute="centerX" id="sCX-Op-FJD"/>
-                            <constraint firstItem="Cfi-1c-s59" firstAttribute="leading" secondItem="oBG-KV-j9e" secondAttribute="leading" id="wPk-LH-fSe"/>
-                            <constraint firstItem="ne5-W1-Ei6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uW9-MV-SQv" secondAttribute="leading" constant="10" id="yVC-nk-DjF"/>
-                            <constraint firstItem="ne5-W1-Ei6" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uW9-MV-SQv" secondAttribute="trailing" constant="-10" id="zhV-HF-g3P"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="uW9-MV-SQv"/>
-                    </view>
-                    <connections>
-                        <outlet property="scroll" destination="ne5-W1-Ei6" id="yd8-Ba-VOz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6WF-U2-uWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="576" y="-752"/>
+            <point key="canvasLocation" x="576" y="1067"/>
         </scene>
         <!--Sequences View Controller-->
         <scene sceneID="8fC-Ok-ipc">
@@ -902,11 +835,12 @@
                     <connections>
                         <outlet property="sequencesTable" destination="1Tx-xB-nIh" id="9Jp-dt-W5N"/>
                         <segue destination="7tl-Yp-Z9D" kind="presentation" identifier="goToSequencePopup" modalTransitionStyle="crossDissolve" id="aQl-SA-ICv"/>
+                        <segue destination="oBc-HA-PYg" kind="presentation" id="pVz-i4-l4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAI-Yh-vvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1726.875" y="-434.15492957746477"/>
+            <point key="canvasLocation" x="1868" y="-786"/>
         </scene>
         <!--Ready View Controller-->
         <scene sceneID="ftd-Tc-658">
@@ -981,7 +915,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eE-sn-uPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2801" y="219"/>
+            <point key="canvasLocation" x="4020" y="60"/>
         </scene>
         <!--Sequence Selected Popup-->
         <scene sceneID="Whj-vL-m1e">
@@ -1062,7 +996,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJx-Dm-ohN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="-1249"/>
+            <point key="canvasLocation" x="3261" y="-1403"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="rQW-Jr-PGk">
@@ -1325,7 +1259,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRu-ob-bMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="9z2-XE-ZMS"/>
             </objects>
-            <point key="canvasLocation" x="1727" y="614"/>
+            <point key="canvasLocation" x="2687" y="60"/>
         </scene>
     </scenes>
     <resources>
@@ -1340,6 +1274,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V8L-n5-YJy"/>
+        <segue reference="j3K-m0-PmQ"/>
     </inferredMetricsTieBreakers>
 </document>
