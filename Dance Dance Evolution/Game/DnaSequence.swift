@@ -230,4 +230,11 @@ class DnaSequence: Codable, CustomStringConvertible {
             return nil
         }
     }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Copy Object
+    // -------------------------------------------------------------------------
+    func copy() -> DnaSequence {
+        return DnaSequence(from: self.nucleobaseTypesSequence(), name: self.name, description: self.description)
+    }
 }

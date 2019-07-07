@@ -7,17 +7,9 @@ class SequencesViewController: HiddenStatusBarController {
     var sequences: DnaSequences?
     @IBOutlet var sequencesTable: UITableView!
     
-    var onPlay: ((_ sequence: DnaSequence) -> Void)!
-    
     private enum Segues: String {
         case goToSequencePopup = "goToSequencePopup"
-        
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        case goToGameScreen = "goToGameScreen"
     }
     
     // -------------------------------------------------------------------------
@@ -29,16 +21,17 @@ class SequencesViewController: HiddenStatusBarController {
             let popupController = segue.destination as! SequencePopup
             popupController.onEdit = {[unowned self] in self.editSequence()}
             popupController.onPlay = {[unowned self] in self.startCustomGame()}
+        case Segues.goToGameScreen.rawValue:
+            let gameController = segue.destination as! GameViewController
+            let customSequence = sequences![sequencesTable.indexPathForSelectedRow!.row]
+            gameController.dnaSequence = customSequence.copy() //preserve the sequence
         default:
             break
         }
     }
     
     private func startCustomGame() {
-        if UIApplication.shared.applicationState == .active {
-            let sequence = sequences![sequencesTable.indexPathForSelectedRow!.row]
-            self.dismiss(animated: false, completion: {[unowned self] in self.onPlay(sequence)})
-        }
+        performSegue(withIdentifier: Segues.goToGameScreen.rawValue, sender: nil)
     }
     
     private func editSequence() {

@@ -187,6 +187,7 @@ class GameViewController: HiddenStatusBarController {
             view.addSubview(arrow)
             arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
             arrow.isHidden = true
+            arrow.isUserInteractionEnabled = false
             arrows.append(arrow)
         }
     }
@@ -293,6 +294,7 @@ class GameViewController: HiddenStatusBarController {
         if UIApplication.shared.applicationState == .active {
             displayUpdateInformer?.resume()
             gameMusic?.play()
+            readyViewController = nil
         }
     }
     private func pausePlay() {
@@ -416,12 +418,13 @@ class GameViewController: HiddenStatusBarController {
         clean()
         dismiss(animated: false, completion: nil)
     }
-    @IBAction func goToMainMenu(_ sender: UIButton) {
+    @IBAction func goBack(_ sender: UIButton) {
         endGame()
     }
     private func clean() {
         displayUpdateInformer.close()
         displayUpdateInformer = nil
+        arrows = []
     }
     deinit {
         NotificationCenter.default.removeObserver(self)

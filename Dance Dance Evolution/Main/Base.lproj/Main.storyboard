@@ -405,7 +405,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5K2-Hz-Fxf" userLabel="SoundSwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
+                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -589,7 +589,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="80n-oM-iHu" userLabel="ToleranceVisibilitySwitch" customClass="ResizableSwitch" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="231" y="0.0" width="51" height="31"/>
+                                                                <rect key="frame" x="243.75" y="3.875" width="38.916666666666657" height="23.25"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -798,7 +798,7 @@
                                     <outlet property="delegate" destination="vjx-2h-RsF" id="nEc-52-3ik"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGj-hG-HiX" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                            <button opaque="NO" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGj-hG-HiX" userLabel="GoBack" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="10" y="30" width="41" height="35.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -809,7 +809,6 @@
                                 </state>
                                 <connections>
                                     <action selector="goBack:" destination="vjx-2h-RsF" eventType="touchUpInside" id="NrE-Ov-CL3"/>
-                                    <action selector="goToMainMenu:" destination="oBc-HA-PYg" eventType="touchUpInside" id="gvh-g9-jFf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -835,7 +834,7 @@
                     <connections>
                         <outlet property="sequencesTable" destination="1Tx-xB-nIh" id="9Jp-dt-W5N"/>
                         <segue destination="7tl-Yp-Z9D" kind="presentation" identifier="goToSequencePopup" modalTransitionStyle="crossDissolve" id="aQl-SA-ICv"/>
-                        <segue destination="oBc-HA-PYg" kind="presentation" id="pVz-i4-l4K"/>
+                        <segue destination="oBc-HA-PYg" kind="presentation" identifier="goToGameScreen" animates="NO" id="pVz-i4-l4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAI-Yh-vvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1010,28 +1009,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-YZ-HJY" userLabel="MainMenu" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="527" width="300" height="31"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                            <button opaque="NO" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-JH-bNZ" userLabel="GoBack">
+                                <rect key="frame" x="0.0" y="518" width="40" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pVb-z8-L5l"/>
+                                    <constraint firstAttribute="width" constant="40" id="q69-Z2-q5r"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="titleShadowOffset" width="-1" height="-2"/>
-                                <state key="normal" title="〈 Main Menu">
+                                <state key="normal" image="Caret">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" red="0.18039215689999999" green="0.41960784309999999" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="goToMainMenu:" destination="oBc-HA-PYg" eventType="touchUpInside" id="xbo-hp-3sC"/>
+                                    <action selector="goBack:" destination="oBc-HA-PYg" eventType="touchUpInside" id="OyV-JC-EGm"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-AM-HEp" userLabel="GoalArrows">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-AM-HEp" userLabel="GoalArrows">
                                 <rect key="frame" x="10" y="50" width="300" height="44.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
+                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMg-iF-sOq" userLabel="LeftBeat" customClass="EdgedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
@@ -1112,10 +1110,10 @@
                                     <constraint firstItem="cPW-oT-4Tk" firstAttribute="centerY" secondItem="gVP-AM-HEp" secondAttribute="centerY" id="qaA-bA-oMt"/>
                                 </constraints>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-k7-jgM" userLabel="GoalLetters">
+                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-k7-jgM" userLabel="GoalLetters">
                                 <rect key="frame" x="55.5" y="94.5" width="209" height="53.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-mo-SGI" userLabel="Letters Stack Equal Spacing">
+                                    <stackView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-mo-SGI" userLabel="Letters Stack Equal Spacing">
                                         <rect key="frame" x="0.0" y="0.0" width="209" height="53.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" text="C" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="hZZ-62-gaL" userLabel="Cytosine" customClass="OutlinedLabel" customModule="Dance_Dance_Evolution" customModuleProvider="target">
@@ -1200,10 +1198,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe"/>
-                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="bottom" secondItem="Gzp-YZ-HJY" secondAttribute="bottom" constant="10" id="Ba7-WW-hR3"/>
+                            <constraint firstItem="dpR-JH-bNZ" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" id="6WG-nV-3Jk"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="JCT-il-pcP"/>
                             <constraint firstAttribute="trailing" secondItem="8Ul-ni-Q03" secondAttribute="trailing" id="Jdl-m1-vuo"/>
-                            <constraint firstItem="Gzp-YZ-HJY" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="Ou9-Yk-qnT"/>
                             <constraint firstAttribute="bottom" secondItem="8Ul-ni-Q03" secondAttribute="bottom" id="PRf-Fl-kRy"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="bottom" constant="10" id="Rti-1s-wcw"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
@@ -1212,8 +1209,8 @@
                             <constraint firstItem="8Ul-ni-Q03" firstAttribute="leading" secondItem="2o3-Km-KhW" secondAttribute="leading" id="eFt-sH-cUm"/>
                             <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:6" id="eqA-Gw-ZeU"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="40" id="h3o-Lz-iTR"/>
+                            <constraint firstItem="dpR-JH-bNZ" firstAttribute="bottom" secondItem="2o3-Km-KhW" secondAttribute="bottom" id="hK8-Xl-brV"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="height" secondItem="FiY-k7-jgM" secondAttribute="height" id="i7d-8Z-uP2"/>
-                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" secondItem="Gzp-YZ-HJY" secondAttribute="trailing" constant="10" id="nmO-Gd-abm"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="leading" secondItem="oiU-9r-p77" secondAttribute="leading" id="pwa-Y0-IBI"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="width" multiplier="4" constant="30" id="rRt-Ae-YE2"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="sBw-Vs-Gvy"/>
@@ -1274,6 +1271,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j3K-m0-PmQ"/>
+        <segue reference="pVz-i4-l4K"/>
     </inferredMetricsTieBreakers>
 </document>
