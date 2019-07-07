@@ -14,22 +14,15 @@ class GameViewController: HiddenStatusBarController {
     /*
         In order to start a game, the gameState object (for resumed games) or
         the DNASequence object (for new games) must be set. One way this could
-        be done is in the PrepareForSegue function of the presenting controller.
+        be done is in the PrepareForSegue function of the presenting controller
     */
     var gameState: GameState? = nil
     var dnaSequence: DnaSequence? = nil
     
     /*
-        Booleans that are set in initGame (called from viewDidLoad) and later used
-        in viewDidAppear to correctly show the countdown screen (ReadyViewController)
-        and to resumePlay
-     */
-    private var isNewGame: Bool = false
-    private var isFirstTimeViewAppears: Bool = true
-    
-    /*
         The readyViewController will be displayed whenever a game is resumed
-        to help the player remember where the game was left.
+        to help the player remember where the game was left and also for a new
+        or resumed game
     */
     var readyViewController: ReadyViewController? = nil
     
@@ -70,9 +63,6 @@ class GameViewController: HiddenStatusBarController {
     
     // Game Arrows
     private var arrows: Array<ArrowView> = []
-    
-    // Game State
-    private var isPaused: Bool = false
     
     // Screen Rendering Height - the space arrows will cover during movement
     private var gameHeight: CGFloat = 0
@@ -121,19 +111,9 @@ class GameViewController: HiddenStatusBarController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if isFirstTimeViewAppears {
-            isFirstTimeViewAppears = false
-            if isNewGame {
-                resumePlay()
-            } else {
-                isPaused = true
-                renderScreen()
-                performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
-            }
-        } else {
-            resumePlay()
-        }
+    
+        renderScreen()
+        performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -147,13 +127,10 @@ class GameViewController: HiddenStatusBarController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        if self.isPaused {
-            hideArrows()
-            // Make sure arrows still look good while rotating device when game is paused
-            coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
-                self.renderScreen()
-            })
-        }
+        hideArrows()
+        coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
+            self.renderScreen()
+        })
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return self.screenOrientation
@@ -165,10 +142,8 @@ class GameViewController: HiddenStatusBarController {
     private func initGame() {
         if gameState != nil {
             game = DDEGame(gameState: gameState!)
-            isNewGame = false
         } else if dnaSequence != nil {
             game = DDEGame(dnaSequence: dnaSequence!)
-            isNewGame = true
         } else {
             dismiss(animated: false, completion: nil)
             return
@@ -318,13 +293,11 @@ class GameViewController: HiddenStatusBarController {
         if UIApplication.shared.applicationState == .active {
             displayUpdateInformer?.resume()
             gameMusic?.play()
-            isPaused = false
         }
     }
     private func pausePlay() {
         displayUpdateInformer?.pause()
         gameMusic?.pause()
-        isPaused = true
     }
     
     // -------------------------------------------------------------------------
@@ -444,8 +417,7 @@ class GameViewController: HiddenStatusBarController {
         dismiss(animated: false, completion: nil)
     }
     @IBAction func goToMainMenu(_ sender: UIButton) {
-        clean()
-        dismiss(animated: false, completion: nil)
+        endGame()
     }
     private func clean() {
         displayUpdateInformer.close()
