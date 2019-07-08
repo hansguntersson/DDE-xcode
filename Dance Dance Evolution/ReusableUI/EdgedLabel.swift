@@ -6,10 +6,15 @@ import UIKit
 @IBDesignable
 class EdgedLabel: UILabel {
     
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        setCornerRadiusRatio()
+    }
+    
     @IBInspectable
     var cornerRadius : CGFloat = 0 {
         didSet {
-            setCornerRadius()
+            self.layer.cornerRadius = cornerRadius
         }
     }
     
@@ -18,10 +23,6 @@ class EdgedLabel: UILabel {
         didSet {
             setCornerRadiusRatio()
         }
-    }
-    
-    private func setCornerRadius() {
-        self.layer.cornerRadius = cornerRadius
     }
     
     private func setCornerRadiusRatio() {
@@ -34,28 +35,14 @@ class EdgedLabel: UILabel {
     @IBInspectable
     var borderWidth : CGFloat = 0 {
         didSet {
-            setBorderWidth()
+            self.layer.borderWidth = borderWidth
         }
-    }
-    
-    private func setBorderWidth() {
-        self.layer.borderWidth = borderWidth
     }
     
     @IBInspectable
     var borderColor : UIColor = .clear {
         didSet {
-            setBorderColor()
+            self.layer.borderColor = borderColor.cgColor
         }
-    }
-    
-    private func setBorderColor() {
-        self.layer.borderColor = borderColor.cgColor
-    }
-    
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        
-        setCornerRadiusRatio()
     }
 }
