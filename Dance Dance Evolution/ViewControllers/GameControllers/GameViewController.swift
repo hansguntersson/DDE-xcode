@@ -99,6 +99,9 @@ class GameViewController: HiddenStatusBarController {
     private var directionToNucleobaseType: Dictionary<ArrowView.ArrowDirection,DnaSequence.NucleobaseType>
         = [.left: .cytosine, .down: .adenine, .up: .thymine, .right: .guanine]
     
+    // DnaScrollView
+    @IBOutlet var dnaScrollView: DnaScrollView!
+    
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
     // -------------------------------------------------------------------------
@@ -148,6 +151,10 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
+        dnaScrollView.dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
+        dnaScrollView.dnaView.isAutoOriented = false
+        dnaScrollView.dnaView.helixOrientation = .horizontal
+        dnaScrollView.dnaView.isDrawingEnabled = true
         
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
