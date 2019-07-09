@@ -683,6 +683,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 }
             } else {
                 self.scale = startScale + 0.3 * (pinch.scale - 1)
+                setMapHighlight()
+                syncMapView?.setNeedsDisplay()
             }
         }
     }
