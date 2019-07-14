@@ -92,6 +92,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     var helixOrientation: HelixOrientation = .horizontal {
         didSet {
+            self.isAutoOriented = false
             updateDimensions()
         }
     }
@@ -144,9 +145,20 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             setMapHighlight()
         }
     }
-    var isDrawingEnabled: Bool = false {
+    var isDrawingEnabled: Bool = true {
         didSet {
             defer {syncMapView?.isDrawingEnabled = isDrawingEnabled}
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
+        }
+    }
+    var offset: CGFloat = 0.0 {
+        didSet {
+            if offset < 0.0 {
+                offset = 0.0
+            }
+            defer {syncMapView?.offset = offset}
             if isDrawingEnabled {
                 setNeedsDisplay()
             }

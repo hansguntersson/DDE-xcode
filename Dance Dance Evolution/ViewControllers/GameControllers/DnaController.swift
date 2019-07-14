@@ -12,6 +12,7 @@ class DnaController: HiddenStatusBarController {
         super.viewDidAppear(animated)
         
         let dnaView = dnaScrollView.dnaView!
+        dnaView.isDrawingEnabled = false
         dnaView.areMainLettersEnabled = true
         dnaView.arePairLettersEnabled = true
         dnaView.baseTypes = DnaSequence(length: 60).nucleobaseTypesSequence()
@@ -19,7 +20,6 @@ class DnaController: HiddenStatusBarController {
         
         let dnaMap = dnaMapScrollView.dnaView!
         dnaView.syncMapView = dnaMap
-        dnaMap.isAutoOriented = false
         dnaMap.helixOrientation = .vertical
         dnaView.isDrawingEnabled = true
     }

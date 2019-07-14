@@ -151,10 +151,11 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
-        dnaScrollView.dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
-        dnaScrollView.dnaView.isAutoOriented = false
-        dnaScrollView.dnaView.helixOrientation = .horizontal
-        dnaScrollView.dnaView.isDrawingEnabled = true
+        let dnaView = dnaScrollView.dnaView!
+        dnaView.isDrawingEnabled = false
+        dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
+        dnaView.helixOrientation = .horizontal
+        dnaView.isDrawingEnabled = true
         
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}

@@ -43,7 +43,7 @@
                                     <action selector="btnTap:" destination="pQx-Ca-anq" eventType="touchUpInside" id="8WO-M7-ncc"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-DE-z1G" userLabel="Map Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-DE-z1G" userLabel="Map Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="16" y="35" width="44" height="503"/>
                                 <color key="backgroundColor" white="0.88389162389999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -78,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aw-G4-6rY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4348" y="-1614"/>
+            <point key="canvasLocation" x="767" y="-1024"/>
         </scene>
         <!--Entry View Controller-->
         <scene sceneID="lWW-9Z-x00">
@@ -219,8 +219,11 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="pQx-Ca-anq" kind="presentation" id="cPz-QC-uX5"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="or2-c9-Mm0" userLabel="CUSTOMGAME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="or2-c9-Mm0" userLabel="CUSTOMSEQUENCES" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="174" width="185" height="38"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
@@ -1048,7 +1051,7 @@
                                 </connections>
                             </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-AM-HEp" userLabel="GoalArrows">
-                                <rect key="frame" x="10" y="90" width="300" height="44.5"/>
+                                <rect key="frame" x="10" y="110" width="300" height="44.5"/>
                                 <subviews>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
@@ -1132,7 +1135,7 @@
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-k7-jgM" userLabel="GoalLetters">
-                                <rect key="frame" x="55.5" y="134.5" width="209" height="53.5"/>
+                                <rect key="frame" x="55.5" y="154.5" width="209" height="53.5"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-mo-SGI" userLabel="Letters Stack Equal Spacing">
                                         <rect key="frame" x="0.0" y="0.0" width="209" height="53.5"/>
@@ -1210,7 +1213,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUTATION!" textAlignment="natural" lineBreakMode="middleTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-81-aRD" userLabel="Mutation">
-                                <rect key="frame" x="24.5" y="198" width="271" height="54"/>
+                                <rect key="frame" x="24.5" y="218" width="271" height="54"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="100"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1219,6 +1222,7 @@
                                 <rect key="frame" x="10" y="11" width="300" height="71"/>
                                 <color key="backgroundColor" white="1" alpha="0.29810573630136988" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ADy-Ol-308"/>
                                     <constraint firstAttribute="height" constant="60" id="Xq1-wN-o8x"/>
                                 </constraints>
                             </scrollView>
@@ -1228,10 +1232,9 @@
                             <constraint firstItem="W1C-sG-pDP" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="0Fa-mJ-1vQ"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe"/>
                             <constraint firstItem="dpR-JH-bNZ" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" id="6WG-nV-3Jk"/>
-                            <constraint firstItem="W1C-sG-pDP" firstAttribute="top" secondItem="2o3-Km-KhW" secondAttribute="top" constant="10" id="FcJ-w7-jXK"/>
+                            <constraint firstItem="W1C-sG-pDP" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="30" id="FcJ-w7-jXK"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="JCT-il-pcP"/>
                             <constraint firstAttribute="trailing" secondItem="8Ul-ni-Q03" secondAttribute="trailing" id="Jdl-m1-vuo"/>
-                            <constraint firstItem="gVP-AM-HEp" firstAttribute="width" secondItem="W1C-sG-pDP" secondAttribute="width" id="LSu-B9-bV0"/>
                             <constraint firstAttribute="bottom" secondItem="8Ul-ni-Q03" secondAttribute="bottom" id="PRf-Fl-kRy"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="bottom" constant="10" id="Rti-1s-wcw"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
@@ -1247,7 +1250,7 @@
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="sBw-Vs-Gvy"/>
                             <constraint firstItem="8Ul-ni-Q03" firstAttribute="top" secondItem="2o3-Km-KhW" secondAttribute="top" id="wTw-a0-avW"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="40" id="xL6-OJ-5cL"/>
-                            <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="70" id="xbZ-5p-L40"/>
+                            <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="90" id="xbZ-5p-L40"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="xrN-qq-aDe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ixL-Ug-PJS"/>
