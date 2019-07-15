@@ -142,6 +142,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             syncMapView?.rotation3D = rotation3D
             syncMapView?.torsion = torsion
             syncMapView?.isDrawingEnabled = isDrawingEnabled
+            syncMapView?.startOffsetSegments = startOffsetSegments
+            syncMapView?.endOffsetSegments = endOffsetSegments
             setMapHighlight()
         }
     }
@@ -153,12 +155,23 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             }
         }
     }
-    var offset: CGFloat = 0.0 {
+    var startOffsetSegments: CGFloat = 0.0 {
         didSet {
-            if offset < 0.0 {
-                offset = 0.0
+            if startOffsetSegments < 0.0 {
+                startOffsetSegments = 0.0
             }
-            defer {syncMapView?.offset = offset}
+            defer {syncMapView?.startOffsetSegments = startOffsetSegments}
+            if isDrawingEnabled {
+                setNeedsDisplay()
+            }
+        }
+    }
+    var endOffsetSegments: CGFloat = 0.0 {
+        didSet {
+            if endOffsetSegments < 0.0 {
+                endOffsetSegments = 0.0
+            }
+            defer {syncMapView?.endOffsetSegments = endOffsetSegments}
             if isDrawingEnabled {
                 setNeedsDisplay()
             }
@@ -192,8 +205,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         distanceBetweenSegments = segmentLength  * self.segmentDistancePercentOfSize
         circleRadius = distanceBetweenSegments / 2 * radiusPercentOfSpacing
         
-        // Extra Segment for Edit Mode
-        helixHeight = distanceBetweenSegments * CGFloat(baseTypes.count + (editMode ? 1 : 0))
+        // Extra Segment for Edit Mode and extra blank/dummy segments for start and end of helix (offset)
+        helixHeight = distanceBetweenSegments * (CGFloat(baseTypes.count + (editMode ? 1 : 0)) + startOffsetSegments + endOffsetSegments)
         let oldHelixHeight: CGFloat
         
         // Adjust size constraints
@@ -312,7 +325,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     private func generateSegmentPair(index: Int, baseType: DnaSequence.NucleobaseType?) -> DnaSegmentPair? {
         // Compute x as if orientation is horizontal
-        let x: CGFloat = (CGFloat(index) + 0.5) * distanceBetweenSegments
+        let x: CGFloat = (startOffsetSegments + CGFloat(index) + 0.5) * distanceBetweenSegments
         
         // Do not generate segments if outside of the drawing rectangle
         if helixOrientation == .horizontal {
@@ -605,7 +618,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     private func visibleHelixBounds() -> (startPercent: CGFloat, endPercent: CGFloat) {
         let visibleRect = convert(self.superview!.bounds, to: self)
-        let trueHeight = editMode ? self.helixHeight - distanceBetweenSegments : self.helixHeight
+        let trueHeight = self.helixHeight - (editMode ? distanceBetweenSegments: 0.0)
         if helixOrientation == .horizontal {
             return (visibleRect.minX / trueHeight, visibleRect.maxX / trueHeight)
         } else {

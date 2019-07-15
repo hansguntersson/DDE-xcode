@@ -16,6 +16,8 @@ class DnaController: HiddenStatusBarController {
         dnaView.areMainLettersEnabled = true
         dnaView.arePairLettersEnabled = true
         dnaView.baseTypes = DnaSequence(length: 60).nucleobaseTypesSequence()
+        dnaView.startOffsetSegments = 3
+        dnaView.endOffsetSegments = 4
         dnaView.isUserInteractionEnabled = true
         
         let dnaMap = dnaMapScrollView.dnaView!
