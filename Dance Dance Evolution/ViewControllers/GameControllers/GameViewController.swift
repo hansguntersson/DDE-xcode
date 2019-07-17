@@ -311,6 +311,19 @@ class GameViewController: HiddenStatusBarController {
     }
     
     // -------------------------------------------------------------------------
+    // Mark: - Transitions
+    // -------------------------------------------------------------------------
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        pausePlay()
+        hideArrows()
+        coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
+            self.resumePlay()
+        })
+    }
+    
+    // -------------------------------------------------------------------------
     // Mark: - Game Loop and Rendering
     // -------------------------------------------------------------------------
     private func gameLoop(_ deltaTime: CFTimeInterval) {
