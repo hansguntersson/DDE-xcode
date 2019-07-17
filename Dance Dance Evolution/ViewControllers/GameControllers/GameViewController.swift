@@ -83,8 +83,6 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var goalStackEqualSpacing: UIStackView!
     @IBOutlet var goalCardHeightConstraint: NSLayoutConstraint!
     
-    private var screenOrientation: UIInterfaceOrientationMask = .all
-    
     private var arrowSize: CGFloat = 0 {
         didSet {
             maxArrowWidth.constant = arrowSize
@@ -102,6 +100,9 @@ class GameViewController: HiddenStatusBarController {
     // DnaScrollView
     @IBOutlet var dnaScrollView: DnaScrollView!
     
+    // Paused flag
+    private var isPaused: Bool = true
+    
     // -------------------------------------------------------------------------
     // Mark: - Lifecycle
     // -------------------------------------------------------------------------
@@ -114,7 +115,7 @@ class GameViewController: HiddenStatusBarController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
+        
         renderScreen()
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
@@ -122,21 +123,6 @@ class GameViewController: HiddenStatusBarController {
         super.viewDidDisappear(animated)
         
         pausePlay()
-    }
-    
-    // -------------------------------------------------------------------------
-    // Mark: - Device Rotation
-    // -------------------------------------------------------------------------
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        hideArrows()
-        coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
-            self.renderScreen()
-        })
-    }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return self.screenOrientation
     }
 
     // -------------------------------------------------------------------------
@@ -151,11 +137,6 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
-        let dnaView = dnaScrollView.dnaView!
-        dnaView.isDrawingEnabled = false
-        dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
-        dnaView.helixOrientation = .horizontal
-        dnaView.isDrawingEnabled = true
         
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
@@ -177,6 +158,14 @@ class GameViewController: HiddenStatusBarController {
         */
         gameHeight = max(view.frame.width, view.frame.height) + arrowSize
         arrowsPerGameScreen = Float(gameHeight / arrowSize)
+        
+        // The DnaView at the top of the screen
+        let dnaView = dnaScrollView.dnaView!
+        dnaView.isDrawingEnabled = false
+        dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
+        dnaView.helixOrientation = .horizontal
+        dnaView.startOffsetSegments = CGFloat(arrowsPerGameScreen)
+        dnaView.isDrawingEnabled = true
         
         initTolerance()
     }
@@ -248,7 +237,7 @@ class GameViewController: HiddenStatusBarController {
         DDEGame.clearSavedGame()
     }
     @objc func appDidBecomeActive() {
-        renderScreen()
+        displayUpdateInformer?.resume()
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     
@@ -269,16 +258,11 @@ class GameViewController: HiddenStatusBarController {
     }
     @objc func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
-        case .left:
-            userInput = .left
-        case .down:
-            userInput = .down
-        case .up:
-            userInput = .up
-        case .right:
-            userInput = .right
-        default:
-            return
+            case .left:  userInput = .left
+            case .down:  userInput = .down
+            case .up:    userInput = .up
+            case .right: userInput = .right
+            default: return
         }
     }
 
@@ -300,12 +284,14 @@ class GameViewController: HiddenStatusBarController {
     // -------------------------------------------------------------------------
     private func resumePlay() {
         if UIApplication.shared.applicationState == .active {
+            isPaused = false
             displayUpdateInformer?.resume()
             gameMusic?.play()
             readyViewController = nil
         }
     }
     private func pausePlay() {
+        isPaused = true
         displayUpdateInformer?.pause()
         gameMusic?.pause()
     }
@@ -328,8 +314,10 @@ class GameViewController: HiddenStatusBarController {
     // Mark: - Game Loop and Rendering
     // -------------------------------------------------------------------------
     private func gameLoop(_ deltaTime: CFTimeInterval) {
-        processUserInput()
-        game.updateState(deltaTime, arrowsPerGameScreen, minYPercent())
+        if !isPaused {
+            processUserInput()
+            game.updateState(deltaTime, arrowsPerGameScreen, minYPercent())
+        }
         renderScreen()
         if game.hasEnded() && !mutationSound.isPlaying() {
             endGame()
@@ -407,6 +395,12 @@ class GameViewController: HiddenStatusBarController {
                 arrows[i].isHidden = true
             }
         }
+    }
+    
+    private func renderDnaView() {
+        let dnaView = dnaScrollView.dnaView!
+        
+        print(dnaView)
     }
     
     private func mutation() {
