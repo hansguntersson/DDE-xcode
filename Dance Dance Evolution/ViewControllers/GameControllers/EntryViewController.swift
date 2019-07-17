@@ -33,7 +33,7 @@ class EntryViewController: HiddenStatusBarController {
                 self.entryLogo.alpha = 0.0
             }
             , completion: { (finished: Bool) in
-                if self.isViewActive() {
+                if self.visible {
                     self.goToMainScreen()
                 }
             }
