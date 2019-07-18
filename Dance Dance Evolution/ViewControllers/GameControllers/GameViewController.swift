@@ -316,10 +316,10 @@ class GameViewController: HiddenStatusBarController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        pausePlay()
+        displayUpdateInformer.pause()
         hideArrows()
         coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
-            self.resumePlay()
+            self.displayUpdateInformer.resume()
         })
     }
     
