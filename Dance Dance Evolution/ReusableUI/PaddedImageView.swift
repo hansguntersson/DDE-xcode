@@ -6,15 +6,20 @@ import UIKit
 class PaddedImageView: UIImageView {
     private(set) var paddingView: UIView? = nil
     
+    // -------------------------------------------------------------------------
+    // Mark: - Constraints between self and paddingView
+    // -------------------------------------------------------------------------
     private var topConstraint: NSLayoutConstraint?
     private var leftConstraint: NSLayoutConstraint?
     private var bottomConstraint: NSLayoutConstraint?
     private var rightConstraint: NSLayoutConstraint?
     
+    // -------------------------------------------------------------------------
+    // Mark: - Set/Remove padding
+    // -------------------------------------------------------------------------
     func setPadding(anySide: CGFloat) -> UIView? {
         return self.setPadding(top: anySide, left: anySide, bottom: anySide, right: anySide)
     }
-    
     func setPadding(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> UIView? {
         if paddingView == nil {
             addPaddingView(top: top, left: left, bottom: bottom, right: right)
@@ -26,16 +31,23 @@ class PaddedImageView: UIImageView {
         }
         return paddingView
     }
+    func removePadding() {
+        paddingView?.removeFromSuperview()
+        paddingView = nil
+    }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Create Padding View
+    // -------------------------------------------------------------------------
     private func addPaddingView(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
         guard let superview = self.superview else {
             return
         }
-        
-        let paddingFrame = CGRect.zero
+        let paddingWidth = self.frame.width + left + right
+        let paddingHeight = self.frame.height + top + bottom
+        let paddingFrame = CGRect(x: 0, y: 0, width: paddingWidth, height: paddingHeight)
         paddingView = UIView(frame: paddingFrame)
         paddingView!.translatesAutoresizingMaskIntoConstraints = false
-        
         superview.addSubview(paddingView!)
         superview.bringSubviewToFront(self)
         
@@ -48,10 +60,5 @@ class PaddedImageView: UIImageView {
         leftConstraint!.isActive = true
         bottomConstraint!.isActive = true
         rightConstraint!.isActive = true
-    }
-    
-    func removePadding() {
-        paddingView?.removeFromSuperview()
-        paddingView = nil
     }
 }
