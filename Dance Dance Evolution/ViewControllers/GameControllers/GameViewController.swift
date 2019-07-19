@@ -62,7 +62,7 @@ class GameViewController: HiddenStatusBarController {
     private var userInput: ArrowView.ArrowDirection? = nil
     
     // Game Arrows
-    private var arrows: Array<ArrowView> = []
+    private var arrows: Array<ArrowView?> = []
     
     // Screen Rendering Height - the space arrows will cover during movement
     private var gameHeight: CGFloat = 0
@@ -147,7 +147,9 @@ class GameViewController: HiddenStatusBarController {
         
         initMusic()
         
-        createArrows()
+        // Create space in the array for each arrowView
+        arrows = Array(repeating: nil, count: game.state.sequence.nucleobaseSequence.count)
+        
         limitArrowSize()
         
         /*
@@ -174,18 +176,6 @@ class GameViewController: HiddenStatusBarController {
             gameMusic = DDESound(sound: .vShort200bpm)
         } else {
             gameMusic = DDESound(sound: .vShort150bpm)
-        }
-    }
-    private func createArrows() {
-        let sequence = game.state.sequence.nucleobaseSequence
-        for i in 0..<sequence.count {
-            let arrowDirection = nucleobaseTypeToDirection[sequence[i].type]!
-            let arrow = ArrowView(direction: arrowDirection)
-            view.addSubview(arrow)
-            arrow.widthAnchor.constraint(equalTo: leftGoalArrow.widthAnchor, multiplier: 1).isActive = true
-            arrow.isHidden = true
-            arrow.isUserInteractionEnabled = false
-            arrows.append(arrow)
         }
     }
     private func limitArrowSize() {
@@ -306,7 +296,7 @@ class GameViewController: HiddenStatusBarController {
     */
     private func hideArrows() {
         for arrow in arrows {
-            arrow.isHidden = true
+            arrow?.isHidden = true
         }
     }
     
@@ -355,20 +345,21 @@ class GameViewController: HiddenStatusBarController {
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
             if nucleobase.isActive && nucleobase.evolutionState == .uncertain && nucleobase.percentY < 0.5 {
-                let arrow = arrows[i]
-                if arrow.direction != userInput {
-                    let mutatedType = directionToNucleobaseType[userInput!]!
-                    nucleobase.mutate(to: mutatedType)
-                    mutation()
-                } else {
-                    if arrow.center.y >= goalCard.frame.minY && arrow.center.y <= goalCard.frame.maxY {
-                        nucleobase.preserve()
-                    } else {
-                        nucleobase.mutateToRandom()
+                if let arrow = arrows[i] {
+                    if arrow.direction != userInput {
+                        let mutatedType = directionToNucleobaseType[userInput!]!
+                        nucleobase.mutate(to: mutatedType)
                         mutation()
+                    } else {
+                        if arrow.center.y >= goalCard.frame.minY && arrow.center.y <= goalCard.frame.maxY {
+                            nucleobase.preserve()
+                        } else {
+                            nucleobase.mutateToRandom()
+                            mutation()
+                        }
                     }
+                    break
                 }
-                break
             }
         }
         userInput = .none
@@ -394,18 +385,31 @@ class GameViewController: HiddenStatusBarController {
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
             if nucleobase.isActive {
-                let arrow = arrows[i]
+                var arrow: ArrowView! = arrows[i]
+                if arrow == nil {
+                    arrow = ArrowView(frame: CGRect(x: 0.0, y: 0.0, width: arrowSize, height: arrowSize))
+                    arrow.direction = nucleobaseTypeToDirection[nucleobase.type]!
+                    view.addSubview(arrow)
+                    arrow.isUserInteractionEnabled = false
+                    arrows.append(arrow)
+                    arrows[i] = arrow
+                }
                 arrow.isHidden = false
                 let goalArrow = goalArrows[arrow.direction]!
                 
                 let x = goalArrow.absoluteCenter().x
                 let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2
+                
                 arrow.center = CGPoint(x: x, y: y)
                 
                 arrow.fillColor = ArrowView.FillColor(rawValue: nucleobase.evolutionState.rawValue)!
                 arrow.alpha = 1 - CGFloat(nucleobase.percentY)
             } else {
-                arrows[i].isHidden = true
+                if let arrow = arrows[i] {
+                    arrow.removePadding()
+                    arrow.removeFromSuperview()
+                    arrows[i] = nil
+                }
             }
         }
     }
@@ -439,7 +443,6 @@ class GameViewController: HiddenStatusBarController {
     private func clean() {
         displayUpdateInformer.close()
         displayUpdateInformer = nil
-        arrows = []
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
