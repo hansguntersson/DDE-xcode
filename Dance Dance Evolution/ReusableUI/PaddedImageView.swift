@@ -6,6 +6,17 @@ import UIKit
 class PaddedImageView: UIImageView {
     private(set) var paddingView: UIView? = nil
     
+    override var alpha: CGFloat {
+        didSet {
+            paddingView?.alpha = alpha
+        }
+    }
+    override var isHidden: Bool {
+        didSet {
+            paddingView?.isHidden = isHidden
+        }
+    }
+    
     // -------------------------------------------------------------------------
     // Mark: - Constraints between self and paddingView
     // -------------------------------------------------------------------------
