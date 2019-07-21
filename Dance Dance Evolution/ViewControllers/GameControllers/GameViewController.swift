@@ -65,10 +65,10 @@ class GameViewController: HiddenStatusBarController {
     private var arrows: Array<ArrowView?> = []
     
     // Screen Rendering Height - the space arrows will cover during movement
-    private var gameHeight: CGFloat = 0
+    private var gameHeight: CGFloat = 0.0
     
     // How many arrows sizes would fit the game height
-    private var arrowsPerGameScreen: Float = 0
+    private var arrowsPerGameScreen: Float = 0.0
     
     /*
         The goal arrows might be smaller in Portrait due to AutoLayout
@@ -83,9 +83,13 @@ class GameViewController: HiddenStatusBarController {
     @IBOutlet var goalStackEqualSpacing: UIStackView!
     @IBOutlet var goalCardHeightConstraint: NSLayoutConstraint!
     
-    private var arrowSize: CGFloat = 0 {
+    private var arrowSize: CGFloat = 0.0 {
         didSet {
-            maxArrowWidth.constant = arrowSize
+            if arrowSize > maxArrowWidth.constant {
+                arrowSize = maxArrowWidth.constant
+            } else {
+                maxArrowWidth.constant = arrowSize
+            }
         }
     }
     
@@ -137,39 +141,23 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
-        
+        // Init custom display timer
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
         )
-        
+        // Set muation callback
         game.onMutation = {[unowned self] in self.mutation()}
+        // Mutation label is fully visible only when a mutation occurs
         mutationLabel.alpha = 0.0
-        
-        initMusic()
-        
         // Create space in the array for each arrowView
         arrows = Array(repeating: nil, count: game.state.sequence.nucleobaseSequence.count)
-        
-        limitArrowSize()
-        
-        /*
-            The game height is the maximum view.frame size plus one extra arrow size
-            The extra arrow size is used to start the arrow below the bottom screen edge and
-                end it above the top screen edge (as arrows are position by center).
-            Basically the extra arrow is made of two arrow halfs (1/2 at bottom and 1/2 at top)
-        */
-        gameHeight = max(view.frame.width, view.frame.height) + arrowSize
-        arrowsPerGameScreen = Float(gameHeight / arrowSize)
-        
-        // The DnaView at the top of the screen
-        let dnaView = dnaScrollView.dnaView!
-        dnaView.isDrawingEnabled = false
-        dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
-        dnaView.helixOrientation = .horizontal
-        dnaView.startOffsetSegments = CGFloat(arrowsPerGameScreen)
-        dnaView.isDrawingEnabled = true
-        
+
+        initDimensions()
         initTolerance()
+        initDnaView()
+        initMusic()
+        
+        
     }
     private func initMusic() {
         if game.state.difficulty == .pro {
@@ -178,11 +166,22 @@ class GameViewController: HiddenStatusBarController {
             gameMusic = DDESound(sound: .vShort150bpm)
         }
     }
-    private func limitArrowSize() {
-        let minSize = min(view.frame.width, view.frame.height)
-        let arrowsAndBeatsWidth = minSize - goalMaxLeadingWidth.constant - goalMaxTrailingWidth.constant - 5 * goalStackEqualSpacing.spacing
+    private func initDimensions() {
+        /*
+            The game height is the maximum view.frame size plus one extra arrow size
+            The extra arrow size is used to start the arrow below the bottom screen edge and
+                end it above the top screen edge (as arrows are positioned by center).
+            The extra arrow can be viewed as two arrow halfs (1/2 at bottom and top of the screen)
+         */
+        // Compute the optimal arrow size
+        let minFrameSize = min(view.frame.width, view.frame.height)
+        let cardSpacing = goalMaxLeadingWidth.constant + goalMaxTrailingWidth.constant + 5 * goalStackEqualSpacing.spacing
+        let arrowsAndBeatsWidth = minFrameSize - cardSpacing
         let maxArrowSize = arrowsAndBeatsWidth / (2 * beatHeightMultiplier.multiplier + 4)
-        arrowSize = min(maxArrowSize.rounded(.down), maxArrowWidth.constant)
+        
+        arrowSize = maxArrowSize.rounded(.down)
+        gameHeight = max(view.frame.width, view.frame.height) + arrowSize
+        arrowsPerGameScreen = Float(gameHeight / arrowSize)
     }
     private func initTolerance() {
         goalCardHeightConstraint.constant = CGFloat(game.state.tolerance) * (arrowSize / 15).rounded()
@@ -192,6 +191,15 @@ class GameViewController: HiddenStatusBarController {
             goalCard.layer.addBorder(edge: .top, color: .white, thickness: thickness)
             goalCard.layer.addBorder(edge: .bottom, color: .white, thickness: thickness)
         }
+    }
+    private func initDnaView() {
+        // The DnaView at the top of the screen
+        let dnaView = dnaScrollView.dnaView!
+        dnaView.isDrawingEnabled = false
+        dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
+        dnaView.helixOrientation = .horizontal
+        dnaView.startOffsetSegments = CGFloat(arrowsPerGameScreen)
+        dnaView.isDrawingEnabled = true
     }
     
     // -------------------------------------------------------------------------
@@ -285,15 +293,6 @@ class GameViewController: HiddenStatusBarController {
         displayUpdateInformer?.pause()
         gameMusic?.pause()
     }
-    
-    // -------------------------------------------------------------------------
-    // Mark: - Prevent cheating
-    // -------------------------------------------------------------------------
-    /*
-        While on the "View Recently Used Apps" screen the user would see all
-        arrows as "freezed" and could basically memorize their order
-        (phones before iPhoneX - double-tap on Home)
-    */
     private func hideArrows() {
         for arrow in arrows {
             arrow?.isHidden = true
@@ -368,6 +367,7 @@ class GameViewController: HiddenStatusBarController {
     private func renderScreen() {
         renderBeats()
         renderArrows()
+        renderDnaView()
     }
 
     private func renderBeats() {
@@ -420,6 +420,9 @@ class GameViewController: HiddenStatusBarController {
         print(dnaView)
     }
     
+    // -------------------------------------------------------------------------
+    // Mark: - Mutation Animation and Sound
+    // -------------------------------------------------------------------------
     private func mutation() {
         mutationSound.play()
         mutationLabel.alpha = 1.0
