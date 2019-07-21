@@ -51,7 +51,9 @@ class DDEGame {
     // -------------------------------------------------------------------------
     // Mark: - Game Init
     // -------------------------------------------------------------------------
-    init(dnaSequence: DnaSequence) {
+    private let arrowsPerGameScreen: Float
+    
+    init(dnaSequence: DnaSequence, arrowsPerGameScreen: Float) {
         let difficulty = Settings.difficulty
         self.state = GameState(
             difficulty: difficulty
@@ -62,21 +64,24 @@ class DDEGame {
             , carryOver: Settings.carryOverThreshold
             , sequence: dnaSequence
         )
+        self.arrowsPerGameScreen = arrowsPerGameScreen
         DDEGame.clearSavedGame()
     }
     
-    init(gameState: GameState) {
+    init(gameState: GameState, arrowsPerGameScreen: Float) {
         self.state = gameState
+        self.arrowsPerGameScreen = arrowsPerGameScreen
         DDEGame.clearSavedGame()
     }
     
     // -------------------------------------------------------------------------
     // Mark: - Game State gets updated from the Game Controller
     // -------------------------------------------------------------------------
-    func updateState(_ deltaTime: CFTimeInterval, _ arrowsPerGameScreen: Float, _ minYPercent: Float) {
+    private let secondsSpentOnScreen: TimeInterval = 2.5
+    
+    func updateState(_ deltaTime: CFTimeInterval, _ minYPercent: Float) {
         let sequence = state.sequence.nucleobaseSequence
         var isFirstHidden: Bool = true
-        let secondsSpentOnScreen: TimeInterval = 2.5
 
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]

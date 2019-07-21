@@ -133,10 +133,11 @@ class GameViewController: HiddenStatusBarController {
     // Mark: - Game Init
     // -------------------------------------------------------------------------
     private func initGame() {
+        initDimensions()
         if gameState != nil {
-            game = DDEGame(gameState: gameState!)
+            game = DDEGame(gameState: gameState!, arrowsPerGameScreen: arrowsPerGameScreen)
         } else if dnaSequence != nil {
-            game = DDEGame(dnaSequence: dnaSequence!)
+            game = DDEGame(dnaSequence: dnaSequence!, arrowsPerGameScreen: arrowsPerGameScreen)
         } else {
             dismiss(animated: false, completion: nil)
             return
@@ -152,12 +153,9 @@ class GameViewController: HiddenStatusBarController {
         // Create space in the array for each arrowView
         arrows = Array(repeating: nil, count: game.state.sequence.nucleobaseSequence.count)
 
-        initDimensions()
         initTolerance()
         initDnaView()
         initMusic()
-        
-        
     }
     private func initMusic() {
         if game.state.difficulty == .pro {
@@ -318,7 +316,7 @@ class GameViewController: HiddenStatusBarController {
     private func gameLoop(_ deltaTime: CFTimeInterval) {
         if !isPaused {
             processUserInput()
-            game.updateState(deltaTime, arrowsPerGameScreen, minYPercent())
+            game.updateState(deltaTime, minYPercent())
         }
         renderScreen()
         if game.hasEnded() && !mutationSound.isPlaying() {
@@ -417,7 +415,7 @@ class GameViewController: HiddenStatusBarController {
     private func renderDnaView() {
         let dnaView = dnaScrollView.dnaView!
         
-        print(dnaView)
+
     }
     
     // -------------------------------------------------------------------------
