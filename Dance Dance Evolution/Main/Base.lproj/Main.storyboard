@@ -731,62 +731,50 @@
                                 <rect key="frame" x="10" y="65.5" width="300" height="492.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.95812821061643838" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sequenceCell" rowHeight="100" id="01F-Lu-hkf" customClass="CustomSequenceCell" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sequenceCell" rowHeight="110" id="01F-Lu-hkf" customClass="CustomSequenceCell" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="300" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01F-Lu-hkf" id="Aor-Jp-ukZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sequence Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf4-jH-jVu" userLabel="NameLabel">
-                                                    <rect key="frame" x="10" y="5" width="280" height="28"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                                    <color key="textColor" red="0.23529411759999999" green="0.74117647060000003" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="10" y="10" width="230" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                                    <color key="textColor" red="0.17351409792900085" green="0.4910888671875" blue="0.62135332822799683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(000)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxH-ci-QVi" userLabel="LengthLabel">
-                                                    <rect key="frame" x="245" y="73" width="45" height="16.5"/>
+                                                    <rect key="frame" x="250" y="12.5" width="40" height="15.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="gZW-dI-fEH"/>
+                                                        <constraint firstAttribute="width" constant="40" id="gZW-dI-fEH"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Letters..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-qh-7Im" userLabel="LettersLabel">
-                                                    <rect key="frame" x="10" y="73" width="235" height="16.5"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0co-X2-7DR" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="33" width="280" height="35"/>
+                                                    <rect key="frame" x="10" y="30.5" width="280" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="y8i-7X-8et"/>
+                                                        <constraint firstAttribute="height" constant="75" id="y8i-7X-8et"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uf4-jH-jVu" firstAttribute="leading" secondItem="Aor-Jp-ukZ" secondAttribute="leading" constant="10" id="5W5-Rw-SuK"/>
-                                                <constraint firstItem="SxH-ci-QVi" firstAttribute="bottom" secondItem="Aor-Jp-ukZ" secondAttribute="bottom" constant="-10" id="HG1-ft-aOb"/>
-                                                <constraint firstItem="uf4-jH-jVu" firstAttribute="top" secondItem="Aor-Jp-ukZ" secondAttribute="top" constant="5" id="Hzs-Og-bkl"/>
+                                                <constraint firstItem="uf4-jH-jVu" firstAttribute="top" secondItem="Aor-Jp-ukZ" secondAttribute="top" constant="10" id="Hzs-Og-bkl"/>
                                                 <constraint firstItem="0co-X2-7DR" firstAttribute="top" secondItem="uf4-jH-jVu" secondAttribute="bottom" id="JgN-rF-Kmv"/>
+                                                <constraint firstItem="SxH-ci-QVi" firstAttribute="trailing" secondItem="Aor-Jp-ukZ" secondAttribute="trailing" constant="-10" id="OhH-zT-ZF8"/>
                                                 <constraint firstItem="0co-X2-7DR" firstAttribute="leading" secondItem="Aor-Jp-ukZ" secondAttribute="leading" constant="10" id="ZWT-K8-duB"/>
-                                                <constraint firstItem="SxH-ci-QVi" firstAttribute="trailing" secondItem="Aor-Jp-ukZ" secondAttribute="trailing" constant="-10" id="b1D-nG-AJ8"/>
-                                                <constraint firstItem="SxH-ci-QVi" firstAttribute="top" secondItem="0co-X2-7DR" secondAttribute="bottom" constant="5" id="diG-Om-SZu"/>
-                                                <constraint firstItem="aiV-qh-7Im" firstAttribute="bottom" secondItem="Aor-Jp-ukZ" secondAttribute="bottom" constant="-10" id="epn-pN-224"/>
-                                                <constraint firstItem="aiV-qh-7Im" firstAttribute="trailing" secondItem="SxH-ci-QVi" secondAttribute="leading" id="gQu-GY-AjZ"/>
-                                                <constraint firstItem="aiV-qh-7Im" firstAttribute="leading" secondItem="Aor-Jp-ukZ" secondAttribute="leading" constant="10" id="luZ-a8-Og2"/>
-                                                <constraint firstItem="uf4-jH-jVu" firstAttribute="trailing" secondItem="Aor-Jp-ukZ" secondAttribute="trailing" constant="-10" id="pwm-Iq-EN4"/>
-                                                <constraint firstItem="0co-X2-7DR" firstAttribute="bottom" secondItem="aiV-qh-7Im" secondAttribute="top" constant="-5" id="rJt-3Z-3mg"/>
+                                                <constraint firstItem="SxH-ci-QVi" firstAttribute="centerY" secondItem="uf4-jH-jVu" secondAttribute="centerY" id="nyi-7h-lMd"/>
+                                                <constraint firstItem="uf4-jH-jVu" firstAttribute="trailing" secondItem="SxH-ci-QVi" secondAttribute="leading" constant="-10" id="pwm-Iq-EN4"/>
                                                 <constraint firstAttribute="trailing" secondItem="0co-X2-7DR" secondAttribute="trailing" constant="10" id="yYh-TZ-Gtb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dnaView" destination="0co-X2-7DR" id="gLU-Ez-OJq"/>
                                             <outlet property="lengthLabel" destination="SxH-ci-QVi" id="8Z8-ie-P9M"/>
-                                            <outlet property="lettersLabel" destination="aiV-qh-7Im" id="NHl-3w-8BA"/>
                                             <outlet property="nameLabel" destination="uf4-jH-jVu" id="kAJ-xY-hgW"/>
                                         </connections>
                                     </tableViewCell>
@@ -1306,6 +1294,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j3K-m0-PmQ"/>
+        <segue reference="pVz-i4-l4K"/>
     </inferredMetricsTieBreakers>
 </document>
