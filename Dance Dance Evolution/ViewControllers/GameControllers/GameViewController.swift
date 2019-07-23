@@ -142,6 +142,7 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
+        DDEGame.clearSavedGame()
         // Init custom display timer
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
@@ -197,6 +198,7 @@ class GameViewController: HiddenStatusBarController {
         dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
         dnaView.helixOrientation = .horizontal
         dnaView.startOffsetSegments = CGFloat(arrowsPerGameScreen)
+        dnaView.endOffsetSegments = CGFloat(arrowsPerGameScreen)
         dnaView.isDrawingEnabled = true
     }
     
@@ -413,6 +415,8 @@ class GameViewController: HiddenStatusBarController {
     }
     
     private func renderDnaView() {
+        print(game.state.percentCompleted)
+        
         let dnaView = dnaScrollView.dnaView!
         
 

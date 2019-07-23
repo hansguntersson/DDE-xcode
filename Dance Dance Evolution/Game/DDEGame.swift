@@ -52,6 +52,7 @@ class DDEGame {
     // Mark: - Game Init
     // -------------------------------------------------------------------------
     private let arrowsPerGameScreen: Float
+    private var arrowsPerFullGameHeight: Float = 0.0
     
     init(dnaSequence: DnaSequence, arrowsPerGameScreen: Float) {
         let difficulty = Settings.difficulty
@@ -65,13 +66,17 @@ class DDEGame {
             , sequence: dnaSequence
         )
         self.arrowsPerGameScreen = arrowsPerGameScreen
-        DDEGame.clearSavedGame()
+        self.computeFullGameHeight()
     }
     
     init(gameState: GameState, arrowsPerGameScreen: Float) {
         self.state = gameState
         self.arrowsPerGameScreen = arrowsPerGameScreen
-        DDEGame.clearSavedGame()
+        self.computeFullGameHeight()
+    }
+    
+    private func computeFullGameHeight() {
+        self.arrowsPerFullGameHeight = (state.spacing + 1.0) * Float(state.sequence.count - 1) + arrowsPerGameScreen
     }
     
     // -------------------------------------------------------------------------
@@ -82,6 +87,7 @@ class DDEGame {
     func updateState(_ deltaTime: CFTimeInterval, _ minYPercent: Float) {
         let sequence = state.sequence.nucleobaseSequence
         var isFirstHidden: Bool = true
+        var isFirstActive: Bool = true
 
         for i in 0..<sequence.count {
             let nucleobase = sequence[i]
@@ -93,6 +99,10 @@ class DDEGame {
                         nucleobase.mutateToRandom()
                         self.onMutation?()
                     }
+                }
+                if isFirstActive {
+                    isFirstActive = false
+                    state.percentCompleted = ((state.spacing + 1.0) * Float(i) + (1.0 - nucleobase.percentY) * arrowsPerGameScreen) / arrowsPerFullGameHeight
                 }
             } else {
                 if isFirstHidden {
@@ -124,7 +134,7 @@ class DDEGame {
     // -------------------------------------------------------------------------
     func hasEnded() -> Bool {
         let sequence = state.sequence.nucleobaseSequence
-        return sequence[sequence.count - 1].percentY == 0
+        return sequence[sequence.count - 1].percentY == 0.0
     }
     
     // -------------------------------------------------------------------------

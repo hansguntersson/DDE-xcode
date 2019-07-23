@@ -15,6 +15,8 @@ struct GameState: Codable {
     
     var beatsScale: Float = 0.0
     
+    var percentCompleted: Float = 0.0
+    
     init(
         difficulty: DDEGame.Difficulty
         , speed: Float

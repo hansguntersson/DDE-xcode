@@ -24,7 +24,7 @@ class SequencesViewController: HiddenStatusBarController {
         case Segues.goToGameScreen.rawValue:
             let gameController = segue.destination as! GameViewController
             let customSequence = sequences![sequencesTable.indexPathForSelectedRow!.row]
-            gameController.dnaSequence = customSequence.copy() //preserve the sequence
+            gameController.dnaSequence = customSequence.basicCopy() //preserve the sequence
         default:
             break
         }
