@@ -33,42 +33,29 @@ class DnaSequence: Codable, CustomStringConvertible {
         }
         var pair: NucleobaseType {
             switch self {
-            case .cytosine:
-                return .guanine
-            case .adenine:
-                return .thymine
-            case .thymine:
-                return .adenine
-            case .guanine:
-                return .cytosine
+                case .cytosine: return .guanine
+                case .adenine:  return .thymine
+                case .thymine:  return .adenine
+                case .guanine:  return .cytosine
             }
         }
         var next: NucleobaseType {
             switch self {
-            case .cytosine:
-                return .adenine
-            case .adenine:
-                return .thymine
-            case .thymine:
-                return .guanine
-            case .guanine:
-                return .cytosine
+                case .cytosine: return .adenine
+                case .adenine:  return .thymine
+                case .thymine:  return .guanine
+                case .guanine:  return .cytosine
             }
         }
         var color: UIColor {
             switch self {
-            case .cytosine:
-                return UIColor.carmine()
-            case .adenine:
-                return UIColor.azure()
-            case .thymine:
-                return UIColor.tweetyBird()
-            case .guanine:
-                return UIColor.grassGreen()
+                case .cytosine: return UIColor.carmine()
+                case .adenine:  return UIColor.azure()
+                case .thymine:  return UIColor.tweetyBird()
+                case .guanine:  return UIColor.grassGreen()
             }
         }
     }
-    
     enum EvolutionState: Int, Codable {
         case uncertain = 0
         case preserved = 1
