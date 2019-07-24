@@ -53,6 +53,7 @@ class DDEGame {
     // -------------------------------------------------------------------------
     private let arrowsPerGameScreen: Float
     private var arrowsPerFullGameHeight: Float = 0.0
+    private(set) var spacedArrowsPerScreen: Float = 0.0
     
     init(dnaSequence: DnaSequence, arrowsPerGameScreen: Float) {
         let difficulty = Settings.difficulty
@@ -66,17 +67,18 @@ class DDEGame {
             , sequence: dnaSequence
         )
         self.arrowsPerGameScreen = arrowsPerGameScreen
-        self.computeFullGameHeight()
+        self.computeArrowHeights()
     }
     
     init(gameState: GameState, arrowsPerGameScreen: Float) {
         self.state = gameState
         self.arrowsPerGameScreen = arrowsPerGameScreen
-        self.computeFullGameHeight()
+        self.computeArrowHeights()
     }
     
-    private func computeFullGameHeight() {
+    private func computeArrowHeights() {
         self.arrowsPerFullGameHeight = (state.spacing + 1.0) * Float(state.sequence.count - 1) + arrowsPerGameScreen
+        self.spacedArrowsPerScreen = (arrowsPerGameScreen - 1.0) / (state.spacing + 1)
     }
     
     // -------------------------------------------------------------------------

@@ -1214,6 +1214,12 @@
                                     <constraint firstAttribute="height" constant="65" id="Xq1-wN-o8x"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpN-xm-6eh" userLabel="ProgressLabel">
+                                <rect key="frame" x="269" y="538.5" width="41" height="19.5"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1228,6 +1234,7 @@
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="top" secondItem="gVP-AM-HEp" secondAttribute="bottom" id="WKh-fh-WSm"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="width" secondItem="FiY-k7-jgM" secondAttribute="width" multiplier="1.3" id="X9J-oG-iYx"/>
+                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" secondItem="qpN-xm-6eh" secondAttribute="trailing" constant="10" id="afp-1g-8YO"/>
                             <constraint firstItem="8Ul-ni-Q03" firstAttribute="leading" secondItem="2o3-Km-KhW" secondAttribute="leading" id="eFt-sH-cUm"/>
                             <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:6" id="eqA-Gw-ZeU"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="40" id="h3o-Lz-iTR"/>
@@ -1240,6 +1247,7 @@
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="40" id="xL6-OJ-5cL"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="95" id="xbZ-5p-L40"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="xrN-qq-aDe"/>
+                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="bottom" secondItem="qpN-xm-6eh" secondAttribute="bottom" constant="10" id="yKl-J2-FBL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ixL-Ug-PJS"/>
                         <variation key="default">
@@ -1270,6 +1278,7 @@
                         <outlet property="leftGoalArrow" destination="oiU-9r-p77" id="ZFB-Kh-NWw"/>
                         <outlet property="maxArrowWidth" destination="dGC-dm-qUU" id="jCc-Yu-twN"/>
                         <outlet property="mutationLabel" destination="gJp-81-aRD" id="uTi-Pz-FPR"/>
+                        <outlet property="progressLabel" destination="qpN-xm-6eh" id="ylp-vJ-OFq"/>
                         <outlet property="rightBeat" destination="HC1-3a-Hv6" id="Plv-Qj-CmZ"/>
                         <outlet property="rightGoalArrow" destination="95u-2Z-fCC" id="5d7-H1-Gt9"/>
                         <outlet property="upGoalArrow" destination="ars-ME-efi" id="qIQ-NJ-a6g"/>

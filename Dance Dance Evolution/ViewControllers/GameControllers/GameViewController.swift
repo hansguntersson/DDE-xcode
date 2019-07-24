@@ -104,6 +104,9 @@ class GameViewController: HiddenStatusBarController {
     // DnaScrollView
     @IBOutlet var dnaScrollView: DnaScrollView!
     
+    // Percentage Progress
+    @IBOutlet var progressLabel: UILabel!
+    
     // Paused flag
     private var isPaused: Bool = true
     
@@ -197,8 +200,7 @@ class GameViewController: HiddenStatusBarController {
         dnaView.isDrawingEnabled = false
         dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
         dnaView.helixOrientation = .horizontal
-        dnaView.startOffsetSegments = CGFloat(arrowsPerGameScreen)
-        dnaView.endOffsetSegments = CGFloat(arrowsPerGameScreen)
+        dnaView.startOffsetSegments = CGFloat(game.spacedArrowsPerScreen)
         dnaView.isDrawingEnabled = true
     }
     
@@ -368,6 +370,7 @@ class GameViewController: HiddenStatusBarController {
         renderBeats()
         renderArrows()
         renderDnaView()
+        progressLabel.text = game.state.percentCompleted.toPercentString(decimalPlaces: 0)
     }
 
     private func renderBeats() {
@@ -415,11 +418,17 @@ class GameViewController: HiddenStatusBarController {
     }
     
     private func renderDnaView() {
-        print(game.state.percentCompleted)
-        
         let dnaView = dnaScrollView.dnaView!
         
-
+        let baseSegments: Float = Float(dnaView.baseTypes.count)
+        let totalSegments: Float = baseSegments + game.spacedArrowsPerScreen
+        let startPercent: Float = game.state.percentCompleted * baseSegments / totalSegments
+        let endPercent: Float = startPercent + game.spacedArrowsPerScreen / totalSegments
+        
+        dnaScrollView.scrollToBottom()
+        dnaView.highlight(startPercent: CGFloat(startPercent), endPercent: CGFloat(endPercent))
+        dnaView.rotation3D -= 0.025 * CGFloat(game.state.speed)
+        //dnaView.setNeedsDisplay()
     }
     
     // -------------------------------------------------------------------------

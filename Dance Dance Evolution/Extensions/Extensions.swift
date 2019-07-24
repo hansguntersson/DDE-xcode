@@ -9,6 +9,12 @@ extension Double {
     }
 }
 
+extension Float {
+    func toPercentString(decimalPlaces decimals:Int) -> String {
+        return String(format: "%.\(decimals < 0 ? 0 : decimals)f%%", self * 100)
+    }
+}
+
 extension UIView {
     func absoluteCenter() -> CGPoint {
         let origin = absoluteOrigin(view: self)
