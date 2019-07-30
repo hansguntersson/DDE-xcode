@@ -201,6 +201,7 @@ class GameViewController: HiddenStatusBarController {
         dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
         dnaView.helixOrientation = .horizontal
         dnaView.startOffsetSegments = CGFloat(game.spacedArrowsPerScreen)
+        dnaView.areMainLettersEnabled = true
         dnaView.isDrawingEnabled = true
     }
     
@@ -420,15 +421,25 @@ class GameViewController: HiddenStatusBarController {
     private func renderDnaView() {
         let dnaView = dnaScrollView.dnaView!
         
-        let baseSegments: Float = Float(dnaView.baseTypes.count)
-        let totalSegments: Float = baseSegments + game.spacedArrowsPerScreen
-        let startPercent: Float = game.state.percentCompleted * baseSegments / totalSegments
-        let endPercent: Float = startPercent + game.spacedArrowsPerScreen / totalSegments
+        // Make sure enough trailing segments are available so that the dnaView higllight is always left
+        let requiredEndOffsetSegments = max(dnaScrollView.frame.width, dnaScrollView.frame.height) / dnaView.distanceBetweenSegments
+        if dnaView.endOffsetSegments < requiredEndOffsetSegments {
+            dnaView.endOffsetSegments = ceil(requiredEndOffsetSegments)
+        }
         
+        // Establish all segment counts
+        let baseSegments: CGFloat = CGFloat(dnaView.baseTypes.count)
+        let totalSegments: CGFloat = baseSegments + dnaView.startOffsetSegments + dnaView.endOffsetSegments
+        let spacedArrowsPerScreen: CGFloat = CGFloat(game.spacedArrowsPerScreen)
+        
+        // Computer relative percentages
+        let startPercent: CGFloat = CGFloat(game.state.percentCompleted) * (baseSegments + spacedArrowsPerScreen) / totalSegments
+        let endPercent: CGFloat = startPercent + spacedArrowsPerScreen / totalSegments
+        
+        // Apply highlight and rotation
         dnaScrollView.scrollToBottom()
-        dnaView.highlight(startPercent: CGFloat(startPercent), endPercent: CGFloat(endPercent))
+        dnaView.highlight(startPercent: startPercent, endPercent: endPercent)
         dnaView.rotation3D -= 0.025 * CGFloat(game.state.speed)
-        //dnaView.setNeedsDisplay()
     }
     
     // -------------------------------------------------------------------------

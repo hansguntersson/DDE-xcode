@@ -1208,7 +1208,7 @@
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-sG-pDP" userLabel="SequnceScrollView" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="10" y="11" width="300" height="71"/>
-                                <color key="backgroundColor" white="1" alpha="0.29810573630136988" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="0.2986408390410959" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="ADy-Ol-308"/>
                                     <constraint firstAttribute="height" constant="65" id="Xq1-wN-o8x"/>

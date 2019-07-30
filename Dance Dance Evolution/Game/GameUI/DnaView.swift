@@ -161,9 +161,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 startOffsetSegments = 0.0
             }
             defer {syncMapView?.startOffsetSegments = startOffsetSegments}
-            if isDrawingEnabled {
-                setNeedsDisplay()
-            }
+            updateDimensions()
         }
     }
     var endOffsetSegments: CGFloat = 0.0 {
@@ -172,9 +170,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 endOffsetSegments = 0.0
             }
             defer {syncMapView?.endOffsetSegments = endOffsetSegments}
-            if isDrawingEnabled {
-                setNeedsDisplay()
-            }
+            updateDimensions()
         }
     }
     
