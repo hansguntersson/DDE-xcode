@@ -45,7 +45,7 @@
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-DE-z1G" userLabel="Map Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="16" y="35" width="44" height="503"/>
-                                <color key="backgroundColor" white="0.88389162389999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="cy8-3f-k0q"/>
                                 </constraints>
@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="140.5" y="35" width="39" height="16"/>
+                                <rect key="frame" x="37" y="35" width="246" height="100.00000000000006"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pBE-R4-GR8" secondAttribute="height" multiplier="123:50" id="WEb-X9-dUE"/>
@@ -135,7 +135,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="74.5" y="461" width="171" height="80"/>
+                                <rect key="frame" x="74.5" y="461" width="171.00000000000006" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
@@ -143,10 +143,10 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="67.5" y="71" width="185" height="370"/>
+                                <rect key="frame" x="67.5" y="155" width="185" height="286"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="50" width="185" height="270"/>
+                                        <rect key="frame" x="0.0" y="8" width="185" height="270"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
@@ -366,7 +366,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="w97-a8-Cwg">
-                                <rect key="frame" x="152" y="35" width="16" height="16"/>
+                                <rect key="frame" x="10" y="35" width="300" height="80.000000000000057"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
@@ -390,7 +390,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="61" width="300" height="454"/>
+                                <rect key="frame" x="10" y="125" width="300" height="390"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
                                         <rect key="frame" x="10" y="10" width="280" height="448"/>
@@ -739,13 +739,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sequence Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf4-jH-jVu" userLabel="NameLabel">
-                                                    <rect key="frame" x="10" y="10" width="230" height="20.5"/>
+                                                    <rect key="frame" x="10" y="10" width="478" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
                                                     <color key="textColor" red="0.17351409792900085" green="0.4910888671875" blue="0.62135332822799683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(000)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxH-ci-QVi" userLabel="LengthLabel">
-                                                    <rect key="frame" x="250" y="12.5" width="40" height="15.5"/>
+                                                    <rect key="frame" x="498" y="12.5" width="40" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="gZW-dI-fEH"/>
                                                     </constraints>
@@ -754,7 +754,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0co-X2-7DR" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="30.5" width="280" height="75"/>
+                                                    <rect key="frame" x="10" y="30.5" width="528" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="y8i-7X-8et"/>
@@ -1017,10 +1017,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8Ul-ni-Q03">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <gestureRecognizers/>
-                            </imageView>
                             <button opaque="NO" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-JH-bNZ" userLabel="GoBack">
                                 <rect key="frame" x="0.0" y="518" width="40" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1063,7 +1059,7 @@
                                                 <rect key="frame" x="45.5" y="0.0" width="45" height="44.5"/>
                                                 <color key="tintColor" red="0.75325143897631464" green="0.75207396096257328" blue="0.77264156894352332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="85" id="dGC-dm-qUU"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="dGC-dm-qUU" userLabel="width &lt;= 70"/>
                                                     <constraint firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="height" multiplier="1:1" id="swn-dR-PHH"/>
                                                 </constraints>
                                             </imageView>
@@ -1208,7 +1204,7 @@
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-sG-pDP" userLabel="SequnceScrollView" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                 <rect key="frame" x="10" y="11" width="300" height="71"/>
-                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="0.2986408390410959" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="ADy-Ol-308"/>
                                     <constraint firstAttribute="height" constant="65" id="Xq1-wN-o8x"/>
@@ -1221,59 +1217,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.27450980392156865" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="W1C-sG-pDP" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="0Fa-mJ-1vQ"/>
-                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe"/>
+                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe" userLabel="Safe Area.trailing = GoalArrows.trailing + 10"/>
                             <constraint firstItem="dpR-JH-bNZ" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" id="6WG-nV-3Jk"/>
-                            <constraint firstItem="W1C-sG-pDP" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="30" id="FcJ-w7-jXK"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="JCT-il-pcP"/>
-                            <constraint firstAttribute="trailing" secondItem="8Ul-ni-Q03" secondAttribute="trailing" id="Jdl-m1-vuo"/>
-                            <constraint firstAttribute="bottom" secondItem="8Ul-ni-Q03" secondAttribute="bottom" id="PRf-Fl-kRy"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="bottom" constant="10" id="Rti-1s-wcw"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="top" secondItem="gVP-AM-HEp" secondAttribute="bottom" id="WKh-fh-WSm"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="width" secondItem="FiY-k7-jgM" secondAttribute="width" multiplier="1.3" id="X9J-oG-iYx"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" secondItem="qpN-xm-6eh" secondAttribute="trailing" constant="10" id="afp-1g-8YO"/>
-                            <constraint firstItem="8Ul-ni-Q03" firstAttribute="leading" secondItem="2o3-Km-KhW" secondAttribute="leading" id="eFt-sH-cUm"/>
-                            <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:6" id="eqA-Gw-ZeU"/>
-                            <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="40" id="h3o-Lz-iTR"/>
+                            <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:5.6" constant="-12.5" id="eqA-Gw-ZeU"/>
                             <constraint firstItem="dpR-JH-bNZ" firstAttribute="bottom" secondItem="2o3-Km-KhW" secondAttribute="bottom" id="hK8-Xl-brV"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="height" secondItem="FiY-k7-jgM" secondAttribute="height" id="i7d-8Z-uP2"/>
+                            <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="width" multiplier="1:5.6" constant="-12.5" id="maX-KY-etN"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="leading" secondItem="oiU-9r-p77" secondAttribute="leading" id="pwa-Y0-IBI"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="width" multiplier="4" constant="30" id="rRt-Ae-YE2"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="sBw-Vs-Gvy"/>
-                            <constraint firstItem="8Ul-ni-Q03" firstAttribute="top" secondItem="2o3-Km-KhW" secondAttribute="top" id="wTw-a0-avW"/>
-                            <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="40" id="xL6-OJ-5cL"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="95" id="xbZ-5p-L40"/>
-                            <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="xrN-qq-aDe"/>
+                            <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="xrN-qq-aDe" userLabel="GoalArrows.leading &gt;= Safe Area.leading + 10"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="bottom" secondItem="qpN-xm-6eh" secondAttribute="bottom" constant="10" id="yKl-J2-FBL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ixL-Ug-PJS"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="h3o-Lz-iTR"/>
-                                <exclude reference="xL6-OJ-5cL"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="4cC-ke-QQe"/>
-                                <include reference="h3o-Lz-iTR"/>
-                                <include reference="xL6-OJ-5cL"/>
-                                <exclude reference="xrN-qq-aDe"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="beatHeightMultiplier" destination="jla-ZV-sgu" id="FkG-w1-k55"/>
                         <outlet property="dnaScrollView" destination="W1C-sG-pDP" id="JdH-fE-2HD"/>
                         <outlet property="downGoalArrow" destination="IHh-lw-1Ez" id="fyn-fJ-RQi"/>
                         <outlet property="goalCard" destination="gVP-AM-HEp" id="KGq-ed-gTS"/>
-                        <outlet property="goalCardHeightConstraint" destination="UFv-K3-0xp" id="FOx-TY-Dao"/>
-                        <outlet property="goalMaxLeadingWidth" destination="xrN-qq-aDe" id="Yuj-gd-OFt"/>
-                        <outlet property="goalMaxTrailingWidth" destination="4cC-ke-QQe" id="X28-eO-prj"/>
-                        <outlet property="goalStackEqualSpacing" destination="cPW-oT-4Tk" id="aZU-cQ-YO8"/>
+                        <outlet property="goalCardHeightConstraint" destination="UFv-K3-0xp" id="Cog-7D-yeZ"/>
                         <outlet property="leftBeat" destination="PMg-iF-sOq" id="3yh-hF-rPj"/>
                         <outlet property="leftGoalArrow" destination="oiU-9r-p77" id="ZFB-Kh-NWw"/>
                         <outlet property="maxArrowWidth" destination="dGC-dm-qUU" id="jCc-Yu-twN"/>

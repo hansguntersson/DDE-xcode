@@ -70,17 +70,10 @@ class GameViewController: HiddenStatusBarController {
     // How many arrows sizes would fit the game height
     private var arrowsPerGameScreen: Float = 0.0
     
-    /*
-        The goal arrows might be smaller in Portrait due to AutoLayout
-        The below outlets (constraints and stack view) are used to calculate
-            a "fixed-max" arrow size so that, even if the screen is rotated,
-            AutoLayout produces the same outcome in any Orientation
-    */
+    // The Arrow Size is comptued by AutoLayout
     @IBOutlet var maxArrowWidth: NSLayoutConstraint!
-    @IBOutlet var beatHeightMultiplier: NSLayoutConstraint!
-    @IBOutlet var goalMaxLeadingWidth: NSLayoutConstraint!
-    @IBOutlet var goalMaxTrailingWidth: NSLayoutConstraint!
-    @IBOutlet var goalStackEqualSpacing: UIStackView!
+    
+    // Constraint constant is adjusted based on tolerance
     @IBOutlet var goalCardHeightConstraint: NSLayoutConstraint!
     
     private var arrowSize: CGFloat = 0.0 {
@@ -175,13 +168,7 @@ class GameViewController: HiddenStatusBarController {
                 end it above the top screen edge (as arrows are positioned by center).
             The extra arrow can be viewed as two arrow halfs (1/2 at bottom and top of the screen)
          */
-        // Compute the optimal arrow size
-        let minFrameSize = min(view.frame.width, view.frame.height)
-        let cardSpacing = goalMaxLeadingWidth.constant + goalMaxTrailingWidth.constant + 5 * goalStackEqualSpacing.spacing
-        let arrowsAndBeatsWidth = minFrameSize - cardSpacing
-        let maxArrowSize = arrowsAndBeatsWidth / (2 * beatHeightMultiplier.multiplier + 4)
-        
-        arrowSize = maxArrowSize.rounded(.down)
+        arrowSize = maxArrowWidth.constant.rounded(.down)
         gameHeight = max(view.frame.width, view.frame.height) + arrowSize
         arrowsPerGameScreen = Float(gameHeight / arrowSize)
     }
