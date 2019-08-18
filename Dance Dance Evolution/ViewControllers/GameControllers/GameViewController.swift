@@ -168,7 +168,7 @@ class GameViewController: HiddenStatusBarController {
                 end it above the top screen edge (as arrows are positioned by center).
             The extra arrow can be viewed as two arrow halfs (1/2 at bottom and top of the screen)
          */
-        arrowSize = maxArrowWidth.constant.rounded(.down)
+        arrowSize = leftGoalArrow.frame.width.rounded(.down)
         gameHeight = max(view.frame.width, view.frame.height) + arrowSize
         arrowsPerGameScreen = Float(gameHeight / arrowSize)
     }
@@ -188,7 +188,7 @@ class GameViewController: HiddenStatusBarController {
         dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
         dnaView.startOffsetSegments = CGFloat(game.spacedArrowsPerScreen)
         dnaView.areMainLettersEnabled = true
-        dnaView.autoOrientation = .devicePerpendicular
+        dnaView.helixOrientation = .horizontal
         dnaView.isDrawingEnabled = true
     }
     
@@ -421,7 +421,8 @@ class GameViewController: HiddenStatusBarController {
         
         // Computer relative percentages
         let startPercent: CGFloat = CGFloat(game.state.percentCompleted) * (baseSegments + spacedArrowsPerScreen) / totalSegments
-        let endPercent: CGFloat = startPercent + spacedArrowsPerScreen / totalSegments
+        let endAdjust: CGFloat = view.frame.height / max(view.frame.width, view.frame.height)
+        let endPercent: CGFloat = startPercent + spacedArrowsPerScreen / totalSegments * endAdjust
         
         // Apply highlight and rotation
         dnaScrollView.scrollToBottom()

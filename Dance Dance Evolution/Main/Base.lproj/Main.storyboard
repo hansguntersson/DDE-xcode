@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="37" y="35" width="246" height="100.00000000000006"/>
+                                <rect key="frame" x="140.5" y="35" width="39" height="16"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pBE-R4-GR8" secondAttribute="height" multiplier="123:50" id="WEb-X9-dUE"/>
@@ -135,7 +135,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_ResistanceisFutile" translatesAutoresizingMaskIntoConstraints="NO" id="lr6-8O-6un" customClass="PaddedImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="74.5" y="461" width="171.00000000000006" height="80"/>
+                                <rect key="frame" x="74.5" y="461" width="171" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lr6-8O-6un" secondAttribute="height" multiplier="107:50" id="9Vb-e8-Xon"/>
@@ -143,10 +143,10 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="67.5" y="155" width="185" height="286"/>
+                                <rect key="frame" x="67.5" y="71" width="185" height="370"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="8" width="185" height="270"/>
+                                        <rect key="frame" x="0.0" y="50" width="185" height="270"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
@@ -366,7 +366,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="w97-a8-Cwg">
-                                <rect key="frame" x="10" y="35" width="300" height="80.000000000000057"/>
+                                <rect key="frame" x="152" y="35" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
@@ -390,7 +390,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="125" width="300" height="390"/>
+                                <rect key="frame" x="10" y="61" width="300" height="454"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
                                         <rect key="frame" x="10" y="10" width="280" height="448"/>
@@ -1035,7 +1035,7 @@
                                 </connections>
                             </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-AM-HEp" userLabel="GoalArrows">
-                                <rect key="frame" x="10" y="115" width="300" height="44.5"/>
+                                <rect key="frame" x="10" y="125" width="300" height="44.5"/>
                                 <subviews>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
@@ -1119,7 +1119,7 @@
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-k7-jgM" userLabel="GoalLetters">
-                                <rect key="frame" x="55.5" y="159.5" width="209" height="53.5"/>
+                                <rect key="frame" x="55.5" y="169.5" width="209" height="53.5"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-mo-SGI" userLabel="Letters Stack Equal Spacing">
                                         <rect key="frame" x="0.0" y="0.0" width="209" height="53.5"/>
@@ -1197,18 +1197,35 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUTATION!" textAlignment="natural" lineBreakMode="middleTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-81-aRD" userLabel="Mutation">
-                                <rect key="frame" x="24.5" y="223" width="271" height="54"/>
+                                <rect key="frame" x="24.5" y="233" width="271" height="54"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="100"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-sG-pDP" userLabel="SequnceScrollView" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="11" width="300" height="71"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-sG-pDP" userLabel="SequnceScrollView" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
+                                <rect key="frame" x="10" y="50" width="300" height="65"/>
+                                <subviews>
+                                    <view hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK2-qO-Y0y" userLabel="DummyView">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" placeholder="YES" id="hgC-zW-AGi"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="ADy-Ol-308"/>
+                                    <constraint firstItem="zK2-qO-Y0y" firstAttribute="bottom" secondItem="W1C-sG-pDP" secondAttribute="bottom" id="55K-A6-xG6"/>
+                                    <constraint firstItem="zK2-qO-Y0y" firstAttribute="trailing" secondItem="W1C-sG-pDP" secondAttribute="trailing" id="5Br-QK-saf"/>
                                     <constraint firstAttribute="height" constant="65" id="Xq1-wN-o8x"/>
+                                    <constraint firstItem="zK2-qO-Y0y" firstAttribute="leading" secondItem="W1C-sG-pDP" secondAttribute="leading" id="aGa-ip-NjH"/>
+                                    <constraint firstItem="zK2-qO-Y0y" firstAttribute="top" secondItem="W1C-sG-pDP" secondAttribute="top" id="zNY-3z-Z3M"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpN-xm-6eh" userLabel="ProgressLabel">
                                 <rect key="frame" x="269" y="538.5" width="41" height="19.5"/>
@@ -1221,24 +1238,45 @@
                         <constraints>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVP-AM-HEp" secondAttribute="trailing" constant="10" id="4cC-ke-QQe" userLabel="Safe Area.trailing = GoalArrows.trailing + 10"/>
                             <constraint firstItem="dpR-JH-bNZ" firstAttribute="leading" secondItem="ixL-Ug-PJS" secondAttribute="leading" id="6WG-nV-3Jk"/>
+                            <constraint firstItem="W1C-sG-pDP" firstAttribute="width" secondItem="gVP-AM-HEp" secondAttribute="width" id="Ahb-wu-dgs"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="JCT-il-pcP"/>
+                            <constraint firstItem="qpN-xm-6eh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dpR-JH-bNZ" secondAttribute="trailing" constant="10" id="KUl-bl-6Jm"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="top" secondItem="FiY-k7-jgM" secondAttribute="bottom" constant="10" id="Rti-1s-wcw"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="height" relation="lessThanOrEqual" secondItem="cPW-oT-4Tk" secondAttribute="height" multiplier="1.2" id="UzT-ZN-ym4"/>
+                            <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="30" id="VAj-gN-E98"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="top" secondItem="gVP-AM-HEp" secondAttribute="bottom" id="WKh-fh-WSm"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="width" secondItem="FiY-k7-jgM" secondAttribute="width" multiplier="1.3" id="X9J-oG-iYx"/>
+                            <constraint firstItem="W1C-sG-pDP" firstAttribute="top" secondItem="gJp-81-aRD" secondAttribute="bottom" constant="10" id="ZUI-rL-fOz"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="trailing" secondItem="qpN-xm-6eh" secondAttribute="trailing" constant="10" id="afp-1g-8YO"/>
+                            <constraint firstItem="W1C-sG-pDP" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="30" id="epq-0m-toa"/>
                             <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="height" multiplier="1:5.6" constant="-12.5" id="eqA-Gw-ZeU"/>
                             <constraint firstItem="dpR-JH-bNZ" firstAttribute="bottom" secondItem="2o3-Km-KhW" secondAttribute="bottom" id="hK8-Xl-brV"/>
                             <constraint firstItem="gJp-81-aRD" firstAttribute="height" secondItem="FiY-k7-jgM" secondAttribute="height" id="i7d-8Z-uP2"/>
+                            <constraint firstItem="zK2-qO-Y0y" firstAttribute="width" secondItem="gVP-AM-HEp" secondAttribute="width" placeholder="YES" id="lgc-jQ-So3"/>
                             <constraint firstItem="oiU-9r-p77" firstAttribute="height" relation="lessThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="width" multiplier="1:5.6" constant="-12.5" id="maX-KY-etN"/>
+                            <constraint firstItem="W1C-sG-pDP" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="nmp-Rf-opa"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="leading" secondItem="oiU-9r-p77" secondAttribute="leading" id="pwa-Y0-IBI"/>
                             <constraint firstItem="FiY-k7-jgM" firstAttribute="width" secondItem="oiU-9r-p77" secondAttribute="width" multiplier="4" constant="30" id="rRt-Ae-YE2"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="centerX" secondItem="2o3-Km-KhW" secondAttribute="centerX" id="sBw-Vs-Gvy"/>
-                            <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="ixL-Ug-PJS" secondAttribute="top" constant="95" id="xbZ-5p-L40"/>
+                            <constraint firstItem="gVP-AM-HEp" firstAttribute="top" secondItem="W1C-sG-pDP" secondAttribute="bottom" constant="10" id="xbZ-5p-L40"/>
                             <constraint firstItem="gVP-AM-HEp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixL-Ug-PJS" secondAttribute="leading" constant="10" id="xrN-qq-aDe" userLabel="GoalArrows.leading &gt;= Safe Area.leading + 10"/>
                             <constraint firstItem="ixL-Ug-PJS" firstAttribute="bottom" secondItem="qpN-xm-6eh" secondAttribute="bottom" constant="10" id="yKl-J2-FBL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ixL-Ug-PJS"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZUI-rL-fOz"/>
+                                <exclude reference="VAj-gN-E98"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="ZUI-rL-fOz"/>
+                                <exclude reference="epq-0m-toa"/>
+                                <include reference="VAj-gN-E98"/>
+                                <exclude reference="xbZ-5p-L40"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="dnaScrollView" destination="W1C-sG-pDP" id="JdH-fE-2HD"/>
@@ -1274,6 +1312,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pVz-i4-l4K"/>
+        <segue reference="j3K-m0-PmQ"/>
     </inferredMetricsTieBreakers>
 </document>
