@@ -53,6 +53,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         case vertical
         case horizontal
     }
+    enum AutoOrientation {
+        case off
+        case device
+        case devicePerpendicular
+    }
     var depthAlpha: CGFloat = 0.3 {
         didSet {
             depthAlpha = depthAlpha.clamped(to: 0.1...1.0)
@@ -92,11 +97,11 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     var helixOrientation: HelixOrientation = .horizontal {
         didSet {
-            self.isAutoOriented = false
+            self.autoOrientation = .off
             updateDimensions()
         }
     }
-    var isAutoOriented: Bool = true
+    var autoOrientation: AutoOrientation = .device
     var scale: CGFloat = 0.8 {
         didSet {
             scale = scale.clamped(to: 0.5...1)
@@ -421,13 +426,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     private var previousStartPercent: CGFloat?
     override var bounds: CGRect {
         didSet {
-            if isAutoOriented {
-                let newHelixOrientation: HelixOrientation
-                if UIDevice.current.orientation.isValidInterfaceOrientation {
-                    newHelixOrientation = UIDevice.current.orientation.isLandscape ? .horizontal : .vertical
-                } else {
-                    newHelixOrientation = UIApplication.shared.statusBarOrientation.isLandscape ? .horizontal : .vertical
-                }
+            if autoOrientation != .off {
+                let newHelixOrientation: HelixOrientation = isDeviceLandscape() && autoOrientation == .device ? .horizontal : .vertical
                 if helixOrientation != newHelixOrientation {
                     previousStartPercent = visibleHelixBounds().startPercent
                     helixOrientation = newHelixOrientation
@@ -437,10 +437,20 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             updateDimensions()
         }
     }
+    private func isDeviceLandscape() -> Bool {
+        if UIDevice.current.orientation.isValidInterfaceOrientation {
+            return UIDevice.current.orientation.isLandscape
+        } else {
+            return UIApplication.shared.statusBarOrientation.isLandscape
+        }
+    }
     
     // -------------------------------------------------------------------------
     // Mark: - Draw Elements
     // -------------------------------------------------------------------------
+    let mainBlendMode: CGBlendMode = .normal
+    var pairBlendMode: CGBlendMode = .luminosity
+    
     private var drawRect: CGRect!
     private var highlightRect: CGRect?
     override func draw(_ rect: CGRect) {
@@ -472,8 +482,6 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
             let pairDrawableChar = getFittedAttributedText(textToFit: pairCharacter, fitRect: pairRect, attributes: pairTextAttributes)
             
             // Stroke and fill from the back towards the front
-            let mainBlendMode: CGBlendMode = .normal
-            let pairBlendMode: CGBlendMode = .luminosity
             if segmentPair.isMainOnTop {
                 segmentPair.pairSegment.color.set()
                 pairLinePath.stroke(with: pairBlendMode, alpha: segmentPair.pairSegment.alpha)
