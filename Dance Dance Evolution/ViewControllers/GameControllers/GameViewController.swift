@@ -199,9 +199,9 @@ class GameViewController: HiddenStatusBarController {
         let dnaView = dnaScrollView.dnaView!
         dnaView.isDrawingEnabled = false
         dnaView.baseTypes = game.state.sequence.nucleobaseTypesSequence()
-        dnaView.helixOrientation = .horizontal
         dnaView.startOffsetSegments = CGFloat(game.spacedArrowsPerScreen)
         dnaView.areMainLettersEnabled = true
+        dnaView.autoOrientation = .devicePerpendicular
         dnaView.isDrawingEnabled = true
     }
     
@@ -421,7 +421,7 @@ class GameViewController: HiddenStatusBarController {
     private func renderDnaView() {
         let dnaView = dnaScrollView.dnaView!
         
-        // Make sure enough trailing segments are available so that the dnaView higllight is always left
+        // Make sure enough dummy trailing segments are available so that the dnaView highlight is always at left
         let requiredEndOffsetSegments = max(dnaScrollView.frame.width, dnaScrollView.frame.height) / dnaView.distanceBetweenSegments
         if dnaView.endOffsetSegments < requiredEndOffsetSegments {
             dnaView.endOffsetSegments = ceil(requiredEndOffsetSegments)

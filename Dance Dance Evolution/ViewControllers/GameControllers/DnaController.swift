@@ -19,6 +19,7 @@ class DnaController: HiddenStatusBarController {
         dnaView.startOffsetSegments = 3
         dnaView.endOffsetSegments = 4
         dnaView.isUserInteractionEnabled = true
+        dnaView.autoOrientation = .device
         
         let dnaMap = dnaMapScrollView.dnaView!
         dnaView.syncMapView = dnaMap

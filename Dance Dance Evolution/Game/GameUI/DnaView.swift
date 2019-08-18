@@ -24,10 +24,20 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
         initSizeConstraints()
         initGestures()
         initTextAppearance()
+        addRotationObserver()
     }
     private func initSizeConstraints() {
         heightConstraint = self.heightAnchor.constraint(equalToConstant: 0)
         widthConstraint = self.widthAnchor.constraint(equalToConstant: 0)
+    }
+    private func addRotationObserver() {
+        NotificationCenter.default.addObserver(self
+            , selector: #selector(appRotated)
+            , name: UIDevice.orientationDidChangeNotification
+            , object: nil)
+    }
+    @objc func appRotated() {
+        updateOrientation()
     }
 
     // -------------------------------------------------------------------------
@@ -97,11 +107,14 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     }
     var helixOrientation: HelixOrientation = .horizontal {
         didSet {
-            self.autoOrientation = .off
             updateDimensions()
         }
     }
-    var autoOrientation: AutoOrientation = .device
+    var autoOrientation: AutoOrientation = .off {
+        didSet {
+            updateOrientation()
+        }
+    }
     var scale: CGFloat = 0.8 {
         didSet {
             scale = scale.clamped(to: 0.5...1)
@@ -422,19 +435,29 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // -------------------------------------------------------------------------
     // Mark: - Layout Changes
     // -------------------------------------------------------------------------
-    // Store previous visible position if orientation has changed
-    private var previousStartPercent: CGFloat?
     override var bounds: CGRect {
         didSet {
-            if autoOrientation != .off {
-                let newHelixOrientation: HelixOrientation = isDeviceLandscape() && autoOrientation == .device ? .horizontal : .vertical
-                if helixOrientation != newHelixOrientation {
-                    previousStartPercent = visibleHelixBounds().startPercent
-                    helixOrientation = newHelixOrientation
-                    return
-                }
-            }
             updateDimensions()
+        }
+    }
+    
+    // -------------------------------------------------------------------------
+    // Mark: - Orientation
+    // -------------------------------------------------------------------------
+    private var previousStartPercent: CGFloat?
+    
+    private func updateOrientation() {
+        if autoOrientation != .off {
+            previousStartPercent = visibleHelixBounds().startPercent
+            let newHelixOrientation: HelixOrientation
+            switch autoOrientation {
+                case .device: newHelixOrientation = self.isDeviceLandscape() ? .horizontal : .vertical
+                case .devicePerpendicular: newHelixOrientation = self.isDeviceLandscape() ? .vertical : .horizontal
+                default: newHelixOrientation = helixOrientation
+            }
+            if helixOrientation != newHelixOrientation {
+                helixOrientation = newHelixOrientation
+            }
         }
     }
     private func isDeviceLandscape() -> Bool {
@@ -627,7 +650,7 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     // Mark: - Map
     // -------------------------------------------------------------------------
     private func visibleHelixBounds() -> (startPercent: CGFloat, endPercent: CGFloat) {
-        let visibleRect = convert(self.superview!.bounds, to: self)
+        let visibleRect = convert(self.superview?.bounds ?? CGRect.zero, to: self)
         let trueHeight = self.helixHeight - (editMode ? distanceBetweenSegments: 0.0)
         if helixOrientation == .horizontal {
             return (visibleRect.minX / trueHeight, visibleRect.maxX / trueHeight)
@@ -815,5 +838,8 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 setNeedsDisplay()
             }
         }
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
