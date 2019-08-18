@@ -512,9 +512,15 @@ class DnaView: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate {
                 }
             }
             if highlightRect != nil {
-                let highlightPath = UIBezierPath(rect: highlightRect!)
-                UIColor.red.set()
-                highlightPath.fill(with: .normal, alpha: 0.005)
+                // Use an independant sublayer for highlighting so that colors do not mix
+                if self.layer.sublayers == nil {
+                    let highlightLayer = CAShapeLayer()
+                    highlightLayer.fillColor = UIColor.red.cgColor
+                    highlightLayer.opacity = 0.2
+                    self.layer.insertSublayer(highlightLayer, at: 0)
+                }
+                let highlightLayer: CAShapeLayer = self.layer.sublayers![0] as! CAShapeLayer
+                highlightLayer.path = UIBezierPath(rect: highlightRect!).cgPath
             }
         }
     }

@@ -25,7 +25,6 @@ class CustomSequenceCell: UITableViewCell {
         
         dnaView.isDrawingEnabled = false
         dnaView.baseTypes = sequence.nucleobaseTypesSequence()
-        dnaView.isAutoOriented = false
         dnaView.helixOrientation = .horizontal
         dnaView.isUserInteractionEnabled = true
         dnaView.areMainLettersEnabled = true
