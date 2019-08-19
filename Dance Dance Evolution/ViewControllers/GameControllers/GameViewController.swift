@@ -116,7 +116,6 @@ class GameViewController: HiddenStatusBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        renderScreen()
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -153,6 +152,10 @@ class GameViewController: HiddenStatusBarController {
         initTolerance()
         initDnaView()
         initMusic()
+        
+        // Pause mode rendering (dnaView)
+        isPaused = true
+        displayUpdateInformer.resume()
     }
     private func initMusic() {
         if game.state.difficulty == .pro {
@@ -388,7 +391,7 @@ class GameViewController: HiddenStatusBarController {
                 arrow.isHidden = false
                 let goalArrow = goalArrows[arrow.direction]!
                 
-                let x = goalArrow.absoluteCenter().x
+                let x = goalArrow.superview!.convert(goalArrow.center, to: view).x
                 let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2
                 
                 arrow.center = CGPoint(x: x, y: y)

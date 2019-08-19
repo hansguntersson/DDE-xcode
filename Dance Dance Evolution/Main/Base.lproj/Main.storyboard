@@ -739,13 +739,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sequence Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf4-jH-jVu" userLabel="NameLabel">
-                                                    <rect key="frame" x="10" y="10" width="478" height="20.5"/>
+                                                    <rect key="frame" x="10" y="10" width="324" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
                                                     <color key="textColor" red="0.17351409792900085" green="0.4910888671875" blue="0.62135332822799683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(000)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxH-ci-QVi" userLabel="LengthLabel">
-                                                    <rect key="frame" x="498" y="12.5" width="40" height="15.5"/>
+                                                    <rect key="frame" x="344" y="12.5" width="40" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="gZW-dI-fEH"/>
                                                     </constraints>
@@ -754,7 +754,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0co-X2-7DR" customClass="DnaView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="30.5" width="528" height="75"/>
+                                                    <rect key="frame" x="10" y="30.5" width="374" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="y8i-7X-8et"/>
@@ -1213,7 +1213,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.88" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="zK2-qO-Y0y" firstAttribute="bottom" secondItem="W1C-sG-pDP" secondAttribute="bottom" id="55K-A6-xG6"/>
                                     <constraint firstItem="zK2-qO-Y0y" firstAttribute="trailing" secondItem="W1C-sG-pDP" secondAttribute="trailing" id="5Br-QK-saf"/>

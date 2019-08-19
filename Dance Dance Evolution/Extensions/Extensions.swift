@@ -15,28 +15,6 @@ extension Float {
     }
 }
 
-extension UIView {
-    func absoluteCenter() -> CGPoint {
-        let origin = absoluteOrigin(view: self)
-        return CGPoint(
-            x: center.x - self.frame.origin.x + origin.x
-            , y: center.y - self.frame.origin.y + origin.y
-        )
-    }
-    
-    private func absoluteOrigin(view: UIView) -> CGPoint {
-        if let parentView = view.superview {
-            let origin = absoluteOrigin(view: parentView)
-            return CGPoint(
-                x: view.frame.origin.x + origin.x
-                , y: view.frame.origin.y + origin.y
-            )
-        } else {
-            return view.frame.origin
-        }
-    }
-}
-
 extension UIColor {
     // DNA Nucleobase Colo(u)rs
     static func azure() -> UIColor {return UIColor(red: 76 / 255, green: 86 / 255, blue: 246 / 255, alpha: 1)}
