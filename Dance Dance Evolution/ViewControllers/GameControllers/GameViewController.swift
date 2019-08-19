@@ -70,6 +70,9 @@ class GameViewController: HiddenStatusBarController {
     // How many arrows sizes would fit the game height
     private var arrowsPerGameScreen: Float = 0.0
     
+    // The initial center Y for goal card
+    private var goalCardOriginalCenterY: CGFloat = 0.0
+    
     // The Arrow Size is comptued by AutoLayout
     @IBOutlet var maxArrowWidth: NSLayoutConstraint!
     
@@ -116,6 +119,7 @@ class GameViewController: HiddenStatusBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        goalCardOriginalCenterY = goalCard.center.y
         performSegue(withIdentifier: Segues.goToReadyScreen.rawValue, sender: self)
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -392,7 +396,8 @@ class GameViewController: HiddenStatusBarController {
                 let goalArrow = goalArrows[arrow.direction]!
                 
                 let x = goalArrow.superview!.convert(goalArrow.center, to: view).x
-                let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2
+                let goalCardAdjust = goalCardOriginalCenterY - goalCard.center.y // in case AutoLayout moved goalCard up/down
+                let y = CGFloat(nucleobase.percentY) * gameHeight - arrowSize / 2 - goalCardAdjust
                 
                 arrow.center = CGPoint(x: x, y: y)
                 
