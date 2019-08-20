@@ -9,6 +9,7 @@ class GameViewController: HiddenStatusBarController {
     // -------------------------------------------------------------------------
     private enum Segues: String {
         case goToReadyScreen = "goToReadyScreen"
+        case goToScoreScreen = "goToScoreScreen"
     }
     
     /*
@@ -269,6 +270,9 @@ class GameViewController: HiddenStatusBarController {
         case Segues.goToReadyScreen.rawValue:
             readyViewController = (segue.destination as! ReadyViewController)
             readyViewController!.onClose = {[unowned self] in self.resumePlay()}
+        case Segues.goToScoreScreen.rawValue:
+            let scoreViewController = (segue.destination as! ScoreViewController)
+            scoreViewController.dnaSequence = game.state.sequence
         default:
             break
         }
@@ -456,13 +460,17 @@ class GameViewController: HiddenStatusBarController {
     // -------------------------------------------------------------------------
     private func endGame() {
         clean()
-        dismiss(animated: false, completion: nil)
+        performSegue(withIdentifier: Segues.goToScoreScreen.rawValue, sender: self)
     }
     @IBAction func goBack(_ sender: UIButton) {
-        endGame()
+        if !game.hasEnded() {
+            game.saveState()
+        }
+        clean()
+        dismiss(animated: false, completion: nil)
     }
     private func clean() {
-        displayUpdateInformer.close()
+        displayUpdateInformer?.close()
         displayUpdateInformer = nil
     }
     deinit {

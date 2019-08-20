@@ -19,6 +19,7 @@
 		894BB17321706E06003C4173 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BB17221706E06003C4173 /* NumberTextField.swift */; };
 		894C1340222C375D007653AA /* DnaAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C133F222C375D007653AA /* DnaAnimation.swift */; };
 		894E2D2B21EB4C2300D1CD7B /* COGO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E2D2A21EB4C2300D1CD7B /* COGO.swift */; };
+		8954AC76230C921C00B9EAD2 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8954AC75230C921C00B9EAD2 /* ScoreViewController.swift */; };
 		89564B092160B82B005DAC2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89564B082160B82B005DAC2A /* TestViewController.swift */; };
 		8957D20A215694C9005CAA78 /* DDEGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8957D209215694C9005CAA78 /* DDEGame.swift */; };
 		8958037D214D1CE200C458C9 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958037C214D1CE200C458C9 /* GameState.swift */; };
@@ -80,6 +81,7 @@
 		894BB17221706E06003C4173 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		894C133F222C375D007653AA /* DnaAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaAnimation.swift; sourceTree = "<group>"; };
 		894E2D2A21EB4C2300D1CD7B /* COGO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COGO.swift; sourceTree = "<group>"; };
+		8954AC75230C921C00B9EAD2 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		89564B082160B82B005DAC2A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8957D209215694C9005CAA78 /* DDEGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDEGame.swift; sourceTree = "<group>"; };
 		8958037C214D1CE200C458C9 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				89FF0417219CC59C00FA0344 /* SequencesViewController.swift */,
 				891761B022C4186800046A85 /* SequencePopup.swift */,
 				89B0F28721DE9B0100E7F1A6 /* DnaController.swift */,
+				8954AC75230C921C00B9EAD2 /* ScoreViewController.swift */,
 			);
 			path = GameControllers;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				892724AB2143B89300032125 /* DisplayUpdateInformer.swift in Sources */,
 				89FD33092117540500407B15 /* MainViewController.swift in Sources */,
 				89465ABA212A11770061F4E1 /* ResizableSwitch.swift in Sources */,
+				8954AC76230C921C00B9EAD2 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
