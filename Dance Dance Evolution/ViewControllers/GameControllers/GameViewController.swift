@@ -142,12 +142,15 @@ class GameViewController: HiddenStatusBarController {
             dismiss(animated: false, completion: nil)
             return
         }
+        self.gameState = nil
+        self.dnaSequence = nil
+        
         DDEGame.clearSavedGame()
         // Init custom display timer
         displayUpdateInformer = DisplayUpdateInformer(
             onDisplayUpdate: {[unowned self] deltaTime in self.gameLoop(deltaTime)}
         )
-        // Set muation callback
+        // Set mutation callback
         game.onMutation = {[unowned self] in self.mutation()}
         // Mutation label is fully visible only when a mutation occurs
         mutationLabel.alpha = 0.0
@@ -306,10 +309,10 @@ class GameViewController: HiddenStatusBarController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        displayUpdateInformer.pause()
+        displayUpdateInformer?.pause()
         hideArrows()
         coordinator.animate(alongsideTransition: nil, completion: { [unowned self] _ in
-            self.displayUpdateInformer.resume()
+            self.displayUpdateInformer?.resume()
         })
     }
     
@@ -437,9 +440,11 @@ class GameViewController: HiddenStatusBarController {
         let endPercent: CGFloat = startPercent + spacedArrowsPerScreen / totalSegments * endAdjust
         
         // Apply highlight and rotation
+        dnaView.isDrawingEnabled = false
         dnaScrollView.scrollToBottom()
         dnaView.highlight(startPercent: startPercent, endPercent: endPercent)
         dnaView.rotation3D -= 0.025 * CGFloat(game.state.speed)
+        dnaView.isDrawingEnabled = true
     }
     
     // -------------------------------------------------------------------------
@@ -463,9 +468,7 @@ class GameViewController: HiddenStatusBarController {
         performSegue(withIdentifier: Segues.goToScoreScreen.rawValue, sender: self)
     }
     @IBAction func goBack(_ sender: UIButton) {
-        if !game.hasEnded() {
-            game.saveState()
-        }
+        game.saveState()
         clean()
         dismiss(animated: false, completion: nil)
     }

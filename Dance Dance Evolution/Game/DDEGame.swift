@@ -156,8 +156,10 @@ extension DDEGame {
     }
     
     func saveState() {
-        UserDefaults.standard.set(state.encodeToString(), forKey: GameKey.savedState.rawValue)
-        UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
+        if !self.hasEnded() {
+            UserDefaults.standard.set(state.encodeToString(), forKey: GameKey.savedState.rawValue)
+            UserDefaults.standard.set(true, forKey: GameKey.resumeKey.rawValue)
+        }
     }
     
     static func isGameAvailableForResume() -> Bool {
