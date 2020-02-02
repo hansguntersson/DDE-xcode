@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2kU-Zb-fll">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2kU-Zb-fll">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +11,13 @@
         <!--Dna Controller-->
         <scene sceneID="miD-aN-5Mi">
             <objects>
-                <viewController id="pQx-Ca-anq" customClass="DnaController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="pQx-Ca-anq" customClass="DnaController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OLR-cw-27m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.20000000000000001" maximumZoomScale="2" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1my-pb-ycH" userLabel="Dna Scroll View" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="50" y="35" width="250" height="503"/>
+                                <rect key="frame" x="50" y="15" width="250" height="523"/>
                                 <color key="backgroundColor" white="0.91366117290000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9h-QY-qJT" userLabel="Button2">
@@ -83,7 +81,7 @@
         <!--Entry View Controller-->
         <scene sceneID="lWW-9Z-x00">
             <objects>
-                <viewController storyboardIdentifier="EntryScreen" id="2kU-Zb-fll" customClass="EntryViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntryScreen" modalPresentationStyle="fullScreen" id="2kU-Zb-fll" customClass="EntryViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="JaN-cE-iOu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +116,7 @@
         <!--Main View Controller-->
         <scene sceneID="DAU-9k-lN8">
             <objects>
-                <viewController storyboardIdentifier="MainScreen" id="KhT-5y-ff0" customClass="MainViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainScreen" modalPresentationStyle="fullScreen" id="KhT-5y-ff0" customClass="MainViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Vt5-vU-BjZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,7 +125,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-R4-GR8" customClass="CustomImageView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="140.5" y="35" width="39" height="16"/>
+                                <rect key="frame" x="37" y="15" width="246" height="100"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pBE-R4-GR8" secondAttribute="height" multiplier="123:50" id="WEb-X9-dUE"/>
@@ -143,10 +141,10 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVK-CO-vjU" userLabel="ButtonsCard">
-                                <rect key="frame" x="67.5" y="71" width="185" height="370"/>
+                                <rect key="frame" x="67.5" y="135" width="185" height="306"/>
                                 <subviews>
                                     <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jat-PI-cyH" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="50" width="185" height="270"/>
+                                        <rect key="frame" x="0.0" y="18" width="185" height="270"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-66-Lgb" userLabel="RESUME" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="185" height="38"/>
@@ -357,7 +355,7 @@
         <!--Setup View Controller-->
         <scene sceneID="uit-FV-rYa">
             <objects>
-                <viewController storyboardIdentifier="SetupScreen" modalTransitionStyle="crossDissolve" id="I2K-9b-V2Y" customClass="SetupViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetupScreen" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="I2K-9b-V2Y" customClass="SetupViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Eep-HR-jVz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -366,7 +364,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDE_logo" translatesAutoresizingMaskIntoConstraints="NO" id="w97-a8-Cwg">
-                                <rect key="frame" x="152" y="35" width="16" height="16"/>
+                                <rect key="frame" x="10" y="15" width="300" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="PlE-8u-8QI"/>
                                 </constraints>
@@ -390,7 +388,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlP-EZ-h16">
-                                <rect key="frame" x="10" y="61" width="300" height="454"/>
+                                <rect key="frame" x="10" y="105" width="300" height="410"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n9b-hF-J4U">
                                         <rect key="frame" x="10" y="10" width="280" height="448"/>
@@ -421,16 +419,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDL-iy-jdf" userLabel="SequenceLength">
-                                                        <rect key="frame" x="0.0" y="47.5" width="280" height="30"/>
+                                                        <rect key="frame" x="0.0" y="45.5" width="280" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="DNA Sequence Length: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzw-0S-f9W" userLabel="SequenceLengthLabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="230" height="34"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="NDf-fo-4g6" userLabel="SequenceLengthInput" customClass="NumberTextField" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                                                <rect key="frame" x="230" y="0.0" width="50" height="30"/>
+                                                                <rect key="frame" x="230" y="0.0" width="50" height="34"/>
                                                                 <color key="backgroundColor" white="0.80000000000000004" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="yn7-XA-19O"/>
@@ -448,22 +446,22 @@
                                                         </connections>
                                                     </slider>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5UO-FU-MuB" userLabel="Countdown">
-                                                        <rect key="frame" x="0.0" y="142" width="280" height="29"/>
+                                                        <rect key="frame" x="0.0" y="140.5" width="280" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Countdown (sec)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="xEI-Um-j4j" userLabel="CountdownLabel">
-                                                                <rect key="frame" x="0.0" y="5.5" width="157" height="18.5"/>
+                                                                <rect key="frame" x="0.0" y="7" width="157" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="Rqm-gu-YFc" userLabel="SecValue">
-                                                                <rect key="frame" x="167" y="5.5" width="9" height="18.5"/>
+                                                                <rect key="frame" x="167" y="7" width="9" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <color key="textColor" red="0.23529411764705882" green="0.74117647058823533" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="3" maximumValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-Rt-s9p" userLabel="CountdownStepper">
-                                                                <rect key="frame" x="186" y="0.0" width="94" height="29"/>
+                                                                <rect key="frame" x="186" y="0.0" width="94" height="32"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -476,16 +474,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="X4n-3c-aD8" userLabel="Difficulty">
-                                                        <rect key="frame" x="0.0" y="189.5" width="280" height="28"/>
+                                                        <rect key="frame" x="0.0" y="188" width="280" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="g3M-fW-C5X" userLabel="DifficultyLabel">
-                                                                <rect key="frame" x="0.0" y="5" width="87" height="18.5"/>
+                                                                <rect key="frame" x="0.0" y="6.5" width="67" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-4R-Edb" userLabel="DifficultySegment">
-                                                                <rect key="frame" x="97" y="0.0" width="183" height="29"/>
+                                                                <rect key="frame" x="77" y="0.0" width="203" height="32"/>
                                                                 <segments>
                                                                     <segment title="Easy"/>
                                                                     <segment title="Normal"/>
@@ -499,22 +497,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v7m-zV-I45" userLabel="Tolerance">
-                                                        <rect key="frame" x="0.0" y="236" width="280" height="29"/>
+                                                        <rect key="frame" x="0.0" y="234.5" width="280" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Tolerance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="YCX-iB-5pr" userLabel="ToleranceLabel">
-                                                                <rect key="frame" x="0.0" y="5.5" width="157" height="18.5"/>
+                                                                <rect key="frame" x="0.0" y="7" width="157" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="yQg-sM-act" userLabel="ToleranceValue">
-                                                                <rect key="frame" x="167" y="5.5" width="9" height="18.5"/>
+                                                                <rect key="frame" x="167" y="7" width="9" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                                 <color key="textColor" red="0.23529411759999999" green="0.74117647060000003" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="zbJ-db-l8d" userLabel="ToleranceStepper">
-                                                                <rect key="frame" x="186" y="0.0" width="94" height="29"/>
+                                                                <rect key="frame" x="186" y="0.0" width="94" height="32"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -542,7 +540,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.75" minimumValue="0.5" maximumValue="0.94999999999999996" stepValue="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="2CK-eE-Nym" userLabel="FidelityStepper">
-                                                                <rect key="frame" x="186" y="4" width="94" height="29"/>
+                                                                <rect key="frame" x="186" y="2.5" width="94" height="32"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -570,7 +568,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minimumValue="0.050000000000000003" maximumValue="0.94999999999999996" stepValue="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="KN3-PT-73K" userLabel="CarryOverStepper">
-                                                                <rect key="frame" x="186" y="4" width="94" height="29"/>
+                                                                <rect key="frame" x="186" y="2.5" width="94" height="32"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="scale">
                                                                         <real key="value" value="0.75"/>
@@ -713,7 +711,7 @@
         <!--Sequences View Controller-->
         <scene sceneID="8fC-Ok-ipc">
             <objects>
-                <viewController id="vjx-2h-RsF" customClass="SequencesViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="vjx-2h-RsF" customClass="SequencesViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="42b-um-AG7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -722,20 +720,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom DNA Sequences" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBR-4Q-zBH" userLabel="CustomHeader">
-                                <rect key="frame" x="51" y="35" width="259" height="25.5"/>
+                                <rect key="frame" x="51" y="15" width="259" height="25.5"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Tx-xB-nIh">
-                                <rect key="frame" x="10" y="65.5" width="300" height="492.5"/>
+                                <rect key="frame" x="10" y="45.5" width="300" height="512.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.95812821061643838" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sequenceCell" rowHeight="110" id="01F-Lu-hkf" customClass="CustomSequenceCell" customModule="Dance_Dance_Evolution" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="300" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01F-Lu-hkf" id="Aor-Jp-ukZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sequence Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf4-jH-jVu" userLabel="NameLabel">
@@ -790,7 +788,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGj-hG-HiX" userLabel="GoBack" customClass="EdgedButton" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="30" width="41" height="35.5"/>
+                                <rect key="frame" x="10" y="10" width="41" height="35.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="titleShadowOffset" width="-1" height="-2"/>
@@ -835,7 +833,7 @@
         <!--Ready View Controller-->
         <scene sceneID="ftd-Tc-658">
             <objects>
-                <viewController storyboardIdentifier="ReadyScreen" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="L9W-B4-s7C" customClass="ReadyViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReadyScreen" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="L9W-B4-s7C" customClass="ReadyViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="fab-DH-smt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -913,7 +911,7 @@
         <!--Sequence Selected Popup-->
         <scene sceneID="Whj-vL-m1e">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="7tl-Yp-Z9D" userLabel="Sequence Selected Popup" customClass="SequencePopup" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="7tl-Yp-Z9D" userLabel="Sequence Selected Popup" customClass="SequencePopup" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="KAr-cC-vt4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1012,7 +1010,7 @@
         <!--Game View Controller-->
         <scene sceneID="rQW-Jr-PGk">
             <objects>
-                <viewController storyboardIdentifier="GameScreen" modalTransitionStyle="crossDissolve" id="oBc-HA-PYg" customClass="GameViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameScreen" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="oBc-HA-PYg" customClass="GameViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="2o3-Km-KhW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1035,7 +1033,7 @@
                                 </connections>
                             </button>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-AM-HEp" userLabel="GoalArrows">
-                                <rect key="frame" x="10" y="125" width="300" height="44.5"/>
+                                <rect key="frame" x="10" y="105" width="300" height="44.5"/>
                                 <subviews>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-oT-4Tk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
@@ -1119,7 +1117,7 @@
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-k7-jgM" userLabel="GoalLetters">
-                                <rect key="frame" x="55.5" y="169.5" width="209" height="53.5"/>
+                                <rect key="frame" x="55.5" y="149.5" width="209" height="53.5"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-mo-SGI" userLabel="Letters Stack Equal Spacing">
                                         <rect key="frame" x="0.0" y="0.0" width="209" height="53.5"/>
@@ -1197,13 +1195,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUTATION!" textAlignment="natural" lineBreakMode="middleTruncation" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-81-aRD" userLabel="Mutation">
-                                <rect key="frame" x="24.5" y="233" width="271" height="54"/>
+                                <rect key="frame" x="24.5" y="213" width="271" height="54"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="100"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-sG-pDP" userLabel="SequnceScrollView" customClass="DnaScrollView" customModule="Dance_Dance_Evolution" customModuleProvider="target">
-                                <rect key="frame" x="10" y="50" width="300" height="65"/>
+                                <rect key="frame" x="10" y="30" width="300" height="65"/>
                                 <subviews>
                                     <view hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK2-qO-Y0y" userLabel="DummyView">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
@@ -1303,7 +1301,7 @@
         <!--Score View Controller-->
         <scene sceneID="eyB-r5-5KQ">
             <objects>
-                <viewController id="a3a-PC-dpT" userLabel="Score View Controller" customClass="ScoreViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="a3a-PC-dpT" userLabel="Score View Controller" customClass="ScoreViewController" customModule="Dance_Dance_Evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vOF-Xn-rYE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1328,6 +1326,6 @@
         <image name="background" width="1920" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j3K-m0-PmQ"/>
+        <segue reference="pVz-i4-l4K"/>
     </inferredMetricsTieBreakers>
 </document>
